@@ -1,0 +1,32 @@
+#include <iostream>
+#include "setFunctions.h"
+using namespace std;
+
+// COMPLETE THIS FILE
+
+bool containsElement(char* set, int size, char itemToCheck) {
+	for (int i = 0; i < size; i++)
+	{
+		if (set[i] == itemToCheck)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void display(char* set, int size) {
+
+}
+
+char* addElement(char* set, int size, char itemToAdd, int& newSize) {
+	return nullptr;
+}
+
+char* setUnion(char* set1, int set1Size, char* set2, int set2Size, int& unionSize) {
+	return nullptr;
+}
+
+char* setIntersect(char* set1, int set1Size, char* set2, int set2Size, int& intersectSize) {
+	return nullptr;
+}

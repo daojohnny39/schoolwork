@@ -1,0 +1,9 @@
+﻿  driver.cpp
+  setFunctions.cpp
+  Generating Code...
+driver.obj : error LNK2019: unresolved external symbol "bool __cdecl containsElement(char *,int,char)" (?containsElement@@YA_NPEADHD@Z) referenced in function main
+driver.obj : error LNK2019: unresolved external symbol "void __cdecl display(char *,int)" (?display@@YAXPEADH@Z) referenced in function main
+driver.obj : error LNK2019: unresolved external symbol "char * __cdecl addElement(char *,int,char,int &)" (?addElement@@YAPEADPEADHDAEAH@Z) referenced in function main
+driver.obj : error LNK2019: unresolved external symbol "char * __cdecl setUnion(char *,int,char *,int,int &)" (?setUnion@@YAPEADPEADH0HAEAH@Z) referenced in function main
+driver.obj : error LNK2019: unresolved external symbol "char * __cdecl setIntersect(char *,int,char *,int,int &)" (?setIntersect@@YAPEADPEADH0HAEAH@Z) referenced in function main
+E:\School\Last Semester School Work\GitHub\CS 250\PROJECTS\Project - Dynamic Array Sets\x64\Debug\Project - Dynamic Array Sets.exe : fatal error LNK1120: 5 unresolved externals
