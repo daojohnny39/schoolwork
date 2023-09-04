@@ -1,5 +1,5 @@
-# testing examples
+for iOuterCnt in range(0, 2) :
 
-iNumber1 = 10
-iNumber2 = 5
-print(iNumber1 % iNumber2)
+    for iInnerCnt in range(1, 2) :
+
+        print(iOuterCnt, iInnerCnt)
