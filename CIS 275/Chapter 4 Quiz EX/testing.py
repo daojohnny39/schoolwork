@@ -1,5 +1,8 @@
-for iOuterCnt in range(0, 2) :
+from datetime import datetime
+import math
+import random
 
-    for iInnerCnt in range(1, 2) :
+sName = "john doe"
+dToday = datetime.now()
 
-        print(iOuterCnt, iInnerCnt)
+print(dToday.strftime("%A"))
