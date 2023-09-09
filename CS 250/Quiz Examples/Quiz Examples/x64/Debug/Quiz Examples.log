@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\Johnny Dao\Desktop\School Work\GitHub\CS 250\Quiz Examples\Quiz Examples\main.cpp(21,32): warning C4244: 'argument': conversion from 'double' to 'unsigned __int64', possible loss of data
+  Quiz Examples.vcxproj -> C:\Users\Johnny Dao\Desktop\School Work\GitHub\CS 250\Quiz Examples\x64\Debug\Quiz Examples.exe
