@@ -26,5 +26,8 @@
     <ClInclude Include="setFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FunctionUtilities.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

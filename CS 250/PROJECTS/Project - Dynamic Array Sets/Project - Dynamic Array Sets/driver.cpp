@@ -1,5 +1,6 @@
 #include <iostream>
 #include "setFunctions.h"
+#include "FunctionUtilities.hpp"
 using namespace std;
 
 int main()
@@ -23,6 +24,9 @@ int main()
 	int resultSize = 0;
 	char* resultSet = nullptr;
 
+	// TESTS 1
+	divLine("test 1", "addElement()");
+
 	cout << "Performing a series of adds to populate setA..." << endl;
 
 	// Load setA with 'a' through 'j'
@@ -34,7 +38,7 @@ int main()
 		setASize = resultSize;
 		
 		// Uncomment below to see the set after every add
-		//display(setA, setASize);
+		display(setA, setASize);
 	}
 
 	cout << "setA size: " << setASize << " [should be 10]" << endl;
@@ -43,7 +47,7 @@ int main()
 	cout << endl;
 
 	// MORE TESTS
-	/*
+	
 
 	cout << "Performing a series of adds to populate setB..." << endl;
 
@@ -83,6 +87,9 @@ int main()
 	display(setC, setCSize);
 	cout << endl;
 
+	// TESTS 2
+	divLine("test 2", "containsElement()");
+
 	cout << "Displaying an empty set below. It should be: {}" << endl;
 	display(nullptr, 0);
 	cout << endl;
@@ -105,6 +112,9 @@ int main()
 	cout << "Is 'x' an element of an empty set? " 
 		<< containsElement(nullptr, 0, 'x')
 		<< " [should be 0]" << endl << endl;
+
+	// TESTS 3
+	divLine("test 3", "containsElement() and addElement()");
 	
 	cout << "Attempting to add duplicate elements to setA."
 		<< " The set should not change..." << endl;
@@ -132,6 +142,11 @@ int main()
 		<< "{a, b, c, d, e, f, g, h, i, j}" << endl;
 	display(setA, setASize);
 	cout << endl;
+
+	
+
+	// TESTS 4
+	divLine("test 4", "setUnion()");
 
 	cout << "Creating the union of setA and setB. The order *does not* " 
 		<< "have to match, but the result should include:"  << endl
@@ -168,6 +183,9 @@ int main()
 	delete[] resultSet;
 	resultSet = nullptr;
 	resultSize = 0;
+
+	// TESTS 5
+	divLine("test 5", "setIntersection()");
 
 	cout << "Creating the intersection of setA and setB. The order *does not* "
 		<< "have to match, but the result should include:" << endl
@@ -213,6 +231,18 @@ int main()
 	delete[] resultSet;
 	resultSet = nullptr;
 
-	*/
+	/*
+	// TESTS 6 - NEED TO DO???
+	divLine("test 6", "equal()");
 
+	char set1[] = { 'a', 'b', 'c' };
+	char set2[] = { 'a', 'b', 'c' };
+	char set3[] = { 'b', 'c', 'd' };
+	cout << "Are set1 and set2 equal? " << equal(set1, 3, set2, 3) << endl; // Expected: 1 (true)
+
+	char set1[] = { 'a', 'b', 'c' };
+	char set2[] = { 'a', 'b', 'c' };
+	char set3[] = { 'b', 'c', 'd' };
+	cout << "Are set1 and set3 equal? " << equal(set1, 3, set3, 3) << endl; // Expected: 0 (false)
+	*/
 }
