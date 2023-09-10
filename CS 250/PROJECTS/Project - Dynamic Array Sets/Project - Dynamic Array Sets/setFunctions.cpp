@@ -23,14 +23,6 @@ void display(char* set, int size) {
 	cout << endl;
 }
 
-char* addElement(char* set, int size, char itemToAdd, int& newSize) {
-	return nullptr;
-}
-
-char* setUnion(char* set1, int set1Size, char* set2, int set2Size, int& unionSize) {
-	return nullptr;
-}
-
-char* setIntersect(char* set1, int set1Size, char* set2, int set2Size, int& intersectSize) {
-	return nullptr;
+char* addElement(char* set, int size, char itemToAdd, int& resultSize) {
+	
 }

@@ -42,6 +42,9 @@ int main()
 	display(setA, setASize);
 	cout << endl;
 
+	// MORE TESTS
+	/*
+
 	cout << "Performing a series of adds to populate setB..." << endl;
 
 	// Load setB with 'g' through 'p'
@@ -209,5 +212,7 @@ int main()
 
 	delete[] resultSet;
 	resultSet = nullptr;
+
+	*/
 
 }
