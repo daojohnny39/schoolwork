@@ -1,0 +1,99 @@
+#include <iostream>
+#include <string>
+#include "ArrayBag.hpp"
+
+void bagTester(ArrayBag<std::string>& bag);
+
+int main()
+{
+	ArrayBag<std::string> bag;
+	std::cout << "TESTING THE ARRAY BAG:" << std::endl << std::endl;
+	bagTester(bag);
+	std::cout << "ALL DONE!" << std::endl;
+
+	return 0;
+}  // end main
+
+void bagTester(ArrayBag<std::string>& bag)
+{
+	std::cout << "isEmpty() returns: " << bag.isEmpty()
+		<< " [should be 1 (true)]" << std::endl;
+
+	std::cout << "getCurrentSize() returns: " << bag.getCurrentSize()
+		<< " [should be 0]" << std::endl << std::endl;
+
+	std::string items[] = { "one", "two", "three", "four", "five", "one" };
+	std::cout << "Adding 6 items to the bag..." << std::endl;
+	for (int i = 0; i < 6; i++)
+	{
+		bag.add(items[i]);
+	}  // end for
+
+	std::vector<std::string> bagItems = bag.toVector();
+
+	int numberOfEntries = (int)bagItems.size();
+	if (numberOfEntries > 0)
+	{
+		std::cout << "Bag contains: ";
+	}
+	for (int i = 0; i < numberOfEntries; i++)
+	{
+		std::cout << bagItems[i] << " ";
+	}  // end for
+	std::cout << std::endl;
+
+	std::cout << std::endl << "isEmpty() returns: " << bag.isEmpty()
+		<< " [should be 0 (false)]" << std::endl;
+
+	std::cout << "getCurrentSize() returns: " << bag.getCurrentSize()
+		<< " [should be 6]" << std::endl << std::endl;
+
+	std::cout << "add(\"extra\") to a full bag returns: "
+		<< bag.add("extra") << " [should be 0 (false)]" << std::endl;
+	std::cout << "isEmpty: returns " << bag.isEmpty()
+		<< " [should be 0 (false)]" << std::endl;
+
+	std::cout << "getCurrentSize() returns: " << bag.getCurrentSize()
+		<< " [should be 6]" << std::endl;
+
+	std::cout << "contains(\"three\"): returns " << bag.contains("three")
+		<< " [should be 1 (true)]" << std::endl << std::endl;
+	std::cout << "contains(\"ten\"): returns " << bag.contains("ten")
+		<< " [should be 0 (false)]" << std::endl;
+	std::cout << "getFrequencyOf(\"one\"): returns "
+		<< bag.getFrequencyOf("one") << " [should be 2]" << std::endl << std::endl;
+
+	std::cout << "remove(\"one\"): returns " << bag.remove("one")
+		<< " [should be 1 (true)]" << std::endl;
+	std::cout << "getFrequencyOf(\"one\"): returns "
+		<< bag.getFrequencyOf("one") << " should be 1" << std::endl;
+	std::cout << "remove(\"one\"): returns " << bag.remove("one")
+		<< " [should be 1 (true)]" << std::endl;
+	std::cout << "remove(\"one\"): returns " << bag.remove("one")
+		<< " [should be 0 (false)]" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "getCurrentSize() returns: " << bag.getCurrentSize()
+		<< " [should be 4]" << std::endl;
+	bagItems = bag.toVector();
+
+	numberOfEntries = (int)bagItems.size();
+	if (numberOfEntries > 0)
+	{
+		std::cout << "Bag contains: ";
+	}
+	for (int i = 0; i < numberOfEntries; i++)
+	{
+		std::cout << bagItems[i] << " ";
+	}  // end for
+	std::cout << std::endl << std::endl;
+
+	std::cout << "Clearing the bag with clear()." << std::endl;
+	bag.clear();
+
+	std::cout << "isEmpty() returns: " << bag.isEmpty()
+		<< " [should be 1 (true)]" << std::endl;
+
+	std::cout << "getCurrentSize() returns: " << bag.getCurrentSize()
+		<< " [should be 0]" << std::endl << std::endl;
+}  // end bagTester
