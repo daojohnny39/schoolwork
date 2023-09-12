@@ -13,14 +13,22 @@ def buildABetterPassword(password):
     passP2 = password[midIndex:]
     
     # makes changes to the first part of the password
-    newPassP1 = (passP1.replace("e", "3").replace("E", "3").replace("a", "@")
-               .replace("A", "@").replace("o", "0").replace("O", "0").replace("s", "$")
-               .replace("S", "$").replace("i", "!").replace("I", "!"))
+    newPassP1 = (passP1.replace("e", "3").replace("E", "3")
+                 .replace("i", "7").replace("I", "7")
+                 .replace("l", "1").replace("L", "1")
+                 .replace("o", "0").replace("O", "0")
+                 .replace("p", "9").replace("P", "9")
+                 .replace("s", "$").replace("S", "$")
+                 .replace("1", "!").replace(" ", "_"))
     
     # makes changes to the second part of the password
-    newPassP2 = (passP2.replace("e", "3").replace("E", "3").replace("a", "@")
-               .replace("A", "@").replace("o", "0").replace("O", "0").replace("s", "$")
-               .replace("S", "$").replace("i", "!").replace("I", "!"))
+    newPassP2 = (passP2.replace("e", "3").replace("E", "3")
+                 .replace("i", "7").replace("I", "7")
+                 .replace("l", "1").replace("L", "1")
+                 .replace("o", "0").replace("O", "0")
+                 .replace("p", "9").replace("P", "9")
+                 .replace("s", "$").replace("S", "$")
+                 .replace("1", "!").replace(" ", "_"))
     
     # converts the first part of the password into a list
     # replaces the middle character with the character of choice
@@ -32,6 +40,7 @@ def buildABetterPassword(password):
     return convNewPassP1 + newPassP2
     
 def main():
+
     password = input("Enter a password: ")
     
     # input validator
@@ -53,7 +62,7 @@ def main():
     betterPassword0 = buildABetterPassword(password0)
     betterPassLen0 = len(betterPassword0)
         
-    print(f"A better password would be {betterPassword}, it is {betterPassLen} characters long.")
+    print(f"A better password would be {betterPassword0}, it is {betterPassLen0} characters long.")
     
     
     # TEST 2:
