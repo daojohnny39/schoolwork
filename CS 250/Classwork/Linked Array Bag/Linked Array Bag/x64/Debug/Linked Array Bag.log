@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\Johnny Dao\Desktop\School Work\GitHub\CS 250\Classwork\Linked Array Bag\Linked Array Bag\LinkedBag.hpp(97,19): error C3861: 'nullPtr': identifier not found
+C:\Users\Johnny Dao\Desktop\School Work\GitHub\CS 250\Classwork\Linked Array Bag\Linked Array Bag\LinkedBag.hpp(97,19): error C2065: 'nullPtr': undeclared identifier
