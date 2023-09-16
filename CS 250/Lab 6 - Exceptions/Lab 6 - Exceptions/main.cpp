@@ -23,8 +23,21 @@ int main()
 	
 	// STEP 6
 
-	std::cin.ignore();
-	std::cin.get();
+	if (choice == 1) {
+		std::cout << std::endl;
+		std::cout << "Working with an account that has a $" << a.getBalance() << " balance." << std::endl;
+
+		try {
+			std::cout << "Trying a deposit of -$200." << std::endl;
+			a.deposit(-200);
+		}
+		catch (NegativeAmount e) {
+			std::cout << e.what() << std::endl;
+		}
+	}
+
+	//std::cin.ignore();
+	//std::cin.get();
 	return 0;
 }
 
