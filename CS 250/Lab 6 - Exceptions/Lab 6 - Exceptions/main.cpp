@@ -22,18 +22,46 @@ int main()
 
 	
 	// STEP 6
+	std::cout << std::endl;
 
 	if (choice == 1) {
-		std::cout << std::endl;
 		std::cout << "Working with an account that has a $" << a.getBalance() << " balance." << std::endl;
-
 		try {
 			std::cout << "Trying a deposit of -$200." << std::endl;
 			a.deposit(-200);
 		}
 		catch (NegativeAmount e) {
+			std::cout << std::endl;
+			std::cout << "***NegativeAmount exception was thrown.***" << std::endl;
+			std::cout << "Here is exception message:" << std::endl;
 			std::cout << e.what() << std::endl;
 		}
+	}
+	else if (choice == 2) {
+		std::cout << "Working with an account that has a $" << a.getBalance() << "balance." << std::endl;
+		try {
+			std::cout << "Trying a withdrawal of $200." << std::endl;
+			a.withdraw(200);
+		}
+		catch (InsufficientFunds e) {
+			std::cout << std::endl;
+			std::cout << "***InsufficientFunds exception was thrown.***" << std::endl;
+			std::cout << "Here is exception message:" << std::endl;
+			std::cout << e.what() << std::endl;
+		}
+	}
+	else if (choice == 3) {
+			std::cout << "Working with an account that has a $" << a.getBalance() << "balance." << std::endl;
+			try {
+				std::cout << "Trying a withdrawal of -$200." << std::endl;
+				a.withdraw(-200);
+			}
+			catch (NegativeAmount e) {
+				std::cout << std::endl;
+				std::cout << "***NegativeAmount exception was thrown.***" << std::endl;
+				std::cout << "Here is exception message:" << std::endl;
+				std::cout << e.what() << std::endl;
+			}
 	}
 
 	//std::cin.ignore();

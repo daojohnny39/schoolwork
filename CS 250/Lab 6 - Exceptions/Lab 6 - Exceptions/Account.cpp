@@ -30,9 +30,11 @@ double Account::deposit(double amount)
 		
 double Account::withdraw(double amount)
 {
-	if ((amount > balance) || (amount < 0))
+	if (amount > balance)
 		// STEP 5 - DONE
-		throw InsufficientFunds("Error, account has insufficient funds for withdrawal!");
+		throw InsufficientFunds("Error, account has insufficient funds for withdrawl!");
+	else if (amount < 0)
+		throw NegativeAmount("Error, you can't withdraw a negative amount!");
 	else
 		balance -= amount;
 	return balance;
