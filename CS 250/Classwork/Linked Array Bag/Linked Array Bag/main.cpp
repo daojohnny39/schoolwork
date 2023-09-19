@@ -63,6 +63,8 @@ void bagTester(LinkedBag<std::string>& bag)
 		<< " [should be 1 (true)]" << std::endl;
 	std::cout << "remove(\"one\"): returns " << bag.remove("one")
 		<< " [should be 1 (true)]" << std::endl;
+	std::cout << "remove(\"one\"): returns " << bag.remove("one")
+		<< " [should be 0 (false)]" << std::endl;
 	std::cout << std::endl;
 
 	std::cout << "getCurrentSize() returns: " << bag.getCurrentSize()

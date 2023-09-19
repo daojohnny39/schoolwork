@@ -94,7 +94,7 @@ Node<ItemType>* LinkedBag<ItemType>::getPointerTo(const ItemType& anEntry) const
 {
 	Node<ItemType>* curPtr = headPtr;
 
-	while (curPtr != nullPtr) {
+	while (curPtr != nullptr) {
 		// do something
 		if (curPtr->getItem() == anEntry) {
 			break;
@@ -112,36 +112,52 @@ Node<ItemType>* LinkedBag<ItemType>::getPointerTo(const ItemType& anEntry) const
 template<class ItemType>
 bool LinkedBag<ItemType>::contains(const ItemType& anEntry) const
 {
-	// STUB - FINISH ME
-
-	return true;
-	
-}  // end contains
+	return (getPointerTo(anEntry) != nullptr);
+}  
 
 // Removes one copy of the given item from the bag. Returns true if
 // successful.
 template<class ItemType>
 bool LinkedBag<ItemType>::remove(const ItemType& anEntry)
 {
-	/* STEPS:
-	1. Find the first node containing the item to be removed.
-	2. Copy the data from the current head node into the node containing the
-	   data to be removed.
-	3. Delete the head node. */
+	
+	bool didRemove = false;
 
-	// STUB - FINISH ME
+	Node<ItemType>* curPtr = getPointerTo(anEntry);
 
-	return true;
-}  // end remove
+	if (curPtr != nullptr) {
+		curPtr->setItem(headPtr->getItem());
+		Node<ItemType>* secondPtr = headPtr->getNext();
+		delete headPtr;
+		headPtr = secondPtr;
+		didRemove = true;
+		itemCount--;
+	}
+
+	return didRemove;
+
+} 
 
 // Returns the number of times the given item appears in the bag.
 template<class ItemType>
 int LinkedBag<ItemType>::getFrequencyOf(const ItemType& anEntry) const
 {
-	// STUB - FINISH ME
+	
+	int count = 0;
 
-	return 0;
-}  // end getFrequencyOf
+	Node<ItemType>* curPtr = headPtr;
+	while (curPtr != nullptr) {
+		// do something
+		if (curPtr->getItem() == anEntry) {
+			count++;
+		}
+
+		curPtr = curPtr->getNext();
+	}
+
+	return count;
+
+} 
 
 // Empties the bag. Watch out for memory leaks!
 template<class ItemType>
@@ -154,23 +170,29 @@ void LinkedBag<ItemType>::clear()
 		Delete the old head node
 	} */
 
-	// STUB - FINISH ME
+	Node<ItemType>* curHeadPtr;
+
+	while (headPtr != nullptr) {
+		curHeadPtr = headPtr;
+		headPtr = headPtr->getNext();
+		delete curHeadPtr;
+	}
+
+	itemCount = 0;
 	
-}  // end clear
+}  
 
 // Destructor removes anything created on the heap
 template<class ItemType>
 LinkedBag<ItemType>::~LinkedBag()
 {
-	
-	// STUB - FINISH ME
-	
-}  // end destructor
+	clear();
+}  
 
 // Parameterized constructor copies contents from the bag parameter
 // into the newly created bag.
 template<class ItemType>
-LinkedBag<ItemType>::LinkedBag(const LinkedBag<ItemType>& aBag)
+LinkedBag<ItemType>::LinkedBag(const LinkedBag<ItemType>& originalBag)
 {
 	/* PSEUDOCODE
 	
@@ -186,8 +208,29 @@ LinkedBag<ItemType>::LinkedBag(const LinkedBag<ItemType>& aBag)
 			link new node into new chain
 	} */
 
-	// STUB - FINISH ME
+	if (originalBag.isEmpty()) {
+		headPtr = nullptr;
+		itemCount = 0;
+	}
+	else {
+		headPtr = new Node<ItemType>();
+		headPtr->setItem(originalBag.headPtr->getItem());
+
+		Node<ItemType>* curPtr = originalBag.headPtr->getNext();
+		Node<ItemType>* newNodePtr = nullptr;
+		Node<ItemType>* endNewPtr = headPtr;
+
+		while (curPtr != nullptr) {
+			newNodePtr = new Node<ItemType>();
+			newNodePtr->setItem(curPtr->getItem());
+			endNewPtr->setNext(newNodePtr);
+			endNewPtr = newNodePtr;
+			curPtr = curPtr->getNext();
+		}
+
+		itemCount = originalBag.itemCount;
+	}
 	
-}  // end copy constructor
+}  
 
 #endif
