@@ -1,0 +1,5 @@
+model_name,range,price
+"short range",250,25900
+"mid range",400,29800
+"long range",600,34600
+"explorer",1000,44900
