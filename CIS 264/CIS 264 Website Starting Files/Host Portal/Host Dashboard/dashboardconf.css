@@ -1,0 +1,197 @@
+
+
+.container .header {
+    background-color: #F1EFE7;
+    padding: 30px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.container .header .logo-and-menu {
+    display: flex;
+    align-items: center;
+}
+
+.container .header img {
+    width: 100px;
+    height: 100px;
+}
+
+.container .header .menu {
+    padding-top: 80px;
+    margin-left: 200px;
+}
+
+.container .header .menu ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+
+.container .header .menu ul li {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px
+
+}
+
+.container .header .menu ul li a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* -------- FILLED IN TEMPORARY -------- */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    background-color: #004080;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.logo-and-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-and-menu img {
+    max-width: 100px;
+    height: auto;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.content {
+    display: flex;
+    margin: 20px 0;
+    max-width: 1200px; /* Add this line */
+    margin: 0 auto; /* Add this line to center the content */
+}
+
+.left {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.right {
+    flex: 2;
+    padding: 20px;
+}
+
+.footer {
+    background-color: #004080;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* -------- Cabin Listings -------- */
+
+.left {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.property-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.property {
+    flex: 0 0 calc(33.33% - 20px); /* Adjust width for a compact view */
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    text-align: center;
+}
+
+.property img {
+    max-width: 100%; /* Make property images responsive */
+    height: auto;
+}
+
+.property h3 {
+    font-size: 1rem; /* Adjust font size for compactness */
+    margin: 10px 0;
+}
+
+.property p {
+    font-weight: bold;
+    color: #0070cc;
+}
+
+.property a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+    .container .header {
+        padding: 10px; /* Reduce header padding for mobile */
+        height: auto; /* Allow header to adjust its height */
+        flex-direction: column; /* Stack logo and menu vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .container .header .menu {
+        padding-top: 10px; /* Reduce top padding for menu items */
+        margin-left: 0; /* Remove left margin */
+    }
+
+    .filters-menu {
+        width: 100%; /* Full width for mobile */
+        top: 40px; /* Adjust top position to avoid overlapping */
+        right: 0;
+    }
+
+    .left {
+        padding: 10px; /* Reduce padding for content */
+    }
+
+    .property {
+        max-width: 100%; /* Make property images and content responsive */
+    }
+    
+    /* Additional mobile-specific styles can be added here */
+}
