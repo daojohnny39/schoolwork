@@ -4,10 +4,11 @@
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>WEB 114: Project 1</title>
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="project1conf.css">
+        <title>WEB 114: Project 1</title>
     </head>
     <body>
         <h1>WEB 114: Project 1</h1>
@@ -20,7 +21,7 @@
             <p>
                 <b>Most websites use JavaScript for web page interactivity.</b> This could mean
                 a variety of things such as instant user feedback, pop-up materials, and
-                interative forms. These functionalities gives the illusion that the
+                interactive forms. These functionalities gives the illusion that the
                 web page is "more alive".
             </p>
             <p>
@@ -32,7 +33,7 @@
                 <b>JavaScript can also be used for web application development. </b> JavaScript
                 is the foundation of many different web frameworks like React and Angular. These
                 different frameworks allows the developer to create a website that closely
-                resembles an actual desktop application.
+                resemble an actual desktop application.
             </p>
         </div>
         <div class="question">
@@ -95,71 +96,83 @@
                 just combining strings.
             </p>
         </div>
+        <!-- SCRIPTS PT. 1 -->
+        <script>
+            // STEP 3
+            "use strict";
+            
+            // STEP 1
+            alert("Hi World!");
+            
+            // STEP 2
+            console.log("Hi Insert Your Name");
+        </script>
+
+        <!-- SCRIPTS PT. 2 -->
+        <script>
+            "use strict";
+            // STEP 4
+            const myName = "Johnny";
+            let mySalary = 20000000;
+            console.log("My name is " + myName + " and my salary is " + mySalary);
+
+            // STEP 5
+            mySalary = 150000;
+            console.log("My name is " + myName + " and my new salary is " + mySalary);
+
+            // STEP 6
+            let veteran = false;
+
+            // STEP 7
+            console.log(typeof(myName));
+            console.log(typeof(mySalary));
+            console.log(typeof(veteran));
+
+            // STEP 8 -
+
+            /* PERSONAL NOTES:
+                + operator treats all elements as strings when a string ("") is 
+                first in the parameter.
+
+                console.log will recognize integers even when stated with "" around as long
+                as it is just a number inside. (ex. "4")
+                    - Same thing applies with * operator.
+
+                using math operators (- * /) with a string and number will output an error.
+                    - console.log will not recognize that an integer is inside when there are
+                    other characters as well. ("   -9   ")
+                    - as long as operator is not +, console.log will recognize integers even
+                    if there are spaces in the parameter.
+
+                null is treated as the number 0
+            */
+
+                                        // OUTPUTS
+            console.log("" + 1 + 0);    // 10
+            console.log("" - 1 + 0);    // -1
+            console.log(true + false);  // 1
+            console.log(6 / "3");       // 2
+            console.log("2" * "3");     // 6
+            console.log(4 + 5 + "px");  // 9px
+            console.log("$" + 4 + 5);   // $45
+            console.log("4" - 2);       // 2
+            console.log("4px" - 2);     // NAN - ERROR??
+            console.log(7 / 0);         // Infinity (Undefined but the output is "Infinity")
+            console.log("  -9  " + 5);  //   -9  5
+            console.log("  -9  " - 5);  // -14
+            console.log(null + 1);      // 1
+            console.log(undefined + 1); // NAN - ERROR??
+
+            // - end of STEP 8
+
+            // STEP 9
+            let x = 5;
+            let y = 1 + (x *= 2);
+            console.log(x);
+            console.log(y);
+
+            // x is assigned to 5
+            // y is calculating (x * 2) + 1. Therefore, y is assigned to 11
+        </script>
     </body>
-    <!-- STEP 1 -->
-    <script>
-        "use strict";
-        alert("Hi World!");
-        console.log("Hi Insert Your Name");
-    </script>
-    <!-- STEP 4 -->
-    <script>
-        const myName = "Johnny";
-        let mySalary = 20000000;
-
-        console.log("My name is " + myName + " and my salary is " + mySalary);
-
-        mySalary = 150000;
-
-        console.log("My name is " + myName + " and my new salary is " + mySalary);
-
-        let veteran = false;
-
-        console.log(typeof(myName));
-        console.log(typeof(mySalary));
-        console.log(typeof(veteran));
-
-        /* PERSONAL NOTES:
-            + operator treats all elements as strings when a string ("") is 
-            first in the parameter.
-
-            console.log will recognize integers even when stated with "" around as long
-            as it is just a number inside. (ex. "4")
-                - Same thing applies with * operator.
-
-            using math operators (- * /) with a string and number will output an error.
-                - console.log will not recognize that an integer is inside when there are
-                  other characters as well. ("   -9   ")
-                - as long as operator is not +, console.log will recognize integers even
-                  if there are spaces in the parameter.
-
-            null is treated as the number 0
-        */
-
-                                    // OUTPUTS
-        console.log("" + 1 + 0);    // 10
-        console.log("" - 1 + 0);    // -1
-        console.log(true + false);  // 1
-        console.log(6 / "3");       // 2
-        console.log("2" * "3");     // 6
-        console.log(4 + 5 + "px");  // 9px
-        console.log("$" + 4 + 5);   // $45
-        console.log("4" - 2);       // 2
-        console.log("4px" - 2);     // NAN - ERROR??
-        console.log(7 / 0);         // Infinity (Undefined but the output is "Infinity")
-        console.log("  -9  " + 5);  //   -9  5
-        console.log("  -9  " - 5);  // -14
-        console.log(null + 1);      // 1
-        console.log(undefined + 1); // NAN - ERROR??
-
-        let x = 5;
-        let y = 1 + (x *= 2);
-
-        console.log(x);
-        console.log(y);
-
-        // x is assigned to 5
-        // y is calculating (x * 2) + 1. Therefore, y is assigned to 11
-        
-    </script>
 </html>
