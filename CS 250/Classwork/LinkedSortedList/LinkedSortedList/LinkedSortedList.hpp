@@ -58,7 +58,7 @@ auto LinkedSortedList<ItemType>::getNodeBefore(const ItemType& anEntry) const
 
     curPtr = headPtr;
 
-    while ((curPtr != nullptr) && (anEntry < curPtr->getItem())) {
+    while ((curPtr != nullptr) && (anEntry > curPtr->getItem())) {
         
         prevPtr = curPtr;
         curPtr = curPtr->getNext();
@@ -72,19 +72,45 @@ template<class ItemType>
 bool LinkedSortedList<ItemType>::insertSorted(const ItemType& newEntry)
 {
 
-    // STUB. FINISH ME.
+    auto prevPtr = getNodeBefore(newEntry);
+    auto newNodePtr = std::make_shared<Node<ItemType>>();
+    newNodePtr->setItem(newEntry);
+
+    if (prevPtr == nullptr) {
+        newNodePtr->setNext(headPtr);
+        headPtr = newNodePtr;
+    }
+    else {
+        newNodePtr->setNext(prevPtr->getNext());
+        prevPtr->setNext(newNodePtr);
+    }
+    itemCount++;
 
     return true;
-} // end insertSorted
+    
+} 
 
 template<class ItemType>
 int LinkedSortedList<ItemType>::getPosition(const ItemType& anEntry) const
 {
+    auto curPtr = headPtr;
+    int pos = 1;
+    int returnValue;
 
-    // STUB. FINISH ME.
+    while ((curPtr != nullptr) && (curPtr->getItem() == anEntry)) {
+        curPtr = curPtr->getNext();
+        pos++;
+    }
 
-    return 1;
-}  // end getPosition
+    if ((curPtr != nullptr) && (curPtr->getItem() == anEntry)) {
+        returnValue = pos;
+    }
+    else {
+        returnValue = -pos;
+    }
+
+    return returnValue;
+}  
 
 /********** EVERYTHING BELOW THIS LINE IS COMPLETE **********/
 
