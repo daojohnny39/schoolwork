@@ -1,0 +1,27 @@
+.container ul.timeline .timeline-panel .timeline-heading h4 {
+    padding-top: 50px;
+}
+
+/* --- FIRST TITLES --- */
+.container ul.timeline .timeline-panel .timeline-first-title h4 {
+    padding-top: 70px;
+}  
+
+.container ul.timeline .timeline-panel .timeline-first-info {
+    padding-top: 180px;
+}
+
+/* --- FIRST TITLES END --- */
+
+
+/* --- fixing p --- */
+.container ul.timeline .timeline-panel .timeline-first-info p {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.container ul.timeline .timeline-panel .timeline-info {
+    padding-top: 20px;
+}

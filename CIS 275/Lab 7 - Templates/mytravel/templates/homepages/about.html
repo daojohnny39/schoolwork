@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block content %}
 <!-- About-->
 <div class="container">
     <div class="text-center">
@@ -5,15 +8,32 @@
     </div>
     <ul class="timeline">
         <li>
-            <div class="timeline-image"><img class="rounded-circle img-fluid" src="img/about/42096.jpg" width="600" height="600" alt="" /></div>
+            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'img/about/canvaspicture.jpg' %}" width="600" height="600" alt="" /></div>
 
             <div class="timeline-panel">
                 <div class="timeline-heading">
-                    <a href="https://www.freepik.com/vectors/business">Business vector created by macrovector - www.freepik.com</a>
-                    <h4 class="subheading">Traveling around the world!</h4>
+                    <h4 class="subheading">Travelling with Johnny!</h4>
                 </div>
-                <div class="timeline-body"><p class="text-muted">Let us build a memory that you will always remember.</p></div>
+                <div class="timeline-body"><p class="text-muted">Want to travel to? Follow this timeline!</p></div>
+                <div class="timeline-first-title">
+                    <h4 class="subheading">Flight times!</h4>
+                </div>
+                <div class="timeline-first-title">
+                    <h4 class="subheading">Activities!</h4>
+                </div>
+            </div>
+            <div class="timeline-panel">
+                <div class="timeline-first-info">
+                    <h5>Flight Day: 12/29/2023</h5>
+                    <p>Departure: 9:02PM</p>
+                    <p>Arrival: 10:50PM</p>
+                </div>
+                <div class="timeline-info">
+                    <h5>First day!</h5>
+                    <p>CURRENTLY UNPLANNED</p>
+                </div>
             </div>
         </li>                    
     </ul>
 </div>
+{% endblock %}
