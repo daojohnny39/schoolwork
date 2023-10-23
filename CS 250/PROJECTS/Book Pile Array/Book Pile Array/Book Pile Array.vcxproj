@@ -130,10 +130,12 @@
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="BookPile.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="origAddBook.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h" />
     <ClInclude Include="BookPile.h" />
+    <ClInclude Include="FunctionUtilities.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="main.cpp.bak" />

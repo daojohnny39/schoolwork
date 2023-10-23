@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "BookPile.h"
+#include "FunctionUtilities.hpp"
 using namespace std;
 
 int main() {
@@ -27,7 +28,7 @@ int main() {
         << " [should be 0]" << std::endl;
 
     std::cout << std::endl << "bookPosition(\"Contact\") returns: " << myPile.bookPosition("Contact")
-        << " [should be 4]" << std::endl << std::endl;
+        << " [should be 7]" << std::endl << std::endl;
 
     std::cout << "bookPosition(\"Neverwhere\") returns: " << myPile.bookPosition("Neverwhere")
         << " [should be -1]" << std::endl << std::endl;
@@ -64,6 +65,91 @@ int main() {
     BookPile myPile2(books);
     std::cout << "BOOK PILE CONTAINS: " << std::endl;
     myPile2.displayPile();
+
+    divLine("codePost Tests", "Test cases:");
+
+    BookPile pile;
+
+    //REMOVEBOOK()
+    subDivLine("removeBook()");
+    actualOutput();
+
+    pile.addBook("Dune");
+    pile.addBook("Brave New World");
+    pile.addBook("Neuromancer");
+
+    std::cout << "Removing Dune:" << (pile.removeBook("Dune") ? " Success" : " Failed") << std::endl;
+    std::cout << "Removing Dune again:" << (pile.removeBook("Dune") ? " Success" : " Failed") << std::endl; // should fail
+    std::cout << "Removing Brave New World:" << (pile.removeBook("Brave New World") ? " Success" : " Failed") << std::endl;
+
+    std::cout << "Displaying BookPile: " << std::endl;
+    pile.displayPile();
+
+    expectedOutput();
+    cout << "Removing Dune: Success" << endl;
+    cout << "Removing Dune again: Failed" << endl;
+    cout << "Removing Brave New World: Success" << endl << endl;
+    cout << "Displaying BookPile:" << endl;
+    cout << "1. Neuromancer (11)" << endl;
+
+    pile.clear();
+    subDivLineEnd();
+    //END REMOVEBOOK()
+
+    //GETPOSITION()
+    subDivLine("getPosition()");
+    actualOutput();
+
+    pile.addBook("Dune");
+    pile.addBook("Brave New World");
+    pile.addBook("Neuromancer");
+
+    // Get book titles by position
+    std::cout << "Title at position 1: " << pile.getPosition(1) << std::endl;
+    std::cout << "Title at position 2: " << pile.getPosition(2) << std::endl;
+
+    try {
+        std::cout << "Title at invalid position 10: " << pile.getPosition(10) << std::endl; // should throw exception
+    }
+    catch (const std::exception& e) {
+        std::cout << e.what() << std::endl;
+    }
+
+    expectedOutput();
+    cout << "Title at position 1: Brave New World" << endl;
+    cout << "Title at position 2: Neuromancer" << endl;
+    cout << "Title at invalid position 10: ERROR: Invalid position." << endl;
+
+    pile.clear();
+    subDivLineEnd();
+
+    //RENAME()
+    subDivLine("rename()");
+    actualOutput();
+
+    pile.addBook("Dune");
+    pile.addBook("Brave New World");
+    pile.addBook("Neuromancer");
+
+    //actual output
+    std::cout << "Renaming Dune to Desert Planet:" << (pile.rename("Dune", "Desert Planet") ? " Success" : " Failed") << std::endl;
+    std::cout << "Renaming Dune again:" << (pile.rename("Dune", "Desert Moon") ? " Success" : " Failed") << std::endl; // should fail
+
+    cout << endl;
+    std::cout << "Displaying BookPile : " << std::endl;
+    pile.displayPile();
+
+    //expected output
+    expectedOutput();
+    cout << "Renaming Dune to Desert Planet: Success" << endl;
+    cout << "Renaming Dune again: Failed" << endl;
+    cout << endl;
+    cout << "Expected output:" << endl;
+    cout << "1. Brave New World (15)" << endl;
+    cout << "2. Desert Planet (13)" << endl;
+    cout << "3. Neuromancer (11)" << endl;
+    
+    subDivLineEnd();
 
     return 0;
 }

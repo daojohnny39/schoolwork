@@ -1,0 +1,318 @@
+
+
+.container .header {
+    background-color: #F1EFE7;
+    padding: 30px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.container .header .logo-and-menu {
+    display: flex;
+    align-items: center;
+}
+
+.container .header img {
+    width: 100px;
+    height: 100px;
+}
+
+.container .header .menu {
+    padding-top: 80px;
+    margin-left: 200px;
+}
+
+.container .header .menu ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+
+.container .header .menu ul li {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px
+
+}
+
+.container .header .menu ul li a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* -------- FILLED IN TEMPORARY -------- */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    background-color: #004080;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.logo-and-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-and-menu img {
+    max-width: 100px;
+    height: auto;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cabin-listing {
+    display: flex;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.cabin-listing .image {
+    flex: 1;
+    padding: 10px;
+}
+
+.cabin-listing .image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cabin-listing .description {
+    flex: 2;
+    padding: 10px;
+}
+
+.left {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.right {
+    flex: 2;
+    padding: 20px;
+}
+
+.footer {
+    background-color: #004080;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* -------- Cabin Listings -------- */
+
+.left {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.property-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.property {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    text-align: center;
+}
+
+.property img {
+    max-width: 300px;
+    max-height: 300px;
+    height: auto;
+}
+
+.property h3 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.property p {
+    font-weight: bold;
+    color: #0070cc;
+}
+
+/* -------- FILTER BUTTON -------- */
+
+.filters-button {
+    text-align: right;
+    position: relative; /* Add this line */
+    margin-bottom: 10px; /* Add this line to create space below the button */
+}
+
+#filters-button {
+    background-color: #0070cc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.filters-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Change this line to position the menu below the button */
+    right: 0; /* Align the menu to the right */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    width: 150px;
+    z-index: 1; /* Add this line to ensure the menu is on top of other elements */
+}
+
+/* Add CSS to push content down when the filter menu is open */
+.filters-menu.open + .content {
+    margin-top: 150px; /* Adjust the value as needed to create space for the menu */
+}
+
+.filters-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filters-menu ul li {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.filters-menu ul li:last-child {
+    border-bottom: none;
+}
+
+.filters-menu a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+/* Show the menu when the button is clicked */
+#filters-button:focus + .filters-menu {
+    display: block;
+}
+
+
+/* Back Button Styles */
+.back-button {
+    margin-bottom: 20px; /* Add spacing below the button */
+}
+
+.back-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0070cc;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.back-button a:hover {
+    background-color: #0058a0; /* Change color on hover */
+}
+
+/* Book Button Styles */
+.book-button {
+    margin-top: 20px; /* Add spacing above the button */
+}
+
+.book-button button, .book-button button:active{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0070cc;
+    color: #fff;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+
+}
+
+.book-button :hover {
+    background-color: #0058a0; /* Change color on hover */
+}
+
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+    .container .header {
+        padding: 10px; /* Reduce header padding for mobile */
+        height: auto; /* Allow header to adjust its height */
+        flex-direction: column; /* Stack logo and menu vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .container .header .menu {
+        padding-top: 10px; /* Reduce top padding for menu items */
+        margin-left: 0; /* Remove left margin */
+    }
+
+    .filters-menu {
+        width: 100%; /* Full width for mobile */
+        top: 40px; /* Adjust top position to avoid overlapping */
+        right: 0;
+    }
+
+    .left {
+        padding: 10px; /* Reduce padding for content */
+    }
+
+    .property {
+        max-width: 100%; /* Make property images and content responsive */
+    }
+    
+    /* Additional mobile-specific styles can be added here */
+}

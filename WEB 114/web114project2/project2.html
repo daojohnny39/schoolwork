@@ -85,12 +85,37 @@ Johnny (Nhat) Dao
             </div>
         </div>
         <script>
+            console.log("First loop:");
             for (let i = 0; i < document.body.childNodes.length; i++) { // For loop that uses i as an index. As long as i is less than the amount of child nodes, it'll continue to run
-                console.log( document.body.childNodes[i] ); // outputs the child nodes of the body element
+                console.log( document.body.childNodes[i] ); // outputs the child nodes of the body element at index i.
             }
-            for (let node of document.body.childNodes) { // add comment here
-                console.log(node); // add comment here
+            
+            console.log("Second loop:");
+            for (let node of document.body.childNodes) { // A for...of loop. Similar to a while loop. Doesn't stop till each iterates through all childNodes.
+                console.log(node); // outputs the node into the console
             }
+
+            // from my understanding, these two loops output the same thing. The first loop uses a number as an index to iterate through, the second loop just loops
+            // through until there are no more nodes.
+
+            console.log("The 12 console.log() statements");
+            console.log("For All Nodes:");  // added to make it easier to read in the console
+            console.log(document.body.parentNode);
+            console.log(document.body.childNodes);
+            console.log(document.body.firstChild);
+            console.log(document.body.lastChild);
+            console.log(document.body.previousSibling);
+            console.log(document.body.nextSibling);
+            console.log("For element nodes only:");
+            console.log(document.body.parentElement);
+            console.log(document.body.children);
+            console.log(document.body.firstElementChild);
+            console.log(document.body.lastElementChild);
+            console.log(document.body.previousElementSibling);
+            console.log(document.body.nextElementSibling);
+
+            alert ( "5" * 2);
+            
         </script> 
     </body>
 </html>

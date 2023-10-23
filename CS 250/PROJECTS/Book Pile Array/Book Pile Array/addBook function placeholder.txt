@@ -1,0 +1,42 @@
+bool BookPile::addBook(string addedBook) {
+
+	for (int i = 0; i < bookCount; i++) {
+		if (addedBook == books[i]) {
+			return false;
+		}
+	}
+
+	// can't add book if the array is already full
+	if (bookCount >= DEFAULT_CAPACITY) {
+		return false;
+	}
+	// checking if books array is empty
+	else if (bookCount == 0) {
+		books[0] = addedBook;
+		bookCount++;
+		return true;
+	}
+	else {
+		int insIndex = 0;
+		// finding inserting index
+		for (int i = 0; i < books.size(); i++) {
+			if (addedBook < books[i]) {
+				insIndex = i;
+				break;
+			}
+			// checking if book already exists
+			else if (addedBook == books[i]) {
+				return false;
+			}
+		}
+		// moving all books past insIndex to the right by 1
+		for (int j = bookCount; j > insIndex; j--) {
+			books[j] = books[j - 1];
+		}
+		
+		// inserting the book
+		books[insIndex] = addedBook;
+		bookCount++;
+		return true;
+	}
+}
