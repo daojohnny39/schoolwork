@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Browse Page</title>
+    <link rel="stylesheet" href="browsepageconf.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-and-menu">
+                <img src="../../pictures/CRRU.png" alt="logo">
+                <div class="menu">
+                    <ul>
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="contactus.html">Contact Us</a></li>
+                        <li><a href="../loginpage/login.html">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <!-- FILTERS BUTTON -->
+            <div class="filters-button">
+                <button id="filters-button">Filters</button>
+                <div class="filters-menu" id="filters-menu">
+                    <ul>
+                        <li><a href="#">Price Range</a></li>
+                        <li><a href="#">Amenities</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- CABIN FORMAT: -->
+            <div class="left">
+                <h2>Available Cabin Properties</h2>
+                <div class="property-grid">
+                    <div class="property">
+                        <button onclick="getCoffees()">Make API Request</button>
+                        <div id="response"></div>
+
+                        <script>
+                            function getCoffees() {
+                                var url = 'http://localhost:8000/cabins'; // Replace with your API endpoint
+
+                                fetch(url, {
+                                    method: 'GET',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    }
+                                })
+                                .then(function(response) {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json();
+                                })
+                                .then(function(data) {
+                                    document.getElementById('response').innerHTML = JSON.stringify(data, null, 2);
+                                })
+                                .catch(function(error) {
+                                    console.error('There was a problem with the fetch operation:', error);
+                                });
+                            }
+                        </script>
+                    </div>
+                    <div class="property">
+                        <img src="../../cabin placeholder images/property2.png" alt="Cabin 2">
+                        <h3>Cabin 2</h3>
+                        <p>Price: $200/night</p>
+                    </div>
+                    <div class="property">
+                        <img src="../../cabin placeholder images/property3.png" alt="Cabin 3">
+                        <h3>Cabin 3</h3>
+                        <p>Price: $180/night</p>
+                    </div>
+                    <!-- Add more properties as needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!-- 
+Johnny (Nhat) Dao
+10/22/2023
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="project3conf.css" />
+        <title>WEB 114: Project 3</title>
+    </head>
+    <body>
+        <h1>WEB 114: Project 3</h1>
+        <h2>
+            Modifying and adding new elements to the web page. Reviewing key HTML & CSS terminology
+        </h2>
+        <div class="question">
+            <h1>
+                1.  Identify the three major types of nodes found in an HTML document that we work with in JavaScript.
+            </h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p style="text-align: center;">
+                    The three major types of nodes that we will be working with will be:<br>
+                    1. The Document Node<br>
+                    2. The Element Nodes<br>
+                    3. The Text Nodes
+                </p>
+            </div>
+        </div>
+        <div class="question">
+            <h1>2.  Why is the JavaScript textContent property safer than innerHTML?</h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    Because textContent will convert all the HTML tags to their "ignore characters" whereas using innerHTML will cause the HTML tags
+                    to actually visually display. It is similar in a way to linux commands having "\" as an ignore
+                    character. Except, HTML doesn't use "ignore characters".
+                </p>
+                <div class="sample-code">
+                    <p>
+                        elem1.innerHTML = name;
+                    </p>
+                </div>
+                <p>
+                    This would display: <b>Winnie-the-Pooh!</b>
+                </p>
+                <div class="sample-code" style="margin-top: 30px;">
+                    <p>
+                        elem2.textContent = name;
+                    </p>
+                </div>
+                <p>
+                    This would display: &lt;b&gt;Winnie-the-Pooh!&lt;/b&gt;
+                </p>
+            </div>
+        </div>
+        <div class="question">
+            <h1>
+                3.  Every HTML element you write as a developer becomes a corresponding DOM object.  
+                And remember -- an object is just a fancy storage container.  
+                An object contains two things:  properties and methods.  And each property of the document 
+                object may contain a single value or it could contain another object!  
+                For example body is a property of the document object.  And what does body contain?
+            </h1>
+            <p><b>Another object of properties and methods.  So you might write a statement such as this.</b></p>
+            <div class="sample-code">
+                <p>
+                    document.body.id= "light";     // This is in the JavaScript</span>
+                </p>
+            </div>
+            <p><b>Which does this to the DOM:</b></p>
+            <div class="sample-code">
+                <p>
+                    &lt;body id="light"&gt;    &lt;! -- this is the change made in the HTML --&gt;
+                </p>
+            </div>
+            <p><b>
+                So in the JavaScript, document is an object that connects to the entire web page.  It contains many methods and properties one of which is named body.<br>
+                And the body property contains another object which contains many methods and properties, one of which is named id.<br>
+                And the id property can be assigned to a value which changes the &lt;body&gt; element in the HTML.<br>
+                Now based on this example, what do you notice about JavaScript properties and their corresponding HTML attribute names?
+            </b></p>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    The body would contain the id attribute. It seems like in JavaScript, the document is very similar to a class in C++ with its own variables 
+                    and functions. The different HTML tag properties would be fed as class variables or class functions. For example, in order to access the 
+                    id property of the body, you would have to treat the body as almost a <i>class within a class</i>, calling the document "class" first, then 
+                    calling the "body" class (in this example, inside the document class), then accessing the "id" variable inside the body class. The coding 
+                    statement would look like this:
+                </p>
+                <div class="sample-code">
+                    <p>document.body.id = "light";</p>
+                </div>
+            </div>
+        </div>
+        <div class="question">
+            <h1>4.  Why do we rarely, if ever use document.write()?</h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    When you use document.write() to try to debug, the whole page gets overwritten to whatever you decide to input into the parameter. To prevent this,
+                    we use console.log() instead so that when we're debugging, instead of the whole document being overwritten, we can just check the console to see if 
+                    everything is working the way it should.
+                </p>
+            </div>
+        </div>
+        <div class="question">
+            <h1>5.  What is a JavaScript method?  Define and provide two examples.</h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    JavaScript methods are functions that are associated with an object.<br><br>
+                    Let's turn strings into all uppercase for example:
+                </p>
+                <div class="sample-code">
+                    <p>
+                        let str = "Hello World!";<br>
+                        let res = str.toUpperCase(); // outputs: "HELLO WORLD!"
+                    </p>
+                </div>
+                <p style="margin-top: 40px;">
+                    Let's look at another where we create a div element:
+                </p>
+                <div class="sample-code">
+                    <p>
+                        let div = document.createElement("div");<br>
+                        document.body.appendChild(div);
+                    </p>
+                </div>
+                <p>
+                    The first line creates a div element and the second line appends the div element to the body of the HTML document.
+                </p>
+            </div>
+        </div>
+        <div class="question">
+            <h1>6.  What is a JavaScript property? Define and provide two examples.</h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    A JavaScript property is very similar to variables in C++. They are key-value pairs within an object, or variables within a class.
+                </p>
+                <div class="sample-code">
+                    <p>
+                        let person { <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;firstName: "John",<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;lastName: "Doe",<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;age: 50,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;eyeColor: "blue"<br>
+                        };
+                    </p>
+                </div>
+                <p style="margin-top: 40px;">
+                    We can look at an example for arrays as well:
+                </p>
+                <div class="sample-code">
+                    <p>
+                        let cars = ["Toyota", "Honda", "Hyundai"];<br>
+                        console.log(cars.length); // outputs: 3
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="question">
+            <h1>
+                7.   We have been working with three "built-in" objects that are already provided for us when we use JavaScript for its initial purpose 
+                -- to modify HTML and CSS in response to user interaction on the web page.  Provide a sample method for each of these three objects:  window, 
+                document, and console.
+            </h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p style="text-align: center;">
+                    <b>Window</b>
+                </p>
+                <div class="sample-code">
+                    <p>
+                        window.alert(document.body);
+                    </p>
+                </div>
+                <p>
+                    We can look back to some of the previous examples from before:
+                </p>
+                <p style="text-align: center;">
+                    <b>Document</b>
+                </p>
+                <div class="sample-code">
+                    <p>
+                        document.body.id = "light";
+                    </p>
+                </div>
+                <p style="text-align: center;">
+                    <b>Console</b>
+                </p>
+                <div class="sample-code">
+                    <p>
+                        console.log(cars.length);
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="question">
+            <h1>8.  What is a CSS selector? Define and provide two examples.</h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    A CSS selector is method where certain patterns of syntax will allow you to select certain elements in the HTML document.<br><br>
+                    For example, we can change the color of &lt;p&gt; elements to red:
+                </p>
+                <div class="sample-code">
+                    <p>
+                        p {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;color: red;<br>
+                        }
+                    </p>
+                </div>
+                <p style="margin-top: 40px;">
+                    We can also select classes within the HTML document by using the "." symbol:
+                </p>
+                <div class="sample-code">
+                    <p>
+                        .question-within-question {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;color: red;<br>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="question">
+            <h1>9.  What is a CSS property? Define and provide two examples.</h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    A CSS property is a key-value pair in CSS. It is the "color" property that we used in the example above.<br><br>
+                    Let's take a look at some other properties that we can use:
+                </p>
+                <div class="sample-code">
+                    <p>
+                        h1 {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;font-size: 1.2em;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;text-align: center;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;text-decoration: underline;<br>
+                        }
+                    </p>
+                </div>
+                <p>
+                    In this example, we are changing the font size to 1.2em, center aligning any texts within h1, and underlining the text. 
+                </p>
+            </div>
+        </div>
+        <div class="question">
+            <h1>10.  What is a CSS declaration? Define and provide two examples.</h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    Once again, we can look at the examples above to see what a CSS declaration is.
+                </p>
+                <div class="sample-code">
+                    <p>
+                        h1 {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;font-size: 1.2em;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;text-align: center;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;text-decoration: underline;<br>
+                        }
+                    </p>
+                </div>
+                <p>
+                    For each CSS property, we are declaring a value for it. Font-size is declared to 1.2em, text-align is declared to center, and text-decoration is declared to underline.
+                </p>
+            </div>
+        </div>
+        <!-- EXERCISES -->
+        <h2>Exercises:</h2>
+
+        <!-- STEP 2 -->
+        <h1 id="step2">placeholder</h1>
+        <!-- STEP 3 -->
+        <h2 id="step3">placeholder</h2>
+        <script>
+            
+            //STEP 1
+            console.log(document.body); // shows the element DOM tree
+            console.dir(document.body); // shows the element as a DOM object, good to explore its properties
+
+            //STEP 2
+            let h1Element = document.querySelector("h1#step2");
+            h1Element.textContent = "Johnson County Community College";
+
+            //STEP 3
+            let h2Element = document.querySelector("h2#step3");
+            h2Element.textContent = "Computer Information Systems, Graphic Design, Registered Nursing";
+
+            //STEP 4
+            let addedh2 = document.createElement("h2");
+            addedh2.textContent = "Liberal arts and sciences, Business administration and management, Accounting technology";
+            document.body.appendChild(addedh2);
+
+            //STEP 5
+            let ul = document.createElement('ul'); //assigns ul variable to create a HTML ul element 
+            document.body.append(ul);   //appends the ul element to the HTML document body
+
+            while (true) {  //infinite loop until user inputs nothing
+                let data = prompt("Enter the text for the list item", "");  //the text prompt
+
+                if (!data) {    //if statement to check if inputted data was actually data
+                    break;  //breaks the loop
+                }
+
+                let li = document.createElement('li');  //creates a variable called li and assigns it to create a list element in HTML
+                li.textContent = data;  //changing the list content to the data that was inputted
+                ul.append(li);  //appends the list to the existing ul element (that was already appended into the document body)
+            }
+
+            //STEP 6
+            let head1 = document.querySelector("h1");
+            head1.style.color = "red";  //using the style property
+            head1.classList.add("article"); //using the classList property
+            console.log(head1);
+
+        </script>
+    </body>
+</html>

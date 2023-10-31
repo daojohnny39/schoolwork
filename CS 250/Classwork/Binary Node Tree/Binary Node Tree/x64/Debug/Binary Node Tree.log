@@ -1,0 +1,16 @@
+﻿  main.cpp
+E:\School\Last Semester School Work\GitHub\CS 250\Classwork\Binary Node Tree\Binary Node Tree\BinaryNodeTree.hpp(153,23): warning C4834: discarding return value of function with 'nodiscard' attribute
+E:\School\Last Semester School Work\GitHub\CS 250\Classwork\Binary Node Tree\Binary Node Tree\BinaryNodeTree.hpp(145,1): message : while compiling class template member function 'std::shared_ptr<BinaryNode<ItemType>> BinaryNodeTree<ItemType>::findNode(std::shared_ptr<BinaryNode<ItemType>>,const ItemType &) const'
+          with
+          [
+              ItemType=std::string
+          ]
+E:\School\Last Semester School Work\GitHub\CS 250\Classwork\Binary Node Tree\Binary Node Tree\BinaryNodeTree.hpp(367,23): message : see the first reference to 'BinaryNodeTree<std::string>::findNode' in 'BinaryNodeTree<std::string>::getEntry'
+E:\School\Last Semester School Work\GitHub\CS 250\Classwork\Binary Node Tree\Binary Node Tree\main.cpp(32,91): message : see the first reference to 'BinaryNodeTree<std::string>::getEntry' in 'main'
+E:\School\Last Semester School Work\GitHub\CS 250\Classwork\Binary Node Tree\Binary Node Tree\BinaryNodeTree.hpp(251,1): message : while compiling class template member function 'std::shared_ptr<BinaryNode<ItemType>> BinaryNodeTree<ItemType>::removeValue(std::shared_ptr<BinaryNode<ItemType>>,const ItemType,bool &)'
+          with
+          [
+              ItemType=std::string
+          ]
+E:\School\Last Semester School Work\GitHub\CS 250\Classwork\Binary Node Tree\Binary Node Tree\main.cpp(15,43): message : see reference to class template instantiation 'BinaryNodeTree<std::string>' being compiled
+  Binary Node Tree.vcxproj -> E:\School\Last Semester School Work\GitHub\CS 250\Classwork\Binary Node Tree\x64\Debug\Binary Node Tree.exe

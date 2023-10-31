@@ -7,3 +7,11 @@ def indexPageView(request) :
 
 def aboutPageView(request) :
     return render(request, 'homepages/about.html')
+
+#TEMP
+def productPageView(request, product, sku, price):
+    productInfo = {
+        "product" : product,
+        "sku" : sku,
+        "price" : price }
+    return render(request, 'homepages/product.html', productInfo)
