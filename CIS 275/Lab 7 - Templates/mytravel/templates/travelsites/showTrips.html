@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">Take a look at some areas!:</div>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'airbnb' %}">Airbnb</a>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'tours' %}">Tours</a>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'city' %}">City</a>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'hollywood' %}">Hollywood</a>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'disneyland' %}">Disneyland</a>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'universal' %}">Universal</a>
+        </div>
+    </header>
+{% endblock %}

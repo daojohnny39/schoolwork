@@ -123,7 +123,7 @@ function displayProperties() {
 
         // Create the description element
         var linkElement = document.createElement('a');
-        linkElement.href = 'View Listing/viewlistingpage.html';
+        linkElement.href = 'viewlistingpage.html?id='+property.id;
         linkElement.textContent = 'View Details';
         propertyElement.appendChild(linkElement);
 
