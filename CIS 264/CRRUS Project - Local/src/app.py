@@ -1,4 +1,12 @@
 # Version 1.0 of API
+
+#pip installs:
+#pip install fastapi
+#pip install uvicorn
+#pip install sqlalchemy
+#pip install jinja2
+#pip install python-multipart
+
 from fastapi import FastAPI, Path, HTTPException, status, Depends, Request, Form, Body #Added Form and Body
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware

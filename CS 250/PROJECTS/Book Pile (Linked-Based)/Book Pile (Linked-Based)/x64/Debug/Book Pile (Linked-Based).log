@@ -1,0 +1,6 @@
+﻿  Book.cpp
+  BookPile.cpp
+  main.cpp
+E:\School\Last Semester School Work\GitHub\CS 250\PROJECTS\Book Pile (Linked-Based)\Book Pile (Linked-Based)\main.cpp(15,47): error C2039: 'size': is not a member of 'BookPile'
+E:\School\Last Semester School Work\GitHub\CS 250\PROJECTS\Book Pile (Linked-Based)\Book Pile (Linked-Based)\BookPile.h(4,7): message : see declaration of 'BookPile'
+  Generating Code...
