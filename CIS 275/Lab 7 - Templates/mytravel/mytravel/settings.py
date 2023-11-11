@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'homepages.apps.HomepagesConfig',   #CHANGED
+    'homepages.apps.HomepagesConfig',
+    'travelsites.apps.TravelsitesConfig',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +78,11 @@ WSGI_APPLICATION = 'mytravel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'travel',
+        'USER': 'postgres',
+        'PASSWORD': 'D@ojohnny1',
+        'HOST': 'localhost'
     }
 }
 

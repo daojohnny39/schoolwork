@@ -52,7 +52,7 @@ const templateURL = "https://drive.google.com/uc?id=DRIVE_FILE_ID";
 // ------------------ GOOGLE DRIVE LINK EXTRACTION END
 
 function displayProperties(id) {
-  var propertiesList = document.getElementById('property-grid');
+  var propertiesList = document.getElementById('show-property');
   getCabinsFromApi(id).then(property => {
       console.log(property);
       propertiesList.innerHTML = '';

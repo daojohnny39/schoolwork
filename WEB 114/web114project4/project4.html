@@ -1,0 +1,111 @@
+<!-- 
+Johnny (Nhat) Dao
+11/5/2023
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="project4conf.css" />
+        <title>WEB 114: Project 3</title>
+    </head>
+    <body>
+        <h1>WEB 114: Project 4</h1>
+        <h2>
+            Creating variables and using alert(), confirm(), and prompt() to interact with the user, using if-then-else structures
+        </h2>
+        <div class="question">
+            <h1>
+                1.  alert(), confirm(), and prompt() are methods of which object?
+            </h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>The alert(), confirm(), and prompt() are methods of the <i>window</i> object.</p>
+            </div>
+        </div>
+        <div class="question">
+            <h1>
+                2.  Why can we use the alert(), confirm(), and prompt() methods without preceding them with the object. (object dot) syntax??
+            </h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    The reason why we are able to use alert(), confirm(), and prompt() without adding "window." is because
+                    usually it is assumed that when using these functions, you are calling them from the window object. This can
+                    be redefined and alert(), confirm(), and prompt() will not work the same after.
+                </p>
+            </div>
+        </div>
+        <div class="question">
+            <h1>
+                3. How do we distinguish variable names from strings in JavaScript?
+            </h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    You can distinguish the difference of a JavaScript variable name from a string in JavaScript by looking at the syntax around.
+                    Variables in JavaScript usually start with a lower-case letter, an underscore, or a dollar sign. For a string, it is usually
+                    surrounded in quotes.
+                </p>
+                <div class="sample-code">
+                    <p>
+                        var myAge = 10; <i>// notice that "myAge" starts with a lowercase letter</i><br>
+                        var myAge = "ten"; <i>// "ten" is surrounded in quotes</i>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="question">
+            <h1>
+                4.  Later, we'll gather our input from users in a more elegant way -- using &lt;input&gt; elements on a form.  We'll also output information 
+                to users in a more elegant way -- by modifying existing or adding new elements and styles to the web page.  But for right now we are 
+                using popup boxes created with the methods shown in #2.  What's the point of learning about these annoying popup boxes?
+            </h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    The point of learning these popup boxes is that it can help us in terms of debugging. As said in the summary of "Interaction: alert, prompt, 
+                    confirm", these popups pause the script execution and don't allow the user to do anything until the popup has been interacted with. It also makes
+                    learning the language a lot easier since these popup functions are limited in terms of customization.
+                </p>
+            </div>
+        </div>
+        <script>
+
+            //step 1:
+            let user = prompt("What is your name?"); // string
+
+            //step 2:
+            let proceed = confirm("Will you allow me to use your name on the web page?"); // boolean
+
+            //step 3:
+            let nameElement = document.querySelector('h1');
+
+            //step 4:
+            /*
+            //step 3 - continued:
+            if (proceed) {
+                nameElement.textContent = user;
+            }
+            else {
+                nameElement.textContent = 'Privacy Please';
+            }
+            */
+
+            //step 4 - continued:
+            nameElement.textContent = proceed ? user : 'Privacy Please';
+
+            //step 5:
+            let age = prompt("What is your age?");
+
+            //step 6:
+            alert("Your Name: " + user + "\nYour Age: " + age);
+
+            /*  step 7:
+                I think this step was a typo? The answer is in question 3 above.
+            */ 
+
+        </script>
+    </body>
+</html>

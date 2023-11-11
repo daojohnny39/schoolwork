@@ -1,20 +1,33 @@
 # Version 1.0 of API
-from fastapi import FastAPI, Path, HTTPException, status, Depends
+from fastapi import FastAPI, Path, HTTPException, status, Depends, Request, Form, Body #Added Form and Body
 import uvicorn
-from typing import Optional
+from fastapi.middleware.cors import CORSMiddleware
+from typing import Optional, Dict
 
 from models.cabins import Cabin as CabinModel
 from models.cabins import CabinCreate as CabinCreateModel
-from schemas.cabins import Cabin as CabinSchema
+from models.reservations import Reservation as ReservationModel
+from models.reservations import ReservationCreate as ReservationCreateModel
 
 from database import engine, SessionLocal, Base
 from sqlalchemy.orm import Session
 from controller.database_controller import DatabaseController
-from typing import Dict
-from fastapi.middleware.cors import CORSMiddleware #changed
+
+from fastapi.responses import RedirectResponse
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles 
+from fastapi.templating import Jinja2Templates
+
+# ---- for LOGIN
+from sqlalchemy.ext.declarative import declarative_base
+from models.renters import Renter
 
 app = FastAPI()
 controller = DatabaseController()
+
+origins = [
+    "http://localhost:8080"
+]
 
 Base.metadata.create_all(bind=engine)
 app.add_middleware(
@@ -23,8 +36,10 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-)   #changed
+)   
 
+templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 def get_db():
     try:
@@ -33,20 +48,70 @@ def get_db():
     finally:
         db.close()
 
-
+# Cabin related commands -----------------------------------------------------------------
 @app.get("/cabins")
 def get_cabins(db: Session = Depends(get_db)):
     return controller.get_cabins(db)
 
-
+# Shows a cabin's details and reservations
 @app.get("/cabins/{cabin_id}")
-def get_cabin_by_id(cabin_id: int = Path(description="The ID of the cabin you'd like to retrieve", gt=999)
-                     , db: Session = Depends(get_db)):
+def get_cabin_by_id(cabin_id: int = Path(description="The ID of the cabin you'd like to retrieve", gt=999), db: Session = Depends(get_db)):
     cabin = controller.get_cabin_by_id(cabin_id, db)
     if cabin is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cabin does not exists")
+    reservations = [reservation for reservation in cabin.reservationsList]
+    full_response = {
+        "cabin": cabin, 
+        "reservations": reservations }
+    return full_response
 
-    return cabin
+# Reservation related commands -----------------------------------------------------------------
+@app.get("/reservations/{reservation_id}")
+def get_reservation_info(reservation_id: int = Path(description="The ID of the reservation you'd like to retrieve", gt=999), db: Session = Depends(get_db)):
+    reservation = controller.get_reservation_info(reservation_id, db)
+    if reservation is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Reservation does not exists")
+    return reservation
+# Reservation related commands END -----------------------------------------------------------------
+
+# Page view functions -----------------------------------------------------------------
+# Homepage
+@app.get("/")
+async def homepage(request: Request, db: Session = Depends(get_db)):
+    return templates.TemplateResponse("browsepage.html", {"request": request})
+
+# View cabin details page
+@app.get("/cabins/{cabin_id}/details")
+async def cabin_details(request: Request, cabin_id: int, db: Session = Depends(get_db)):
+    cabin = controller.get_cabin_by_id(cabin_id, db)
+    if cabin is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cabin does not exist")
+    
+    cabin_dict = {c.name: getattr(cabin, c.name) for c in cabin.__table__.columns}
+    
+    return templates.TemplateResponse("cabin_details.html", {"request": request, "cabin": cabin_dict})
+
+# Login page
+@app.get("/login")
+def loginpage(request: Request):
+    return templates.TemplateResponse("login/loginpage.html", {"request": request})
+# Page view functions END -----------------------------------------------------------------
+
+# Login Function -----------------------------------------------------------------
+@app.post("/login")
+async def login(request: Request, email: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)):
+    renter = db.query(Renter).filter(Renter.Email == email).first()
+    
+    # If email doesn't exist
+    if not renter:
+        return {"message": "Login failed"}
+    
+    # If password does not match
+    if renter.Password != password:
+        return {"message": "Login failed"}
+    
+    return {"message": "Login successful", "renter": {"email": renter.Email, "first_name": renter.RenterFirstName}}
+# Login Function END -----------------------------------------------------------------
 
 if __name__ == "__main__":
     uvicorn.run("app:app", host="127.0.0.1", reload=True)

@@ -1,15 +1,16 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, DATE
+from sqlalchemy import Column, ForeignKey, Integer, DATE, VARCHAR
 from sqlalchemy.orm import relationship
 from database import Base
 
 class Reservation(Base):
-    __tablename__ ="reservations"
+    __tablename__ ="Reservation"
 
-    reservationID =  Column(Integer, primary=True, index=True)
-    CabinID = Column(Integer, ForeignKey("cabin.CabinID"))
-    RenterID = Column(Integer, ForeignKey("renters.RenterID"))
+    Reservationid =  Column(Integer, primary_key=True, index=True)
     CheckInDate = Column(DATE)
     CheckOutDate = Column(DATE)
+    Status = Column(VARCHAR(500))
+    #Renterid = Column(Integer, ForeignKey("renters.Renterid"))
+    Cabinid = Column(Integer, ForeignKey("Cabins.Cabinid"))
 
-
-    Cabins = relationship("Cabin", back_populates="Reservations")
+    cabin = relationship("Cabin", back_populates="reservationsList")
+    #this could also be part of error - relationship

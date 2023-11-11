@@ -14,7 +14,7 @@ window.onload = function() {
     filtersMenu.addEventListener('click', function(event) {
         if (event.target.tagName === 'A') {
             var filter = event.target.textContent;
-            console.log('Filtering by ' + filter);
+            //console.log('Filtering by ' + filter);
             switch (filter) {
                 case 'Price Range':
                     sortPropertiesByPrice();
@@ -74,7 +74,7 @@ function sortPropertiesByPrice() {
         return a.price - b.price;
     });
 
-    console.log(properties);
+    //console.log(properties);
     displayProperties();
 }
 
@@ -83,14 +83,14 @@ function sortPropertiesByAmenities() {
         return b.amenities.length - a.amenities.length;
     });
 
-    console.log(properties); 
+    //console.log(properties); 
     displayProperties();
 }
 
 function displayProperties() {
     var propertiesList = document.getElementById('property-grid');
     getCabinsFromApi().then(properties => {
-        console.log(properties);
+        //console.log(properties);
         propertiesList.innerHTML = '';
 
     // Generate the HTML for each property
@@ -123,7 +123,7 @@ function displayProperties() {
 
         // Create the description element
         var linkElement = document.createElement('a');
-        linkElement.href = 'viewlistingpage.html?id='+property.id;
+        linkElement.href = '/cabins/' + property.id + '/details'; // Link to FastAPI route
         linkElement.textContent = 'View Details';
         propertyElement.appendChild(linkElement);
 

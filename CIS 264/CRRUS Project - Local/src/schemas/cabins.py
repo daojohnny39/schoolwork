@@ -1,11 +1,11 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, VARCHAR, Double
+from sqlalchemy import Column, Integer, VARCHAR, Double
 from sqlalchemy.orm import relationship
 from database import Base
 
 class Cabin(Base):
-    __tablename__ ="cabins"
+    __tablename__ ="Cabins"
 
-    CabinId = Column(Integer, primary_key=True, index=True)
+    Cabinid = Column(Integer, primary_key=True, index=True)
     CabinName = Column(VARCHAR(90))
     Address = Column(VARCHAR(250)) 
     City = Column(VARCHAR(50))
@@ -17,8 +17,7 @@ class Cabin(Base):
     SquareFeet = Column(Integer)
     BedRoom = Column(Integer)
     Amenity = Column(VARCHAR(500)) 
+    Hostid = Column(Integer)
 
-    # More fields later...
-
-    ##Reservations = relationship("Reservation", back_populates="cabins")
-    # Need to read-up more on what this does
+    reservationsList = relationship("Reservation", back_populates="cabin")
+    #Above line for error

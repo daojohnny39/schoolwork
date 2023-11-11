@@ -1,2 +1,5 @@
 __pychache__
 .idea
+.pyc
+.pyo
+src/__pycache__/app.cpython-311.pyc
