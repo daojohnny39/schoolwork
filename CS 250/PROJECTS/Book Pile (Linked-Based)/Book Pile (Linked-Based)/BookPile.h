@@ -15,8 +15,9 @@ private:
 public:
 	BookPile();
 	BookPile(std::vector<std::string> existingBooks);
+	void displayPile();
 	bool addBook(const std::string& addedBook);
-	int size();
+	//int size();
 };
 
 #endif // !BOOKPILE_H
