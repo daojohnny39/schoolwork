@@ -21,14 +21,40 @@ Johnny (Nhat) Dao
             </h1>
             <div class="question-within-question">
                 <h1>Answer</h1>
-                <p>...</p>
+                <p>
+                    To answer this, lets look at some sample code.<br><br>
+                    This is a function declaration:
+                </p>
+                    <div class="sample-code">
+                        <p>
+                            function sortingHat() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<i>do something...</i><br>
+                            }
+                        </p>
+                    </div>
+                <p>
+                    This is a function expression:
+                </p>
+                    <div class="sample-code">
+                        <p>
+                            let sortingHat = function() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<i>do something...</i><br>
+                            }
+                        </p>
+                    </div>
+                </p>
+                <p>
+                    They may look like they do the same thing, which they do, but there is a key difference between these two. A function declaration could
+                    be placed anywhere within the code and can be called anywhere within the code. A function expression can only be called AFTER it is ran.
+                    This can help a lot with debugging.
+                </p>
             </div>
         </div>
         <div class="question">
-            <h2>
-                Why do we create functions in the first place? There are two big reasons. One has to do with when the statements in the functions run.
+            <h1>
+                2. Why do we create functions in the first place? There are two big reasons. One has to do with when the statements in the functions run.
                 The other has to do with how often the statements in a function are run.
-            </h2>
+            </h1>
             <div class="question-within-question">
                 <h1>Answer</h1>
                 <p>
@@ -45,6 +71,7 @@ Johnny (Nhat) Dao
         </div>
         <script>
 
+            // STEP 1
             let age = prompt("How old are you?");
             let bProceed = confirm("Are you sure you want to proceed?");
 
@@ -54,25 +81,119 @@ Johnny (Nhat) Dao
                 pElement.textContent = `${name} is legal`;
             }
 
-            let userName = prompt("Who's there?");
+            // STEP 2
+            let sport = prompt("What's your favorite sport?");
+    
+            if (sport === 'Football') {
 
-            if (userName === 'Admin') {
+                let pass = prompt('Password?', '');
 
-            let pass = prompt('Password?', '');
-
-            if (pass === 'TheMaster') {
-                alert( 'Welcome!' );
-            } else if (pass === '' || pass === null) {
+                if (pass === 'Chiefs') {
+                    alert( 'Welcome!' );
+                } else if (pass === '' || pass === null) {
+                    alert( 'Canceled' );
+                } else {
+                    alert( 'Wrong password' );
+                }
+                } else if (sport === '' || sport === null) {
                 alert( 'Canceled' );
-            } else {
-                alert( 'Wrong password' );
-            }
-            } else if (userName === '' || userName === null) {
-            alert( 'Canceled' );
-            } else {
-            alert("I don't know you");
+                } else {
+                alert("I don't know you");
+                }
+
+            if (sport === 'Soccer') {
+                console.log("Why would you even pick that??");
             }
 
+            if (sport === 'Baseball') {
+                console.log("That's even worse");
+            }
+
+            if (sport === 'Basketball') {
+                console.log("ehhhhh");
+            }
+
+            if (sport === 'Hockey') {
+                console.log("That's a good sport... maybe");
+            }
+
+            // STEP 3 
+            let secret = 9;
+
+            let secretGuess = prompt("Guessing Game 1: Guess a number between 1 and 10!");
+
+
+            while (secretGuess != secret) {
+                secretGuess = prompt("Guessing Game 1: Guess a number between 1 and 10!");
+            }
+
+            // STEP 4
+            let secretGuess2;
+
+            do {
+                secretGuess2 = prompt("Guessing Game 2: Guess a number between 1 and 10!");
+            } while (secretGuess2 != secret);
+
+            // STEP 5
+            //for loop that iterates for every number
+            for (let i = 1; i < 31; i++) {
+                if (i % 3 == 0) {
+                    console.log(i);
+                }
+            }
+
+            // STEP 7
+            function sortingHat() {
+
+            // STEP 6 - I'm not really familiar with Harry Potter so apologies if the wording seems weird.
+                let house = prompt("What is your Hogwart's House?");
+
+                switch(house) {
+                    case 'Gryffindor':
+                        console.log("You chose Gryffindor!");
+                        break;
+                    case 'Slytherin':
+                        console.log("You chose Slytherin!");
+                        break;
+                    case 'Ravenclaw':
+                        console.log("You chose Ravenclaw!");
+                        break;
+                    case 'Hufflepuff':
+                        console.log("You chose Hufflepuff!");
+                        break;
+                    default:
+                        console.log("Uhhh you chose something lol");
+                }
+
+            }
+
+            // STEP 9
+            let sortingHat2 = function() {
+
+                // STEP 7
+                let house2 = prompt("Didn't catch it the first time. What is your Hogwart's House?");
+
+                if (house2 === 'Gryffindor') {
+                    console.log("Gryffindor you chose!");
+                }
+                else if (house2 === 'Slytherin') {
+                    console.log("Slytherin you chose!");
+                }
+                else if (house2 === 'Ravenclaw') {
+                    console.log("Ravenclaw you chose!");
+                }
+                else if (house2 === 'Hufflepuff') {
+                    console.log("Hufflepuff you chose!");
+                }
+                else {
+                    console.log("Uhhh you chose something lol");
+                }
+
+            }
+
+            // STEP 10
+            sortingHat();
+            sortingHat2();
         </script>
     </body>
 </html>
