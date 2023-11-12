@@ -24,5 +24,55 @@ Johnny (Nhat) Dao
                 <p>...</p>
             </div>
         </div>
+        <div class="question">
+            <h2>
+                Why do we create functions in the first place? There are two big reasons. One has to do with when the statements in the functions run.
+                The other has to do with how often the statements in a function are run.
+            </h2>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    For the first reason:<br><br>
+                    We create functions so that it simplifies the code that we write. We can write multiple lines of code and execute it all at once
+                    whenever we decide to call it. On the topic of simplicity, we can also put these functions in a different file so that the code is not 
+                    so cluttered.<br><br>
+                    For the second reason:<br><br>
+                    Since we can write functions and execute multiple lines of statements whenever we decide to call it, that also means repetitive chunks
+                    of statements could also be written inside a function and we can call it whenever we need to. This allows us to simplify the amount of code 
+                    that we need to write.
+                </p>
+            </div>
+        </div>
+        <script>
+
+            let age = prompt("How old are you?");
+            let bProceed = confirm("Are you sure you want to proceed?");
+
+            if (age >= 18 && bProceed == true) {
+                let name = prompt("What is your name?");
+                let pElement = document.querySelector('p');
+                pElement.textContent = `${name} is legal`;
+            }
+
+            let userName = prompt("Who's there?");
+
+            if (userName === 'Admin') {
+
+            let pass = prompt('Password?', '');
+
+            if (pass === 'TheMaster') {
+                alert( 'Welcome!' );
+            } else if (pass === '' || pass === null) {
+                alert( 'Canceled' );
+            } else {
+                alert( 'Wrong password' );
+            }
+            } else if (userName === '' || userName === null) {
+            alert( 'Canceled' );
+            } else {
+            alert("I don't know you");
+            }
+
+        </script>
     </body>
 </html>
