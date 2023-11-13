@@ -13,7 +13,7 @@ int main() {
                            "This Book Does Not Exist", "Null"};
 
     std::cout << "size() returns: " << myPile.size() << " [should be 0]" << std::endl << std::endl;
-    /*
+    
     for (int i = 0; i < 16; i++) {
         std::cout << "addBook(\"" << books[i] << "\") returns: " << myPile.addBook(books[i]) << std::endl;
     }
@@ -25,13 +25,13 @@ int main() {
 
     std::cout << std::endl << "addBook(\"\") returns: " << myPile.addBook("")
         << " [should be 0]" << std::endl;
-
+    
     std::cout << std::endl << "bookPosition(\"Contact\") returns: " << myPile.bookPosition("Contact")
         << " [should be 9]" << std::endl << std::endl;
 
     std::cout << "bookPosition(\"Neverwhere\") returns: " << myPile.bookPosition("Neverwhere")
         << " [should be -1]" << std::endl << std::endl;
-
+    
     std::cout << "getPosition(6) returns: " << myPile.getPosition(6) << " [should be Random1ze]" << std::endl << std::endl;
 
     std::cout << "removePosition(1) returns: " << myPile.removePosition(1) << " [should be 1]" << std::endl << std::endl;
@@ -41,7 +41,7 @@ int main() {
 
     std::cout << "removeBook(\"Cinder\") returns: " << myPile.removeBook("Cinder")
         << " [should be 1]" << std::endl << std::endl;
-
+    
     std::cout << "rename(\"Fred\", \"Jimmy\") returns: " << myPile.rename("Fred", "Jimmy")
         << " [should be 0]" << std::endl << std::endl;
 
@@ -64,6 +64,6 @@ int main() {
     BookPile myPile2(books);
     std::cout << "BOOK PILE CONTAINS: " << std::endl;
     myPile2.displayPile();
-    */
+    
     return 0;
 }

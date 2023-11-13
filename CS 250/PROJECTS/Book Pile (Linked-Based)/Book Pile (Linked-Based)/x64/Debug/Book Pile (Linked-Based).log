@@ -1,6 +1,7 @@
-﻿  Book.cpp
-  BookPile.cpp
+﻿  BookPile.cpp
   main.cpp
-E:\School\Last Semester School Work\GitHub\CS 250\PROJECTS\Book Pile (Linked-Based)\Book Pile (Linked-Based)\main.cpp(15,47): error C2039: 'size': is not a member of 'BookPile'
-E:\School\Last Semester School Work\GitHub\CS 250\PROJECTS\Book Pile (Linked-Based)\Book Pile (Linked-Based)\BookPile.h(4,7): message : see declaration of 'BookPile'
   Generating Code...
+E:\School\Last Semester School Work\GitHub\CS 250\PROJECTS\Book Pile (Linked-Based)\Book Pile (Linked-Based)\BookPile.cpp(180): warning C4715: 'BookPile::getPosition': not all control paths return a value
+E:\School\Last Semester School Work\GitHub\CS 250\PROJECTS\Book Pile (Linked-Based)\Book Pile (Linked-Based)\BookPile.cpp(100): warning C4715: 'BookPile::removeBook': not all control paths return a value
+E:\School\Last Semester School Work\GitHub\CS 250\PROJECTS\Book Pile (Linked-Based)\Book Pile (Linked-Based)\BookPile.cpp(199): warning C4715: 'BookPile::rename': not all control paths return a value
+  Book Pile (Linked-Based).vcxproj -> E:\School\Last Semester School Work\GitHub\CS 250\PROJECTS\Book Pile (Linked-Based)\x64\Debug\Book Pile (Linked-Based).exe
