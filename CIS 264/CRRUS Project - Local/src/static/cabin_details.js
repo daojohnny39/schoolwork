@@ -119,7 +119,7 @@ function updateSignIn() {
 
     if (renter) {
         const signIn = document.querySelector('.sign-in');
-        signIn.innerHTML = ''; //clears .sign-in
+        signIn.innerHTML = '';
 
         // Welcome message
         const welcomeMessage = document.createElement('span');
