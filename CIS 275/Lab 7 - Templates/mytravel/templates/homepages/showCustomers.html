@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1><b>CUSTOMER LIST</b></h1>
+<div class="container">
+    {% for customer in cust %}
+    <p>
+        <a class="btn btn-primary" href="{% url 'showSingleCustomer' cust_id=customer.id %}">Edit</a>
+        {{ customer.last_name }}, {{ customer.first_name }}
+        <a class="btn btn-primary" href="{% url 'deleteCustomer' cust_id=customer.id %}">Delete</a>
+    </p>
+    {% endfor %}
+</div>
+{% endblock %}
