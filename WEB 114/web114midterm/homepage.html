@@ -1,0 +1,48 @@
+<!-- 
+    Johnny (Nhat) Dao 
+    WEB 114 Midterm Project
+    11/19/2023
+
+    Recommendations:
+    Open with Live Server (VS Code) + Google Chrome -> (This is what I used)
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Homepage</title>
+        <link rel="stylesheet" href="homepageconf.css">
+        <script src="homepagefuncs.js"></script>
+    </head>
+    <body>
+        <div class="nav-element">
+            <h1>WEB 114 Midterm</h1>
+            <h2><i>Johnny's (Nhat) Personal Store!</i></h2>
+        </div>
+        <div class="container">
+            <h1><i>Items to purchase:</i></h1>
+            <div class="product">
+                <h1>CPU (Ryzen 7 3800X)</h1>
+                <p class="price">$500</p>
+                <select>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+                <button id="CPU">Add</button>
+            </div>
+        </div>
+    </body>
+    <footer>
+        <div class="cart">
+            <h1>Items</h1>
+            <div class="cart-card">
+                <p id="cart-counter">0</p>
+            </div>
+            <div class="cart-card">
+                <p id="total-price">$0</p>
+            </div>
+            <button>Checkout</button>
+        </div>
+    </footer>
+</html>

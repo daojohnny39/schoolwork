@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/johnnydao/Desktop/School Work/Local Repo/schoolwork/CS 250/PROJECTS/Book Pile (Linked-Based)/Book Pile (Linked-Based)",
+      "program": "/Users/johnnydao/Desktop/School Work/Local Repo/schoolwork/CS 250/PROJECTS/Book Pile (Linked-Based)/Book Pile (Linked-Based)/build/Debug/outDebug"
+    }
+  ]
+}
