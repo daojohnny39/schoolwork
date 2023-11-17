@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="text-left">
+        <h2 class="section-heading text-uppercase">Destinations for {{record.first_name}} {{record.last_name}}</h2>
+    </div>
+    <br>
+    {% for destination in dest %}
+    <p>{{ destination.title }}</p>
+    {% endfor %}
+    <br><br>
+
+    <form name="form" method="post" action="{% url 'addCustDest' %}">
+        {% csrf_token %}
+        <input type="hidden" id="cust_id" name="cust_id" value="{{record.id}}">
+
+        <label for='cust_dest'>Select the destination to add:</label>
+        <select name="cust_dest" id="cust_dest">
+            {% for dest in avail %}
+            <option value="{{ dest.id }}">{{ dest.title }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Add Destination</button>
+    </form>
+</div>
+{% endblock %}

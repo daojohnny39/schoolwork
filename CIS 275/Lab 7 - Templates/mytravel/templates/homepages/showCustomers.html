@@ -2,10 +2,12 @@
 {% load static %}
 {% block content %}
 <h1><b>CUSTOMER LIST</b></h1>
+<a class="btn btn-primary" href="{% url 'addCustomer' %}">New Customer</a>
 <div class="container">
     {% for customer in cust %}
     <p>
         <a class="btn btn-primary" href="{% url 'showSingleCustomer' cust_id=customer.id %}">Edit</a>
+        <a class="btn btn-primary" href="{% url 'addCustomerDestination' cust_id=customer.id %}">Add Destination</a>
         {{ customer.last_name }}, {{ customer.first_name }}
         <a class="btn btn-primary" href="{% url 'deleteCustomer' cust_id=customer.id %}">Delete</a>
     </p>

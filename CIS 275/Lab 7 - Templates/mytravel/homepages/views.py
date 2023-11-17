@@ -52,6 +52,47 @@ def deleteCustomerPageView(request, cust_id) :
     
     return showCustomersPageView(request)
 
+def addCustomerPageView(request) :
+    if request.method == 'POST':
+        customer = Customer()
+        
+        customer.first_name = request.POST['first_name']
+        customer.last_name = request.POST['last_name']
+        customer.user_name = request.POST['user_name']
+        customer.password = request.POST['password']
+        customer.email = request.POST['email']
+        customer.phone = request.POST['phone']
+        
+        customer.save()
+        
+        return showCustomersPageView(request)
+    else :
+        return render(request, 'homepages/addCustomer.html')
+    
+def addCustomerDestinationPageView(request, cust_id) :
+    data = Customer.objects.get(id = cust_id)
+    destinations = data.destinations.all()
+    
+    avail_dest = Destination.objects.exclude(id__in=data.destinations.all())
+    
+    context = {
+        "record" : data,
+        "dest" : destinations,
+        "avail" : avail_dest
+    }
+    
+    return render(request, 'homepages/addCustomerDest.html', context)
+
+def addCustDestPageView(request) :
+    if request.method == 'POST':
+        cust_id = request.POST['cust_id']
+        customer = Customer.objects.get(id=cust_id)
+        
+        dest = request.POST['cust_dest']
+        customer.destinations.add(Destination.objects.get(id=dest))
+        
+    return showCustomersPageView(request)
+
 #TEMP------------------------------------------------------------------------
 def productPageView(request, product, sku, price):
     productInfo = {

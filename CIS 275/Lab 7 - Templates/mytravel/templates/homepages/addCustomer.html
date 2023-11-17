@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="text-left">
+        <h2 class="section-heading text-uppercase">Add Customer</h2>
+    </div>
+    <br>
+    <form name="form" method="post" action="{% url 'addCustomer' %}">
+        {% csrf_token %}
+        <input type="hidden" id="cust_id" name="cust_id" value="{{record.id}}">
+
+        <label for='first_name'>First name:</label>
+        <input type="text" name='first_name' id='first_name' value="{{record.first_name}}" autofocus>
+        <br><br>
+
+        <label for='last_name'>Last name:</label>
+        <input type="text" name='last_name' id='last_name' value="{{record.last_name}}">
+        <br><br>
+
+        <label for='user_name'>User name:</label>
+        <input type="text" name='user_name' id='user_name' value="{{record.user_name}}">
+        <br><br>
+
+        <label for='password'>Password:</label>
+        <input type="text" name='password' id='password' value="{{record.password}}">
+        <br><br>
+
+        <label for='email'>Email:</label>
+        <input type="text" name='email' id='email' value="{{record.email}}">
+        <br><br>
+
+        <label for='phone'>Phone:</label>
+        <input type="text" name='phone' id='phone' value="{{record.phone}}">
+        <br><br>
+
+        <label><b>List of Destinations:</b></label>
+
+        <button type="submit">Add</button>
+    </form>
+</div>
+{% endblock %}
