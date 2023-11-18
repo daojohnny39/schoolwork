@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
+{% block title %}Login{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="card">
-        <div class="card-header">
-            Login
-        </div>
+        <div class="card-header">Login</div>
         <div class="card-body">
-
             {% if msg %}
             {% if msg == 'Logout successful' or msg == 'User successfully created' %}
             <div class="alert alert-success" role="alert">
@@ -34,7 +32,7 @@
             </form>
         </div>
         <div class="card-footer text-muted">
-            <a href="register"> Register? </a>
+            <a href="{{ url_for('registrationpage')}}"> Register? </a>
         </div>
         <div class="loginBypass">
             <h1>BYPASS DETAILS</h1>

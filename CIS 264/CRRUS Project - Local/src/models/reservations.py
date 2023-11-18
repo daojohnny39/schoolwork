@@ -1,15 +1,18 @@
 from datetime import date
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing import Optional
 
 class ReservationCreate(BaseModel):
-    Cabinid: int
-    #Renterid: int
+
+    #Reservationid: Optional[int] = Field(default=None)
     CheckInDate: date
     CheckOutDate: date
     Status: str
+    Cabinid: int
+    #Renterid: int
     
 class Reservation(ReservationCreate):
-    Reservationid: int 
 
+    Reservationid: int 
     class Config:
         from_attributes = True

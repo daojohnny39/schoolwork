@@ -4,9 +4,12 @@ from typing import Optional
 
 from models.cabins import Cabin as CabinModel
 from models.cabins import CabinCreate as CabinCreateModel
+from models.reservations import Reservation as ReservationModel
+from models.reservations import ReservationCreate as ReservationCreateModel
 from schemas.cabins import Cabin as CabinSchema
-from schemas.reservations import Reservation as ReservationSchema
+from schemas.reservations_schema import Reservation as ReservationSchema
 from typing import Dict
+from sqlalchemy import func
 
 class DatabaseController:
 # Cabin related definitions ----------------------------------
@@ -25,3 +28,25 @@ class DatabaseController:
         return db.query(ReservationSchema).filter(ReservationSchema.Reservationid == reservation_id).first()
     
 # Showing Pages ----------------------------------
+
+# Create Reservation Function ----------------------------------
+    def create_reservation(self, reservation: ReservationCreateModel, db: Session):
+        db_reservation = ReservationSchema(
+        CheckInDate=reservation.CheckInDate,
+        CheckOutDate=reservation.CheckOutDate,
+        Status=reservation.Status,
+        Cabinid=reservation.Cabinid
+        )
+
+        # Check if ReservationID is NULL
+        if db_reservation.ReservationID is None:
+            # Get the maximum ReservationID in the Reservation table
+            max_id = db.query(func.max(ReservationSchema.ReservationID)).scalar()
+            # If the Reservation table is empty, set ReservationID to 1
+            # Otherwise, set ReservationID to max_id + 1
+            db_reservation.ReservationID = 1 if max_id is None else max_id + 1
+
+        db.add(db_reservation)
+        db.commit()
+        db.refresh(db_reservation)
+        return db_reservation

@@ -77,8 +77,51 @@ function displayPropertyDetails(cabinId) {
             priceElement.textContent = "$" + cabin.BasePricePerNight + " / night";
             cabinElement.appendChild(priceElement);
 
+            //Display Calendar to book cabin.  
+            var datePickerContainer =  document.createElement('div');
+            datePickerContainer.className = "date-picker-container";
+            cabinElement.appendChild(datePickerContainer);
+
+
+            var dateInput =  document.createElement('input');
+            dateInput.id = "dateInput";
+            dateInput.style.maxWidth = "150px";
+            dateInput.placeholder = "Click to choose date";
+            datePickerContainer.appendChild(dateInput);
+
+            var datePicker =  document.createElement('div');
+            datePicker.className = "date-picker";
+            datePicker.id = "datePicker";
+            datePickerContainer.appendChild(datePicker);
+
+            var datePickerHeader =  document.createElement('div');
+            datePickerHeader.className = "date-picker-header";
+            datePicker.appendChild(datePickerHeader);
+
+            var yearSelector =  document.createElement('select');
+            yearSelector.id = "yearSelector";
+            datePickerHeader.appendChild(yearSelector);
+
+            var monthSelector =  document.createElement('select');
+            monthSelector.id = "monthSelector";
+            datePickerHeader.appendChild(monthSelector);
+
+            var calendarElement =  document.createElement('div');
+            calendarElement.id = "calendar";
+            calendarElement.className = "calendar";
+            datePicker.appendChild(calendarElement);
+
+            var chooseButton =  document.createElement('button');
+            chooseButton.id = "chooseButton";
+            chooseButton.className = "choose-button";
+            chooseButton.textContent = "Choose";
+            datePicker.appendChild(chooseButton);
+            
+            
+            
             // Displaying "Book Now" Button
             var bookButton = document.createElement('button');
+            bookButton.className = "bookButton";
             bookButton.textContent = "Book Now";
             cabinElement.appendChild(bookButton);
 
@@ -95,7 +138,7 @@ function displayPropertyDetails(cabinId) {
 
             var amenitiesElement = document.createElement('p');
             amenitiesElement.className = 'description';
-            amenitiesElement.textContent = "Amenities: " + cabin.Amenity;
+            amenitiesElement.textContent = "Amenities: " + cabin.Amenity.replace(/;/g, ", ");
             cabinElement.appendChild(amenitiesElement);
 
             // Add the cabin to the page
@@ -104,6 +147,7 @@ function displayPropertyDetails(cabinId) {
             propertyDetails.appendChild(cabinElement);
 
             changeTitle(cabin.CabinName);
+			cabinDateReservation();
         })
         .catch(error => console.log(error));
 };
@@ -139,4 +183,133 @@ function updateSignIn() {
 function updateSignOut() {
     sessionStorage.removeItem('renter');
     location.reload();
+}
+
+function cabinDateReservation() {
+    const dateInput = document.getElementById("dateInput");
+    const datePicker = document.getElementById("datePicker");
+    const calendar = document.getElementById("calendar");
+    const chooseButton = document.getElementById("chooseButton");
+    const yearSelector = document.getElementById("yearSelector");
+    const monthSelector = document.getElementById("monthSelector");
+    let selectedStartDate = null;
+    let selectedEndDate = null;
+
+
+    function showDatePicker() {
+      datePicker.style.display = "block";
+    }
+
+    function hideDatePicker() {
+      datePicker.style.display = "none";
+    }
+
+    function populateYearDropdown() {
+      const currentYear = new Date().getFullYear();
+      for (let year = currentYear; year <= currentYear + 5; year++) {
+        const option = document.createElement("option");
+        option.value = year;
+        option.textContent = year;
+        yearSelector.appendChild(option);
+      }
+    }
+
+    function populateMonthDropdown() {
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      months.forEach((month, index) => {
+        const option = document.createElement("option");
+        option.value = index + 1;
+        option.textContent = month;
+        monthSelector.appendChild(option);
+      });
+    }
+
+    function createCalendar(year, month) {
+      calendar.innerHTML = "";
+
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const firstDayOfMonth = new Date(year, month, 1);
+      const lastDayOfMonth = new Date(year, month, daysInMonth);
+
+      for (let i = 1; i <= daysInMonth; i++) {
+        const dayElement = document.createElement("div");
+        dayElement.className = "day";
+        dayElement.textContent = i;
+
+        dayElement.addEventListener("click", () => {
+          selectedStartDate = new Date(year, month, i);
+          selectedEndDate = new Date(year, month, i + 6);
+          highlightSelectedDates();
+        });
+
+        calendar.appendChild(dayElement);
+      }
+    }
+
+    function highlightSelectedDates() {
+      const days = calendar.querySelectorAll(".day");
+      days.forEach((dayElement, index) => {
+        if (index >= selectedStartDate.getDate() - 1 && index < selectedStartDate.getDate() + 6) {
+          dayElement.classList.add("selected");
+        } else {
+          dayElement.classList.remove("selected");
+        }
+      });
+      chooseButton.classList.add("selected");
+    }
+
+    function clearSelection() {
+      chooseButton.classList.remove("selected");
+      const days = calendar.querySelectorAll(".day");
+      days.forEach((dayElement) => {
+        dayElement.classList.remove("selected");
+      });
+
+      if (selectedStartDate) {
+        const formattedStartDate = selectedStartDate.toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' });
+        const formattedEndDate = selectedEndDate.toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' });
+        dateInput.value = `${formattedStartDate} to ${formattedEndDate}`;
+      } else {
+        dateInput.value = "";
+      }
+
+      selectedStartDate = null;
+      hideDatePicker();
+    }
+
+    populateYearDropdown();
+    populateMonthDropdown();
+
+    dateInput.addEventListener("click", () => {
+      const currentDate = new Date();
+      yearSelector.value = currentDate.getFullYear();
+      monthSelector.value = currentDate.getMonth() + 1;
+      createCalendar(currentDate.getFullYear(), currentDate.getMonth());
+      showDatePicker();
+    });
+
+    chooseButton.addEventListener("click", () => {
+      if (chooseButton.classList.contains("selected")) {
+        chooseButton.classList.remove("selected");
+        clearSelection();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!datePicker.contains(event.target) && event.target !== dateInput) {
+        hideDatePicker();
+      }
+    });
+
+    yearSelector.addEventListener("change", () => {
+      const selectedYear = parseInt(yearSelector.value);
+      const selectedMonth = parseInt(monthSelector.value) - 1;
+      createCalendar(selectedYear, selectedMonth);
+    });
+
+    monthSelector.addEventListener("change", () => {
+      const selectedYear = parseInt(yearSelector.value);
+      const selectedMonth = parseInt(monthSelector.value) - 1;
+      createCalendar(selectedYear, selectedMonth);
+    });
 }

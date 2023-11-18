@@ -1,0 +1,13 @@
+﻿  driver.cpp
+C:\Users\Johnny\Desktop\School Work\Personal Git Repo\schoolwork\CS 250\Classwork\ArrayMaxHeap\ArrayMaxHeap\ArrayMaxHeap.hpp(111,15): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'driver.cpp')
+  C:\Users\Johnny\Desktop\School Work\Personal Git Repo\schoolwork\CS 250\Classwork\ArrayMaxHeap\ArrayMaxHeap\ArrayMaxHeap.hpp(111,15):
+  the template instantiation context (the oldest one first) is
+  	C:\Users\Johnny\Desktop\School Work\Personal Git Repo\schoolwork\CS 250\Classwork\ArrayMaxHeap\ArrayMaxHeap\driver.cpp(8,43):
+  	see reference to class template instantiation 'ArrayMaxHeap<std::string>' being compiled
+  	C:\Users\Johnny\Desktop\School Work\Personal Git Repo\schoolwork\CS 250\Classwork\ArrayMaxHeap\ArrayMaxHeap\ArrayMaxHeap.hpp(110,1):
+  	while compiling class template member function 'int ArrayMaxHeap<std::string>::getHeight(void) const'
+  		C:\Users\Johnny\Desktop\School Work\Personal Git Repo\schoolwork\CS 250\Classwork\ArrayMaxHeap\ArrayMaxHeap\driver.cpp(22,70):
+  		see the first reference to 'ArrayMaxHeap<std::string>::getHeight' in 'main'
+  
+  ArrayMaxHeap.vcxproj -> C:\Users\Johnny\Desktop\School Work\Personal Git Repo\schoolwork\CS 250\Classwork\ArrayMaxHeap\x64\Debug\ArrayMaxHeap.exe

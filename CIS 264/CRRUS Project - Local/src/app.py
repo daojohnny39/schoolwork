@@ -9,6 +9,7 @@
 
 from fastapi import FastAPI, Path, HTTPException, status, Depends, Request, Form, Body #Added Form and Body
 import uvicorn
+from datetime import date
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional, Dict
 
@@ -29,6 +30,7 @@ from fastapi.templating import Jinja2Templates
 # ---- for LOGIN
 from sqlalchemy.ext.declarative import declarative_base
 from models.renters import Renter
+
 
 app = FastAPI()
 controller = DatabaseController()
@@ -103,6 +105,10 @@ async def cabin_details(request: Request, cabin_id: int, db: Session = Depends(g
 @app.get("/login")
 def loginpage(request: Request):
     return templates.TemplateResponse("login/loginpage.html", {"request": request})
+
+@app.get("/registration")
+def registrationpage(request: Request):
+    return templates.TemplateResponse("login/registration.html", {"request": request})
 # Page view functions END -----------------------------------------------------------------
 
 # Login Function -----------------------------------------------------------------
@@ -120,6 +126,15 @@ async def login(request: Request, email: str = Form(...), password: str = Form(.
     
     return {"message": "Login successful", "renter": {"email": renter.Email, "first_name": renter.RenterFirstName}}
 # Login Function END -----------------------------------------------------------------
+
+# Create Reservation Function -----------------------------------------------------------------
+@app.post("/create_reservation")
+async def create_reservation(request: Request, CheckInDate: date = Form(...), CheckOutDate: date = Form(...), Cabinid: int = Form(...), db: Session = Depends(get_db)):
+    reservation = ReservationCreateModel(CheckInDate=CheckInDate, CheckOutDate=CheckOutDate, Status="Pending", Cabinid=Cabinid)
+    controller.create_reservation(reservation, db)
+    
+    return templates.TemplateResponse("create_reservation.html", {"request": request})
+# Create Reservation Function END -----------------------------------------------------------------
 
 if __name__ == "__main__":
     uvicorn.run("app:app", host="127.0.0.1", reload=True)
