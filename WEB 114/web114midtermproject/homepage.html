@@ -1,4 +1,11 @@
+<!-- 
+    Johnny (Nhat) Dao
+    WEB 114 Midterm Project
+    11/19/2023
 
+    Recommendations:
+    Open with Live Server (VS Code) + Google Chrome -> (This is what I used and what I tested with)
+-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,28 +18,125 @@
         <div class="header">
             <h1>Johnny's Calculator!</h1>
             <h2><i>WEB 114 Midterm Project</i></h2>
-        </div>
-        <div class="container">
-            <div class="calc-screen">
-                <p>0</p>
+            <p>If the calculator glitches, just refresh the page or CTRL + F5</p>
+            <p>Below is some documentation I wrote for the program</p>
+            <div class="inside-header">
+                <div class="left">
+                    <p style="font-size: 1.1em"><b>Requirements covered in the calculator:</b></p>
+                    <p>
+                        <b>HTML:</b>
+                        <ul>
+                            <li>&lt;button&gt; element</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <b>JS:</b>
+                        <ul>
+                            <li>+, -, *, /, ^ (**) operators</li>
+                            <li>=, === operators</li>
+                            <li>Switch/Case statements</li>
+                            <li>Getting values from and modifying textContent</li>
+                            <li>|| operator</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="right">
+                    <p style="font-size: 1.1em"><b>Requirements covered in the extras:</b></p>
+                    <p><i>Mostly covers missing requirements in the calculator</i></p>
+                    <p>
+                        <b>HTML:</b>
+                        <ul>
+                            <li>&lt;input&gt;, &lt;select&gt;, and &lt;option&gt; elements</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="right-below">
+                    <p style="font-size: 1.1em"><b>Usage Explanations:</b></p>
+                    <p><i>Program is best ran at AT LEAST 1200px width</i></p>
+                    <p><b>The Calculator:</b></p>
+                    <p>It's a basic calculator.</p>
+
+                    <p><b>The Extras:</b></p>
+                    <ul>
+                        <li><p><b>Name Function:</b> Type in your name and hit the submit button. The question will update to say "Hello, [YOUR NAME]!"</p></li>
+                        <li><p><b>Johnny's Little Store:</b> Pick a count for each item and the count for each item will update below</p></li>
+                    </ul>
+
+                    <p style="font-size: 1.1em; padding-top: 20px;"><b>Requirements I couldn't get to:</b></p>
+                    <ul>
+                        <li><b>== operator:</b> I couldn't find a use for this operator unfortunately due to the fact that I need exact types of data
+                        &#x28;if you find a use for it within my code, please let me know&#x29;</li>
+                    </ul>
+                </div>
             </div>
-            <div class="calc-buttons">
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>+</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>-</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>*</button>
-                <button>0</button>
-                <button>.</button>
-                <button>=</button>
-                <button>/</button>
+        </div>
+        <div class="layout-container">
+            <div class="calc">
+                <div class="calc-screen">
+                    <p>0</p>
+                </div>
+                <div class="calc-buttons">
+                    <!-- The use of buttons for user input -->
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>
+                    <button>+</button>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                    <button>-</button>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>*</button>
+                    <button>0</button>
+                    <button>.</button>
+                    <button id="power">^</button>
+                    <button>/</button>
+                    <button id="equals">=</button>
+                    <button id="clear">C</button>
+                </div>
+            </div>
+            <div class="container">
+                <h1>Extras:</h1>
+                <div class="inside-container">
+                    <div class="functionalities">
+                        <p id="name-change">What is your name?:</p>
+                        <!-- input element used here -->
+                        <input type="text" id="name" placeholder="Enter your name here">
+                        <button id="name-button">Submit</button>
+                    </div>
+                    <div class="functionalities">
+                        <div class="little-store">
+                            <h1>Johnny's Little Store!</h1>
+                            <p style="font-size: 1em"><i>Only takes account quantity for the sake of demonstrating &lt;select&gt; and &lt;option&gt;</i></p>
+                            <div class="product">
+                                <h1>CPU (Ryzen 7 3800X)</h1>
+                                <!-- select element used here -->
+                                <select id="CPU-select">
+                                    <!-- option element used here-->
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="product">
+                                <h1>GPU (NVidia GTX 1080ti)</h1>
+                                <select id="GPU-select">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="totals">
+                                <p id="CPU-count">CPU: 0</p>
+                                <p id="GPU-count">GPU: 0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <script src="calcFuncs.js"></script>

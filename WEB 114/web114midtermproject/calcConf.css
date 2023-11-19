@@ -4,40 +4,129 @@
     11/19/2023
 */
 
+/* import font */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+/* ----------------------- THE HEADER ----------------------- */
 .header {
     border-radius: 10px;
+    border-style: solid;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    background-color: bisque;
+    background-color: rgb(75, 75, 75);
     padding: 20px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
 }
 
+.header h1, h2, p {
+    color: white;
+}
+
+.header .inside-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: start;
+    margin-top: 20px;
+}
+
+.header .inside-header .left, .header .inside-header .right, .header .inside-header .right-below {
+    max-width: 100%;
+}
+
+.header .inside-header .left, .header .inside-header .right {
+    width: calc(50% - 40px);
+}
+
+.header .inside-header .left {
+    width: 45%;
+    background-color: white;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
+    padding: 5px;
+    text-align: left;
+}
+
+.header .inside-header .left p {
+    color: black;
+}
+
+.header .inside-header .right {
+    width: 50%;
+    background-color: white;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
+    padding: 5px;
+    text-align: left;
+}
+
+.header .inside-header .right p {
+    color: black;
+}
+
+.header .inside-header .right-below {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
+    padding: 5px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.header .inside-header .right-below p {
+    color: black;
+}
+/* ----------------------- THE HEADER END ----------------------- */
+
+
+/* ----------------------- THE LAYOUT CONTAINER ----------------------- */
+.layout-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-top: 20px;
+}
+
+.calc, .container {
+    width: calc(50% - 40px);
+}
+/* ----------------------- THE LAYOUT CONTAINER END ----------------------- */
+
+
 /* ----------------------- THE CALCULATOR ----------------------- */
-.container {
+/* The Actual Calculator */
+.calc {
     display: block;
     padding: 20px;
     border-style: solid;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
     width: 30%;
     margin-top: 20px;
-    background-color: darkgray;
+    background-color: rgb(80, 80, 80);
 }
 
 /* Calculator Screen */
-.container .calc-screen {
+.calc .calc-screen {
+    border-radius: 10px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
     padding: 5px;
     padding-right: 20px;
     padding-left: 20px;
     border-style: solid;
-    background-color: white;
+    background-color: gray;
     overflow: auto;
 }
 
-.container .calc-screen p {
+.calc .calc-screen p {
+    color: white;
     font-size: 2em;
     font-weight: bold;
     font-family: 'Press Start 2P', cursive;
@@ -45,14 +134,14 @@
 }
 
 /* Calculator Buttons */
-.container .calc-buttons {
+.calc .calc-buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     margin-top: 20px;
 }
 
-.container .calc-buttons button {
+.calc .calc-buttons button {
     font-size: 2em;
     padding: 10px;
     padding-top: 30px;
@@ -62,8 +151,124 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     background-color: #e0e0e0;
     cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
 }
 
-.container .calc-buttons button:hover {
+.calc .calc-buttons button:hover {
     background-color: #d0d0d0;
 }
+
+.calc .calc-buttons #equals {
+    grid-column: span 3;
+}
+
+.calc .calc-buttons #clear {
+    background-color: darkred;
+}
+/* ----------------------- THE CALCULATOR END ----------------------- */
+
+/* ----------------------- EXTRAS ----------------------- */
+/* The Container */
+.container {
+    display: block;
+    float: right;
+    top: auto;
+    padding: 20px;
+    border-style: solid;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    width: 60%;
+    margin-top: 20px;
+    background-color: rgb(80, 80, 80);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container h1 {
+    color: white;
+}
+
+.container .inside-container {
+    background-color: lightgray;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+}
+
+.container .inside-container p {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: white;
+}
+
+/* Functionlities within container */
+.container .inside-container input {
+    padding: 10px;
+    border-style: none;
+    border-radius: 10px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.container .inside-container button {
+    padding: 10px;
+    border-style: none;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.container .inside-container button:hover {
+    background-color: #d0d0d0;
+}
+
+.container .inside-container .functionalities {
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    margin: 10px;
+    background-color: gray;
+}
+
+/* Little store */
+.container .inside-container .functionalities .little-store h1 {
+    font-size: 1.5em;
+}
+
+.container .inside-container .functionalities .little-store .product {
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    margin: 10px;
+    background-color: white;
+}
+
+.container .inside-container .functionalities .little-store .product h1, 
+.container .inside-container .functionalities .little-store .product p {
+    color: black;
+}
+
+.container .inside-container .functionalities .little-store .product h1 {
+    font-size: 1.2em;
+}
+
+.container .inside-container .functionalities .little-store .product p {
+    font-size: 1em;
+}
+
+.container .inside-container .functionalities .little-store .product select {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    border-width: 2px;
+}
+/* ----------------------- EXTRAS END ----------------------- */
