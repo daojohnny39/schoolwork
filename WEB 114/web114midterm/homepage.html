@@ -11,7 +11,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Homepage</title>
+        <title>Johnny's Store!</title>
         <link rel="stylesheet" href="homepageconf.css">
         <script src="homepagefuncs.js"></script>
     </head>
@@ -20,16 +20,42 @@
             <h1>WEB 114 Midterm</h1>
             <h2><i>Johnny's (Nhat) Personal Store!</i></h2>
         </div>
+        <div class="alert-element">
+            <h2>ALERT: Due to product shortages, purchases are limited to 2 per item</h2>
+        </div>
         <div class="container">
             <h1><i>Items to purchase:</i></h1>
             <div class="product">
                 <h1>CPU (Ryzen 7 3800X)</h1>
                 <p class="price">$500</p>
+                <!-- select element used here -->
                 <select>
+                    <!-- option element used here-->
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>
+                <!-- button element used here -->
                 <button id="CPU">Add</button>
+            </div>
+            <div class="product">
+                <h1>GPU (NVidia GTX 1080ti)</h1>
+                <p class="price">$500</p>
+                <!-- select element used here -->
+                <select>
+                    <!-- option element used here-->
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+                <!-- button element used here -->
+                <button id="GPU">Add</button>
+            </div>
+        </div>
+        <!-- POP UP DISPLAY FOR CHECKOUT -->
+        <div id="pop-up" class="popup">
+            <div class="popup-content">
+                <span class="close">&times;</span>
+                <h1><i>Cart:</i></h1>
+                <div id="checkout-item" class="checkout-item"></div>
             </div>
         </div>
     </body>
@@ -42,7 +68,11 @@
             <div class="cart-card">
                 <p id="total-price">$0</p>
             </div>
-            <button>Checkout</button>
+            <div class="cart-card">
+                <!-- input element used here -->
+                <input id="buyer-name" type="text" placeholder="Name for order">
+            </div>
+            <button id="checkout-button">Checkout</button>
         </div>
     </footer>
 </html>
