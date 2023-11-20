@@ -29,8 +29,14 @@ from fastapi.templating import Jinja2Templates
 
 # ---- for LOGIN
 from sqlalchemy.ext.declarative import declarative_base
-from models.renters import Renter
+from models.renters import Renter, UserRegistration # added UserRegistration model
 
+# ---- untested imports for password hashsing
+#from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+#from passlib.context import CryptContext # Importing for password hashing
+
+# Password hashing context
+#pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 app = FastAPI()
 controller = DatabaseController()
@@ -106,6 +112,7 @@ async def cabin_details(request: Request, cabin_id: int, db: Session = Depends(g
 def loginpage(request: Request):
     return templates.TemplateResponse("login/loginpage.html", {"request": request})
 
+# Registration page
 @app.get("/registration")
 def registrationpage(request: Request):
     return templates.TemplateResponse("login/registration.html", {"request": request})
@@ -126,6 +133,37 @@ async def login(request: Request, email: str = Form(...), password: str = Form(.
     
     return {"message": "Login successful", "renter": {"email": renter.Email, "first_name": renter.RenterFirstName}}
 # Login Function END -----------------------------------------------------------------
+
+# Registration Function -----------------------------------------------------------------
+@app.post("/registration")
+async def registration(request: Request, db: Session = Depends(get_db)):
+    form_data = await request.form()
+    email = form_data.get('email')
+    password = form_data.get('password')
+    first_name = form_data.get('first_name')
+    last_name = form_data.get('last_name')
+    phone_number = form_data.get('phone_number')
+    
+    # Checking if email already exists                          
+    existing_user = db.query(Renter).filter(Renter.Email == email).first()
+    if existing_user:
+        return {"message": "User with this email already exists"}
+    
+    # Creating new user and adding to database
+    new_user = Renter(
+        RenterFirstName = first_name,
+        RenterLastName = last_name,
+        Password = password,
+        Phone = phone_number,
+        Email = email,
+    )
+    
+    db.add(new_user)
+    db.commit()
+    
+    return {"message": "User successfully created"}
+
+# Registration Function END
 
 # Create Reservation Function -----------------------------------------------------------------
 @app.post("/create_reservation")
