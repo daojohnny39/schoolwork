@@ -1,4 +1,5 @@
 /* cabin details js */
+
 window.onload = function() {
     updateSignIn();
     const signOutButton = document.getElementById('signOutButton');
@@ -38,6 +39,7 @@ function displayPropertyDetails(cabinId) {
                 const templateURL = "https://drive.google.com/uc?id=DRIVE_FILE_ID";
                 imageURL = templateURL.replace("DRIVE_FILE_ID", googleDriveId);
             }
+
 
             // Displaying Image of property
             var imgElement = document.createElement('img');
@@ -147,14 +149,72 @@ function displayPropertyDetails(cabinId) {
             propertyDetails.appendChild(cabinElement);
 
             changeTitle(cabin.CabinName);
-			cabinDateReservation();
+			      cabinDateReservation();
+
+            bookButton.addEventListener("click", function() {
+ 
+              // You can now use checkinDate, checkoutDate, and cabinId to make a request to your backend
+              // For example, using fetch API to send a POST request
+              if (dateInput.value !== '') {
+                const dateRange = dateInput.value;
+                const myDates = dateRange.split(' ');
+                const formData = new FormData();
+                formData.append('CheckInDate', myDates[0]);
+                formData.append('CheckOutDate', myDates[2]);
+                formData.append('Cabinid', parseInt(cabinId));
+                console.log(formData.values);
+                fetch('/create_reservation', {
+                  method: 'POST',
+                  body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                  // Handle the response from the server, if needed
+                  console.log(data);
+                  if (data.message === 'reservation complete') {
+                    let ppp = document.getElementById("discount");
+
+                    let reserveAmount = calculateTotalAmount(myDates[0], myDates[2],cabin.BasePricePerNight);
+                    ppp.innerHTML = "Enjoy your " + reserveAmount[1]*100 + "% discount!"; 
+
+                    let ppd = document.getElementById("totalAmount");
+                    ppd.innerHTML = "Total: " + "$"+reserveAmount[0].toFixed(2);
+
+
+                    openPopup();
+                    dateInput.value = "";
+                  }
+                })
+                .catch(error => {
+                  // Handle errors
+                  console.error('Error:', error);
+                }); 
+              } else {
+                console.log("no value");
+              }
+            });
         })
         .catch(error => console.log(error));
+      
 };
+
 
 function openImagePopup() {
     window.href.location = imageURL;
 }
+
+function openPopup() {
+  // Show the overlay and pop-up window
+  document.getElementById('overlay').style.display = 'block';
+  document.getElementById('popup').style.display = 'block';
+}
+
+function closePopup() {
+  // Hide the overlay and pop-up window
+  document.getElementById('overlay').style.display = 'none';
+  document.getElementById('popup').style.display = 'none';
+}
+
 
 // Login functionality (using session storage)
 function updateSignIn() {
@@ -185,6 +245,8 @@ function updateSignOut() {
     location.reload();
 }
 
+
+//Calendar date picker to reserve stay date range. 
 function cabinDateReservation() {
     const dateInput = document.getElementById("dateInput");
     const datePicker = document.getElementById("datePicker");
@@ -239,6 +301,7 @@ function cabinDateReservation() {
         dayElement.addEventListener("click", () => {
           selectedStartDate = new Date(year, month, i);
           selectedEndDate = new Date(year, month, i + 6);
+          console.log(selectedStartDate);
           highlightSelectedDates();
         });
 
@@ -312,4 +375,34 @@ function cabinDateReservation() {
       const selectedMonth = parseInt(monthSelector.value) - 1;
       createCalendar(selectedYear, selectedMonth);
     });
+  
+}
+
+function calculateTotalAmount(startDate, endDate, dailyRentRate) {
+  // Convert start and end dates to JavaScript Date objects
+  const startDateObj = new Date(startDate);
+  const endDateObj = new Date(endDate);
+
+  // Calculate the total number of days for the reservation
+  const totalDays = (endDateObj - startDateObj) / (1000 * 60 * 60 * 24);
+
+  // Get the month of the start date (0-indexed)
+  const bookingMonth = startDateObj.getMonth();
+
+  // Define discount rates based on the booking month
+  let discountRate = 0;
+  if (bookingMonth >= 0 && bookingMonth <= 2) {
+    discountRate = 0.4; // 40% discount for December to March
+  } else if (bookingMonth >= 3 && bookingMonth <= 4) {
+    discountRate = 0.2; // 20% discount for April to May
+  } else if (bookingMonth >= 5 && bookingMonth <= 8) {
+    discountRate = 0;   // No discount for June to September (full price)
+  } else if (bookingMonth >= 9 && bookingMonth <= 10) {
+    discountRate = 0.2; // 20% discount for October to November
+  }
+
+  // Calculate the total amount with the applied discount
+  const totalAmount = totalDays * dailyRentRate * (1 - discountRate);
+
+  return [totalAmount, discountRate];
 }

@@ -129,11 +129,13 @@ async def login(request: Request, email: str = Form(...), password: str = Form(.
 
 # Create Reservation Function -----------------------------------------------------------------
 @app.post("/create_reservation")
-async def create_reservation(request: Request, CheckInDate: date = Form(...), CheckOutDate: date = Form(...), Cabinid: int = Form(...), db: Session = Depends(get_db)):
-    reservation = ReservationCreateModel(CheckInDate=CheckInDate, CheckOutDate=CheckOutDate, Status="Pending", Cabinid=Cabinid)
+async def create_reservation(request: Request, CheckInDate: str = Form(...), CheckOutDate: str = Form(...), Cabinid: int = Form(...), db: Session = Depends(get_db)):
+    cid = CheckInDate.split('/')
+    cod = CheckOutDate.split('/')
+    reservation = ReservationCreateModel(CheckInDate=date(int(cid[2]), int(cid[0]), int(cid[1])), CheckOutDate=date(int(cod[2]),int(cod[0]),int(cod[1])), Status="Pending", Cabinid=Cabinid)
     controller.create_reservation(reservation, db)
     
-    return templates.TemplateResponse("create_reservation.html", {"request": request})
+    return {"message": "reservation complete"}
 # Create Reservation Function END -----------------------------------------------------------------
 
 if __name__ == "__main__":
