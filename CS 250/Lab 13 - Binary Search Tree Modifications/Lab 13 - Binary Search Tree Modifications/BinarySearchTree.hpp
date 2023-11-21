@@ -93,6 +93,8 @@ public:
    // Added Methods Section (Johnny)
    //------------------------------------------------------------
    bool iterativeAdd(const ItemType& newEntry);
+   bool operator==(const BinarySearchTree<ItemType>& rightSide);
+   bool equals(std::shared_ptr<BinaryNode<ItemType>> leftSidePtr, std::shared_ptr<BinaryNode<ItemType>> rightSidePtr);
 
 
 }; // end BinarySearchTree
@@ -105,9 +107,68 @@ public:
 template <class ItemType>
 bool BinarySearchTree<ItemType>::iterativeAdd(const ItemType& newEntry) {
     
-    
+    auto newNodePtr = std::make_shared<BinaryNode<ItemType>>(newEntry);
 
+    // Checking if rootPtr is empty
+    if (rootPtr == nullptr) {
+        rootPtr = newNodePtr;
+        return true;
+    }
+
+    std::shared_ptr<BinaryNode<ItemType>> parentPtr = nullptr;
+    std::shared_ptr<BinaryNode<ItemType>> childPtr = rootPtr;
+
+    // Traversing to the new node spot
+    while (childPtr != nullptr) {
+            
+        parentPtr = childPtr;
+
+        if (newEntry < parentPtr->getItem()) {
+            childPtr = parentPtr->getLeftChildPtr();
+        }
+        else {
+            childPtr = parentPtr->getRightChildPtr();
+        }
+    }
+
+    // Adding the node to the tree
+    if (newEntry < parentPtr->getItem()) {
+        parentPtr->setLeftChildPtr(newNodePtr);
+    }
+    else {
+        parentPtr->setRightChildPtr(newNodePtr);
+    }
 }
+
+template <class ItemType>
+bool BinarySearchTree<ItemType>::operator==(const BinarySearchTree<ItemType>& rightSide) {
+    return equals(this->rootPtr, rightSide.rootPtr);
+}
+
+template <class ItemType>
+bool BinarySearchTree<ItemType>::equals(std::shared_ptr<BinaryNode<ItemType>> leftSidePtr, std::shared_ptr<BinaryNode<ItemType>> rightSidePtr) {
+
+    if (leftSidePtr == nullptr && rightSidePtr == nullptr) {
+        return true;
+    }
+    else if (leftSidePtr == nullptr || rightSidePtr == nullptr) {
+        return false;
+    }
+    else {
+
+        if (leftSidePtr->getItem() != rightSidePtr->getItem()) {
+            return false;
+        }
+
+        bool rootEqual = leftSidePtr->getItem() == rightSidePtr->getItem();
+        bool leftSideEqual = equals(leftSidePtr->getLeftChildPtr(), rightSidePtr->getLeftChildPtr());
+        bool rightSideEqual = equals(leftSidePtr->getRightChildPtr(), rightSidePtr->getRightChildPtr());
+
+        return rootEqual && leftSideEqual && rightSideEqual;
+
+    }
+}
+
 
 
 //////////////////////////////////////////////////////////////
