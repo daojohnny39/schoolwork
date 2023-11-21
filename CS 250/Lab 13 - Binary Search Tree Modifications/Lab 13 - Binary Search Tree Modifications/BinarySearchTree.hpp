@@ -66,7 +66,7 @@ public:
    //------------------------------------------------------------
    // Public Methods Section.
    //------------------------------------------------------------
-    bool isEmpty() const override;
+   bool isEmpty() const override;
    int getHeight() const override;
    int getNumberOfNodes() const override;
    ItemType getRootData() const;
@@ -88,7 +88,25 @@ public:
    // Overloaded Operator Section.
    //------------------------------------------------------------
    BinarySearchTree<ItemType>& operator=(const BinarySearchTree<ItemType>& rightHandSide);   
+
+   //------------------------------------------------------------
+   // Added Methods Section (Johnny)
+   //------------------------------------------------------------
+   bool iterativeAdd(const ItemType& newEntry);
+
+
 }; // end BinarySearchTree
+
+//////////////////////////////////////////////////////////////
+//
+//      Added Methods Section (Johnny)
+//
+//////////////////////////////////////////////////////////////
+template <class ItemType>
+bool BinarySearchTree<ItemType>::iterativeAdd(const ItemType& newEntry) {
+    return false;
+}
+
 
 //////////////////////////////////////////////////////////////
 //
