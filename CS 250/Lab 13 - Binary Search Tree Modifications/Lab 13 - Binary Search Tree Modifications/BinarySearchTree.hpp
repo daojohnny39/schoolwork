@@ -105,9 +105,7 @@ public:
 template <class ItemType>
 bool BinarySearchTree<ItemType>::iterativeAdd(const ItemType& newEntry) {
     
-    if (rootPtr == nullptr) {
-        rootPtr->setItem(newEntry);
-    }
+    
 
 }
 
