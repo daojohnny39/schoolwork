@@ -16,6 +16,9 @@ void check(bool success)
       std::cout << " Entry not in tree." << std::endl;
 }  // end check
 
+
+
+/*
 int main()
 {
    std::shared_ptr<BinarySearchTree<std::string>> tree1Ptr = std::make_shared<BinarySearchTree<std::string>>();
@@ -288,7 +291,9 @@ int main()
    return 0;
 }  // end main
 
-/* USE THE MAIN BELOW FOR TESTING ONCE YOU'VE COMPLETED THE UPDATES
+*/
+
+// USE THE MAIN BELOW FOR TESTING ONCE YOU'VE COMPLETED THE UPDATES
 int main()
 {
   BinarySearchTree<std::string> tree1Ptr;
@@ -356,5 +361,4 @@ int main()
 
   return 0;
 } 
-*/
 
