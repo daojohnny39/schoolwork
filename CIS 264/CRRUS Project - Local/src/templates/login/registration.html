@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block title %}Register Now!{% endblock %}
+
+{% block scripts %}<script src="{{ url_for('static', path='registration.js') }}"></script>{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -52,32 +55,4 @@
 </div>
 {% endblock %}
 
-{% block footer_scripts %}
-<script>
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const email = document.querySelector('input[name="email"]').value;
-        const password = document.querySelector('input[name="password"]').value;
-
-        const formData = new FormData();
-        formData.append('email', email);
-        formData.append('password', password);
-
-        fetch('/login', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.message === 'Login successful') {
-                sessionStorage.setItem('renter', data.renter.first_name);
-                window.location.href = '/';
-            }
-            else {
-                alert('Login failed');
-            }
-        })
-    })
-</script>
-{% endblock %}
+{% block footer_scripts %}{% endblock %}

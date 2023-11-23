@@ -11,6 +11,10 @@ from schemas.reservations_schema import Reservation as ReservationSchema
 from typing import Dict
 from sqlalchemy import func
 
+# ---- for user registration
+from models.renters import Renter
+from schemas.renters import RenterCreate
+
 class DatabaseController:
 # Cabin related definitions ----------------------------------
     def get_cabins(self, db: Session):
@@ -26,8 +30,6 @@ class DatabaseController:
     
     def get_reservation_info(self, reservation_id: int, db: Session):
         return db.query(ReservationSchema).filter(ReservationSchema.Reservationid == reservation_id).first()
-    
-# Showing Pages ----------------------------------
 
 # Create Reservation Function ----------------------------------
     def create_reservation(self, reservation: ReservationCreateModel, db: Session):
@@ -50,3 +52,29 @@ class DatabaseController:
         db.commit()
         db.refresh(db_reservation)
         return db_reservation
+    
+# User Registration ----------------------------------
+    def create_renter(self, renter: RenterCreate, db: Session):
+        
+        # Finding next available RenterID
+        max_id = db.query(func.max(Renter.RenterID)).scalar()
+        renter_id = 1 if max_id is None else max_id + 1
+        
+        db_renter = Renter(
+            RenterID = renter_id,
+            Email = renter.email,
+            Password = renter.password,
+            RenterFirstName = renter.first_name,
+            RenterLastName = renter.last_name,
+            Phone = renter.phone_number,
+        )
+        
+        # Checking if user already exists
+        existing_user = db.query(Renter).filter(Renter.Email == renter.email).first()
+        if existing_user:
+            return None
+        
+        db.add(db_renter)
+        db.commit()
+        db.refresh(db_renter)
+        return db_renter

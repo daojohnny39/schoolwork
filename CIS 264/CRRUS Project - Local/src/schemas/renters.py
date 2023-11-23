@@ -1,5 +1,6 @@
 from sqlalchemy import Boolean, Column, Integer, String
 from database import Base
+from pydantic import BaseModel
 
 
 class Users(Base):
@@ -11,3 +12,10 @@ class Users(Base):
     last_name = Column(String)
     password = Column(String)
     is_active = Column(Boolean, default=True)
+    
+class RenterCreate(BaseModel):
+    email: str
+    password: str
+    first_name: str
+    last_name: str
+    phone_number: str
