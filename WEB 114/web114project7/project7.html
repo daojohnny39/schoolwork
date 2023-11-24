@@ -1,0 +1,94 @@
+<!-- 
+Johnny (Nhat) Dao
+11/24/2023
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="project7conf.css" />
+        <title>WEB 114: Project 7</title>
+    </head>
+    <body>
+        <h1>WEB 114: Project 7</h1>
+        <h2>
+            Best Practices, and Modifying Existing Functions
+        </h2>
+        <div class="question">
+            <h1>
+                1.  Identify a common JavaScript style guide, and hyperlink to it.
+            </h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    One common JavaScript style guide that I found is <a href="https://google.github.io/styleguide/jsguide.html">Google's JavaScript style guide</a>, 
+                    which was listed in JavaScript.info: Coding Style.
+                </p>
+            </div>
+        </div>
+        <div class="question">
+            <h1>
+                2. Identify three distinct "best practice" programming practices and explain how they create better code.
+            </h1>
+            <div class="question-within-question">
+                <p>
+                    The first one is using curly braces when writing functions, if statements, and loops.
+                </p>
+                <div class="sample-code">
+                    <p>
+                        if (n < 0)<br>
+                        &nbsp;&nbsp;&nbsp;alert(`Power ${n} is not supported`);
+                    </p>
+                </div>
+                <p>
+                    This kind of syntax can bring a lot of errors in the future when the writer decides to add more lines of code. Let's look
+                    at the "correct" syntax for that statement:
+                </p>
+                <div class="sample-code">
+                    <p>
+                        if (n < 0) &#123; &nbsp;&nbsp;&nbsp;<i>// <-- opening bracket</i><br>
+                        &nbsp;&nbsp;&nbsp;alert(`Power ${n} is not supported`);<br>
+                        &#125;&nbsp;&nbsp;&nbsp;<i>// <-- closing bracket</i>
+                    </p>
+                </div>
+            </div>
+            <div class="question-within-question">
+                <p>
+                    Another practice commonly used is splitting long lines of code or text into separate lines to improve readability.
+                    Let's look at an example:
+                </p>
+                <div class="sample-code">
+                    <p>
+                        let str = `
+                            ECMA International's TC39 is a group of JavaScript developers,
+                            implementers, academics, and more, collaborating with the community
+                            to maintain and evolve the definition of JavaScript.<br>
+                        `;
+                    </p>
+                </div>
+                <p>
+                    As you can see, it's pretty hard to distinguish the text from the code. Let's look at an example where the
+                    text is split into separate lines:
+                </p>
+                <div class="sample-code">
+                    <p>
+                        let str = `&nbsp;&nbsp;&nbsp;<i>// <-- break line here</i><br>
+                        &nbsp;&nbsp;&nbsp;ECMA International's TC39 is a group of JavaScript developers,<br>
+                        &nbsp;&nbsp;&nbsp;implementers, academics, and more, collaborating with the community<br>
+                        &nbsp;&nbsp;&nbsp;to maintain and evolve the definition of JavaScript.<br>
+                        `;
+                    </p>
+                </div>
+                <p>
+                    As you can see, that text was a lot easier to read as well as the code. This is a good practice to use when
+                    there are long lines of text or code. (Especially on those if statements with multiple conditions)
+                </p>
+            </div>
+            <div class="question-within-question">
+            </div>
+        <script>
+
+        </script>
+    </body>
+</html>
