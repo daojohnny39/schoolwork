@@ -1,3 +1,5 @@
+
+// Variables set for sorting and cabins display
 var isSortedByPrice = false;
 var originalProperties = [];
 
@@ -17,13 +19,16 @@ window.onload = function() {
     }
 }
 
+// Not really sure what this is
 const options = {
     method: "GET",
     mode: 'no-cors',
 };
 
+// Properties declaration
 var properties = [];
 
+// Mapping the properties from the API to the properties array
 function getCabinsFromApi() {
     return  fetch('http://127.0.0.1:8000/cabins')
     .then(response => response.json())
@@ -47,12 +52,14 @@ function getCabinsFromApi() {
      }).catch(error => console.log(error));
  }
 
+ // Converting default Google Drive link to a direct link (for images)
 function extractGoogleDriveId(url) {
     const regex = /\/file\/d\/(.*?)\//;
     const match = url.match(regex);
     return match ? match[1] : null;
 }
 
+// Sorting the properties by price (Lowest to Highest)
 function sortPropertiesByPrice() {
     properties.sort(function(a, b) {
         return a.price - b.price;
@@ -60,17 +67,13 @@ function sortPropertiesByPrice() {
     displayProperties();
 }
 
-// ----------- IGNORE -----------
-/*
-function sortPropertiesByAmenities() {
-    properties.sort(function(a, b) {
-        return b.amenities.length - a.amenities.length;
-    });
-    displayProperties();
+// Updating the user's name when they sign out
+function updateSignOut() {
+    sessionStorage.removeItem('renter');
+    location.reload();
 }
-*/
-// ----------- IGNORE END -----------
 
+// Toggle price sorting functionality
 function toggleSortByPrice() {
     var sortButton = document.getElementById('sort-button');
     if (!isSortedByPrice) {
@@ -86,51 +89,52 @@ function toggleSortByPrice() {
     }
 }
 
+// Displays all properties
 function displayProperties() {
     var propertiesList = document.getElementById('property-grid');
-        propertiesList.innerHTML = '';
+    propertiesList.innerHTML = '';
 
     // Generate the HTML for each property
     properties.forEach(function(property) {
-        var propertyElement = document.createElement('div');
+    var propertyElement = document.createElement('div');
         
-        //onclick functionality
-        propertyElement.onclick = function() {
-            window.location.href = '/cabins/' + property.id + '/details';
-        }
+    //onclick functionality
+    propertyElement.onclick = function() {
+        window.location.href = '/cabins/' + property.id + '/details';
+    }
 
-        propertyElement.className = 'property';
+    propertyElement.className = 'property';
 
-        // replacing the google drive link with a direct link
-        if (property.image.includes("drive.google.com/file/d/")) {
-            let googleDriveId = extractGoogleDriveId(property.image);
-            const templateURL = "https://drive.google.com/uc?id=DRIVE_FILE_ID";
-            property.image = templateURL.replace("DRIVE_FILE_ID", googleDriveId);
-        }
+    // replacing the google drive link with a direct link
+    if (property.image.includes("drive.google.com/file/d/")) {
+        let googleDriveId = extractGoogleDriveId(property.image);
+        const templateURL = "https://drive.google.com/uc?id=DRIVE_FILE_ID";
+        property.image = templateURL.replace("DRIVE_FILE_ID", googleDriveId);
+    }
 
-        // Create the image element
-        var imgElement = document.createElement('img');
-        imgElement.src = property.image;
-        imgElement.alt = property.name;
-        propertyElement.appendChild(imgElement);
+    // Create the image element
+    var imgElement = document.createElement('img');
+    imgElement.src = property.image;
+    imgElement.alt = property.name;
+    propertyElement.appendChild(imgElement);
 
-        // Create the name element
-        var nameElement = document.createElement('h3');
-        nameElement.textContent = property.name;
-        propertyElement.appendChild(nameElement);
+    // Create the name element
+    var nameElement = document.createElement('h3');
+    nameElement.textContent = property.name;
+    propertyElement.appendChild(nameElement);
 
-        // Create the address element
-        var zipCodeElement = document.createElement('h4');
-        zipCodeElement.textContent = property.address + ', ' + property.zipCode;
-        propertyElement.appendChild(zipCodeElement);
+    // Create the address element
+    var zipCodeElement = document.createElement('h4');
+    zipCodeElement.textContent = property.address + ', ' + property.zipCode;
+    propertyElement.appendChild(zipCodeElement);
 
-        // Create the price element
-        var priceElement = document.createElement('p');
-        priceElement.textContent = '$' + property.price.toFixed(2) + ' / night';
-        propertyElement.appendChild(priceElement);
+    // Create the price element
+    var priceElement = document.createElement('p');
+    priceElement.textContent = '$' + property.price.toFixed(2) + ' / night';
+    propertyElement.appendChild(priceElement);
 
-        // Add the property to the list
-        propertiesList.appendChild(propertyElement);
+    // Add the property to the list
+    propertiesList.appendChild(propertyElement);
     });
 }
 
@@ -156,9 +160,4 @@ function updateSignIn() {
         signOutButton.addEventListener('click', updateSignOut);
         signIn.appendChild(signOutButton);
     }
-}
-
-function updateSignOut() {
-    sessionStorage.removeItem('renter');
-    location.reload();
 }
