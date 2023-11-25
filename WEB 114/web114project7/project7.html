@@ -23,7 +23,7 @@ Johnny (Nhat) Dao
                 <h1>Answer</h1>
                 <p>
                     One common JavaScript style guide that I found is <a href="https://google.github.io/styleguide/jsguide.html">Google's JavaScript style guide</a>, 
-                    which was listed in JavaScript.info: Coding Style.
+                    which was listed in <a href="https://javascript.info/coding-style#style-guides">JavaScript.info: Coding Style.</a>
                 </p>
             </div>
         </div>
@@ -31,7 +31,12 @@ Johnny (Nhat) Dao
             <h1>
                 2. Identify three distinct "best practice" programming practices and explain how they create better code.
             </h1>
+            <h1>
+                3.  Identify three distinct sloppy programming practices and explain the problems they each create.
+            </h1>
+            <h1 style="font-size: 1em;"><i>&lpar;Answering 2 questions in 1&rpar;</i></h1>
             <div class="question-within-question">
+                <h1>Answer I</h1>
                 <p>
                     The first one is using curly braces when writing functions, if statements, and loops.
                 </p>
@@ -52,8 +57,13 @@ Johnny (Nhat) Dao
                         &#125;&nbsp;&nbsp;&nbsp;<i>// <-- closing bracket</i>
                     </p>
                 </div>
+                <p>
+                    Adding curly braces makes sure that the code will run accordingly to how the writer wants it to run. It also
+                    makes it easier to distinguish the scope of the code whether it's a function, if statement, or loop.
+                </p>
             </div>
             <div class="question-within-question">
+                <h1>Answer II</h1>
                 <p>
                     Another practice commonly used is splitting long lines of code or text into separate lines to improve readability.
                     Let's look at an example:
@@ -86,7 +96,83 @@ Johnny (Nhat) Dao
                 </p>
             </div>
             <div class="question-within-question">
+                <h1>Answer III</h1>
+                <p>
+                    Another thing that is good practice is adding enough whitespace between lines of code. Let's look at an example:
+                </p>
+                <div class="sample-code">
+                    <p>
+                        function pow(x, n) {<br>
+                        &nbsp;&nbsp;&nbsp;let result = 1;<br>
+                        &nbsp;&nbsp;&nbsp;for (let i = 0; i < n; i++) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result *= x;<br>
+                        &nbsp;&nbsp;&nbsp;}<br>
+                        &nbsp;&nbsp;&nbsp;return result;<br>
+                        }
+                    </p>
+                </div>
+                <p>
+                    This piece of code will run correctly. However, the issue comes when you are trying to debug the code or just reading
+                    it in general. Let's look at another example where sufficient whitespace is added:
+                </p>
+                <div class="sample-code">
+                    <p>
+                        function pow(x, n) {<br><br>
+                        &nbsp;&nbsp;&nbsp;let result = 1;<br><br>
+                        &nbsp;&nbsp;&nbsp;for (let i = 0; i < n; i++) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result *= x;<br>
+                        &nbsp;&nbsp;&nbsp;}<br><br>
+                        &nbsp;&nbsp;&nbsp;return result;<br><br>
+                        }
+                    </p>
+                </div>
+                <p>
+                    As you can see, the whitespace allows your eyes to distinguish the different parts within the code. This is good
+                    general practice to implement in your code to allow other people to read it easier.
+                </p>
             </div>
+        </div>
+        <div class="question">
+            <h1>4.  Explain the difference between a primitive, an array, and an object and include an example of each.</h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    The differences between these 3 different types of data elements are pretty subtle but very obvious as well.
+                    Once you see a little bit of code for each of those types of data elements, you'll be able to distinguish them
+                    pretty easily. Let's look at an example of each:
+                </p>
+                <div style="display: flex;
+                            justify-content: center;">
+                    <div style="width: 80%;
+                                border-style: solid; 
+                                border-color: white; 
+                                padding: 20px; 
+                                border-radius: 10px;
+                                background-color: rgb(79, 79, 79); 
+                                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);">
+                        <p style="margin-top: 20px; font-size: 0.9em;"><b>Primitive:</b></p>
+                        <div class="sample-code">
+                            <p>
+                                let userName = "Johnny";<br>
+                                let userAge = 21;<br>
+                                let userGen = "male";
+                            </p>
+                        </div>
+                        <p>
+                            Each of these variables are considered primitive data types. They are pretty easy to tell apart from the other
+                            data types. It is also important to keep in mind that these primitive data types store only a single piece of data.
+                            &lpar;Integers, strings, booleans, etc.&rpar;
+                        </p>
+                        <p style="margin-top: 50px; font-size: 0.9em;"><b>Arrays:</b></p>
+                        <div class="sample-code">
+                            <p>
+                                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script>
 
         </script>

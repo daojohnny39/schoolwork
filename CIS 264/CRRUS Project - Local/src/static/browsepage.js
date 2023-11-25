@@ -89,6 +89,15 @@ function toggleSortByPrice() {
     }
 }
 
+// Amenities search functionality
+var amenitySearchInput = document.getElementById('amenity-search');
+amenitySearchInput.addEventListener('input', filterPropertiesByAmenity)
+
+function filterPropertiesByAmenity() {
+    properties = [...originalProperties];
+    displayProperties();
+}
+
 // Displays all properties
 function displayProperties() {
     var propertiesList = document.getElementById('property-grid');
