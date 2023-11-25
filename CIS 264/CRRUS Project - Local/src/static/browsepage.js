@@ -98,7 +98,7 @@ function displayProperties() {
     properties.forEach(function(property) {
     var propertyElement = document.createElement('div');
         
-    //onclick functionality
+    // onclick functionality
     propertyElement.onclick = function() {
         window.location.href = '/cabins/' + property.id + '/details';
     }
@@ -112,23 +112,23 @@ function displayProperties() {
         property.image = templateURL.replace("DRIVE_FILE_ID", googleDriveId);
     }
 
-    // Create the image element
+    // image element
     var imgElement = document.createElement('img');
     imgElement.src = property.image;
     imgElement.alt = property.name;
     propertyElement.appendChild(imgElement);
 
-    // Create the name element
+    // name element
     var nameElement = document.createElement('h3');
     nameElement.textContent = property.name;
     propertyElement.appendChild(nameElement);
 
-    // Create the address element
+    // address element
     var zipCodeElement = document.createElement('h4');
     zipCodeElement.textContent = property.address + ', ' + property.zipCode;
     propertyElement.appendChild(zipCodeElement);
 
-    // Create the price element
+    // price element
     var priceElement = document.createElement('p');
     priceElement.textContent = '$' + property.price.toFixed(2) + ' / night';
     propertyElement.appendChild(priceElement);
