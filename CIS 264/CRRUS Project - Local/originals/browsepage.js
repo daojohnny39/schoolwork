@@ -2,7 +2,6 @@
 // Variables set for sorting and cabins display
 var isSortedByPrice = false;
 var originalProperties = [];
-var amenitySearchInput; // global declaration for displayProperties()
 
 window.onload = function() {
     //sorting functionality
@@ -16,14 +15,7 @@ window.onload = function() {
     updateSignIn();
     const signOutButton = document.getElementById('signOutButton');
     if (signOutButton) {
-        signOutButton.addEventListener('click', updateSignOut);
-    }
-
-    // Amenity Search (Onload)
-    amenitySearchInput = document.getElementById('amenity-search');
-
-    if (amenitySearchInput) {
-        amenitySearchInput.addEventListener('input', filterPropertiesByAmenity)
+        signOutButton.addEventListener('click', signOut);
     }
 }
 
@@ -98,6 +90,9 @@ function toggleSortByPrice() {
 }
 
 // Amenities search functionality
+var amenitySearchInput = document.getElementById('amenity-search');
+amenitySearchInput.addEventListener('input', filterPropertiesByAmenity)
+
 function filterPropertiesByAmenity() {
     properties = [...originalProperties];
     displayProperties();
@@ -107,16 +102,6 @@ function filterPropertiesByAmenity() {
 function displayProperties() {
     var propertiesList = document.getElementById('property-grid');
     propertiesList.innerHTML = '';
-
-    // Amenity Search Functionality Catch
-    const amenitySearchValue = amenitySearchInput.value.toLowerCase();
-    if (amenitySearchValue) {
-        properties = properties.filter(property => 
-            property.amenities.some(amenity => 
-                amenity.toLowerCase().includes(amenitySearchValue)
-            )
-        );
-    }
 
     // Generate the HTML for each property
     properties.forEach(function(property) {
