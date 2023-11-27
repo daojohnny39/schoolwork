@@ -37,7 +37,8 @@ class DatabaseController:
         CheckInDate=reservation.CheckInDate,
         CheckOutDate=reservation.CheckOutDate,
         Status=reservation.Status,
-        Cabinid=reservation.Cabinid
+        Cabinid=reservation.Cabinid,
+        Renterid=reservation.Renterid
         )
 
         # Check if ReservationID is NULL
@@ -57,11 +58,11 @@ class DatabaseController:
     def create_renter(self, renter: RenterCreate, db: Session):
         
         # Finding next available RenterID
-        max_id = db.query(func.max(Renter.RenterID)).scalar()
+        max_id = db.query(func.max(Renter.Renterid)).scalar()
         renter_id = 1 if max_id is None else max_id + 1
         
         db_renter = Renter(
-            RenterID = renter_id,
+            Renterid = renter_id,
             Email = renter.email,
             Password = renter.password,
             RenterFirstName = renter.first_name,

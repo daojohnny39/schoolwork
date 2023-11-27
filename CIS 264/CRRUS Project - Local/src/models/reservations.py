@@ -9,7 +9,7 @@ class ReservationCreate(BaseModel):
     CheckOutDate: date
     Status: str
     Cabinid: int
-    #Renterid: int
+    Renterid: int
     
 class Reservation(ReservationCreate):
 

@@ -93,6 +93,20 @@ def get_reservation_info(reservation_id: int = Path(description="The ID of the r
     return reservation
 # Reservation related commands END -----------------------------------------------------------------
 
+
+
+# Cabin Reservation related commands -----------------------------------------------------------------
+@app.get("/reservations/cabin/{cabin_id}")
+def get_cabin_reservations(cabin_id: int = Path(description="The ID of the cabin you'd like to retrieve", gt=999), db: Session = Depends(get_db)):
+    reservation = controller.get_cabin_reservations(cabin_id, db)
+    if reservation is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Reservation does not exists")
+    return reservation
+# Reservation related commands END -----------------------------------------------------------------
+
+
+
+
 # Page view functions -----------------------------------------------------------------
 # Homepage
 @app.get("/")
@@ -134,7 +148,7 @@ async def login(request: Request, email: str = Form(...), password: str = Form(.
     if renter.Password != password:
         return {"message": "Login failed"}
     
-    return {"message": "Login successful", "renter": {"email": renter.Email, "first_name": renter.RenterFirstName}}
+    return {"message": "Login successful", "renter": {"email": renter.Email, "first_name": renter.RenterFirstName,  "renter_id": renter.Renterid}}
 # Login Function END -----------------------------------------------------------------
 
 # Registration Function -----------------------------------------------------------------
@@ -152,10 +166,11 @@ async def registration(request: Request, email: str = Form(...), password: str =
 
 # Create Reservation Function -----------------------------------------------------------------
 @app.post("/create_reservation")
-async def create_reservation(request: Request, CheckInDate: str = Form(...), CheckOutDate: str = Form(...), Cabinid: int = Form(...), db: Session = Depends(get_db)):
+async def create_reservation(request: Request, CheckInDate: str = Form(...), CheckOutDate: str = Form(...), Cabinid: int = Form(...), Renterid: int = Form(...), db: Session = Depends(get_db)):
     cid = CheckInDate.split('/')
     cod = CheckOutDate.split('/')
-    reservation = ReservationCreateModel(CheckInDate=date(int(cid[2]), int(cid[0]), int(cid[1])), CheckOutDate=date(int(cod[2]),int(cod[0]),int(cod[1])), Status="Pending", Cabinid=Cabinid)
+    reservation = ReservationCreateModel(CheckInDate=date(int(cid[2]), int(cid[0]), int(cid[1])), CheckOutDate=date(int(cod[2]),int(cod[0]),int(cod[1])), Status="Pending", Cabinid=Cabinid, Renterid=Renterid)
+
     controller.create_reservation(reservation, db)
     
     return {"message": "reservation complete"}

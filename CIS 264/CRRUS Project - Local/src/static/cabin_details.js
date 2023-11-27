@@ -1,10 +1,11 @@
 /* cabin details js */
+const ReservedDays = [];
 
 window.onload = function() {
     updateSignIn();
     const signOutButton = document.getElementById('signOutButton');
     if (signOutButton) {
-        signOutButton.addEventListener('click', signOut);
+        signOutButton.addEventListener('click', updateSignOut);
     }
 }
 
@@ -40,7 +41,7 @@ function displayPropertyDetails(cabinId) {
                 imageURL = templateURL.replace("DRIVE_FILE_ID", googleDriveId);
             }
 
-
+            getReservedDays(cabinId);
             // Displaying Image of property
             var imgElement = document.createElement('img');
             imgElement.src = imageURL; 
@@ -155,14 +156,18 @@ function displayPropertyDetails(cabinId) {
  
               // You can now use checkinDate, checkoutDate, and cabinId to make a request to your backend
               // For example, using fetch API to send a POST request
-              if (dateInput.value !== '') {
+              const renterID = sessionStorage.getItem('renterid');
+              if (dateInput.value !== '' && renterID) {
                 const dateRange = dateInput.value;
                 const myDates = dateRange.split(' ');
                 const formData = new FormData();
                 formData.append('CheckInDate', myDates[0]);
                 formData.append('CheckOutDate', myDates[2]);
                 formData.append('Cabinid', parseInt(cabinId));
+                formData.append('Renterid', renterID);
+
                 console.log(formData.values);
+                formData.append('Renterid', renterID);
                 fetch('/create_reservation', {
                   method: 'POST',
                   body: formData
@@ -170,7 +175,6 @@ function displayPropertyDetails(cabinId) {
                 .then(response => response.json())
                 .then(data => {
                   // Handle the response from the server, if needed
-                  console.log(data);
                   if (data.message === 'reservation complete') {
                     let ppp = document.getElementById("discount");
 
@@ -198,6 +202,24 @@ function displayPropertyDetails(cabinId) {
       
 };
 
+
+function getReservedDays (cabinId){
+  fetch(`/reservations/cabin/${cabinId}`)
+  .then(response => response.json())
+  .then(data => {
+    // Handle the response from the server, if needed
+    data.forEach((res) => {
+      const startDate = res.CheckInDate.split('-');
+      const year = parseInt(startDate[0]);
+      const month = parseInt(startDate[1]) - 1;
+      const day = parseInt(startDate[2]);
+      for (let i = day; i <= day + 6; i ++ ) {
+        dayObj = new Date(year, month, i);
+        ReservedDays.push(dayObj.toLocaleDateString());
+      }
+    });
+  });
+}
 
 function openImagePopup() {
     window.href.location = imageURL;
@@ -242,6 +264,7 @@ function updateSignIn() {
 
 function updateSignOut() {
     sessionStorage.removeItem('renter');
+    sessionStorage.removeItem('renterid');
     location.reload();
 }
 
@@ -288,7 +311,6 @@ function cabinDateReservation() {
 
     function createCalendar(year, month) {
       calendar.innerHTML = "";
-
       const daysInMonth = new Date(year, month + 1, 0).getDate();
       const firstDayOfMonth = new Date(year, month, 1);
       const lastDayOfMonth = new Date(year, month, daysInMonth);
@@ -298,12 +320,17 @@ function cabinDateReservation() {
         dayElement.className = "day";
         dayElement.textContent = i;
 
-        dayElement.addEventListener("click", () => {
-          selectedStartDate = new Date(year, month, i);
-          selectedEndDate = new Date(year, month, i + 6);
-          console.log(selectedStartDate);
-          highlightSelectedDates();
-        });
+        today = new Date(year, month, i);
+        if (ReservedDays.includes(today.toLocaleDateString())) {
+          dayElement.classList.add("greyoout");
+        }
+        else {
+          dayElement.addEventListener("click", () => {
+            selectedStartDate = new Date(year, month, i);
+            selectedEndDate = new Date(year, month, i + 6);
+            highlightSelectedDates();
+          });
+        }
 
         calendar.appendChild(dayElement);
       }

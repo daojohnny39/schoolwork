@@ -9,7 +9,7 @@ class Reservation(Base):
     CheckInDate = Column(DATE)
     CheckOutDate = Column(DATE)
     Status = Column(VARCHAR(500))
-    #Renterid = Column(Integer, ForeignKey("renters.Renterid"))
+    Renterid = Column(Integer, ForeignKey("Renters.Renterid"))
     Cabinid = Column(Integer, ForeignKey("Cabins.Cabinid"))
 
     cabin = relationship("Cabin", back_populates="reservationsList")

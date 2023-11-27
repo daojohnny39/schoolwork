@@ -1,6 +1,6 @@
 <!-- 
 Johnny (Nhat) Dao
-11/24/2023
+11/27/2023
 -->
 
 <!DOCTYPE html>
@@ -232,8 +232,7 @@ Johnny (Nhat) Dao
         </div>
         <script>
 
-            // Step 1
-            /*
+            // --------- Step 1 ---------
             let leftOperand = Number(prompt("Enter the left operand: "));
             let operator = prompt("Enter the operator: ");
             let rightOperand = Number(prompt("Enter the right operand: "));
@@ -254,9 +253,9 @@ Johnny (Nhat) Dao
                 default:
                     console.log("Invalid operator");
             }
-            */
+            
 
-            // Step 2
+            // --------- Step 2 ---------
             var cheery = [
                 "Today is going to be a good day!",
                 "Hope you are doing well!",
@@ -268,7 +267,7 @@ Johnny (Nhat) Dao
             var randomIndex = Math.floor(Math.random() * cheery.length);
             console.log(cheery[randomIndex]);
 
-            // Step 3
+            // --------- Step 3 ---------
             function ucFirst(str) { // function declaration with parameter str
                 if (!str) return str;   // if the inputted data is not a string or if it is empty, it will return the inputted data
                 
@@ -277,27 +276,25 @@ Johnny (Nhat) Dao
               
             //alert( ucFirst("john") ); // alerts "John"
 
-            // Step 4
+            // --------- Step 4 ---------
             function checkSpam(str) {
                 let lowerStr = str.toLowerCase();   // converts the string to lowercase
                 
                 return lowerStr.includes('viagra') || lowerStr.includes('xxx'); // checks if the string contains "viagra" or "xxx" (Boolean)
             }
-            /* -- For the sake of my sanity, I had to comment these out
 
             alert( checkSpam('buy ViAgRA now') ); // alerts true
             alert( checkSpam('free xxxxx') ); // alerts true
             alert( checkSpam("innocent rabbit") );    // alerts false
-            */
+            
 
-            // Step 5
+            // --------- Step 5 ---------
             function truncate(str, maxlength) {
                 return (str.length > maxlength) ? str.slice(0, maxlength - 1) + '…' : str;  // If the string is longer than maxlength
                                                                                             // It will slice the string and append "..."
             }
 
-            // Step 6
-            /*
+            // --------- Step 6 ---------
             function averageInput() {
 
                 let numbers = [];
@@ -323,10 +320,49 @@ Johnny (Nhat) Dao
             }
               
             alert( averageInput() );
-            */
+            
 
-            // Step 7
+            // --------- Step 7 ---------
+            let arr1 = [0, 1, 2, 5] 
+            let arr2 = [10, 20, 4, 1]
 
+            /* Original function */
+            function getMaxSubSum(arr) {
+                let maxSum = 0; // if we take no elements, zero will be returned
+              
+                for (let i = 0; i < arr.length; i++) {
+                  let sumFixedStart = 0;
+                  for (let j = i; j < arr.length; j++) {
+                    sumFixedStart += arr[j];
+                    maxSum = Math.max(maxSum, sumFixedStart);
+                  }
+                }
+              
+                return maxSum;
+            }
+              
+            /* addTwo Function */
+            var addTwo = function(arr) {
+                arr.sort((a, b) => b - a);
+                let sum = arr[0] + arr[1];
+                return sum;
+            }
+
+            console.log(addTwo(arr1));
+            console.log(addTwo(arr2));
+
+            // --------- Step 8 ---------
+            /* Original Function */
+            function sortByAge(arr) {
+                arr.sort((a, b) => a.age - b.age);
+            }
+            
+            /* Rewritten function */
+            function sortByAge2(arr) {
+                arr.sort(function(a, b) {
+                    return a.age - b.age;
+                });
+            }
 
         </script>
     </body>
