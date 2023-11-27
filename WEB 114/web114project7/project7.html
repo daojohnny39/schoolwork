@@ -22,8 +22,9 @@ Johnny (Nhat) Dao
             <div class="question-within-question">
                 <h1>Answer</h1>
                 <p>
-                    One common JavaScript style guide that I found is <a href="https://google.github.io/styleguide/jsguide.html">Google's JavaScript style guide</a>, 
-                    which was listed in <a href="https://javascript.info/coding-style#style-guides">JavaScript.info: Coding Style.</a>
+                    One common JavaScript style guide that I found is <a href="https://google.github.io/styleguide/jsguide.html">Google's 
+                    JavaScript style guide</a>, which was listed in <a href="https://javascript.info/coding-style#style-guides">JavaScript.info: 
+                    Coding Style.</a>
                 </p>
             </div>
         </div>
@@ -150,7 +151,7 @@ Johnny (Nhat) Dao
                                 border-radius: 10px;
                                 background-color: rgb(79, 79, 79); 
                                 box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);">
-                        <p style="margin-top: 20px; font-size: 0.9em;"><b>Primitive:</b></p>
+                        <p style="margin-top: 20px;"><b>Primitive:</b></p>
                         <div class="sample-code">
                             <p>
                                 let userName = "Johnny";<br>
@@ -160,20 +161,172 @@ Johnny (Nhat) Dao
                         </div>
                         <p>
                             Each of these variables are considered primitive data types. They are pretty easy to tell apart from the other
-                            data types. It is also important to keep in mind that these primitive data types store only a single piece of data.
+                            data types. It is also important to keep in mind that these primitive data types store only a single piece 
+                            of data.
                             &lpar;Integers, strings, booleans, etc.&rpar;
                         </p>
-                        <p style="margin-top: 50px; font-size: 0.9em;"><b>Arrays:</b></p>
+                        <p style="margin-top: 50px;"><b>Arrays:</b></p>
                         <div class="sample-code">
                             <p>
-                                
+                                let nameArray = ["Johnny", "Nhat", "Dao"];<br>
+                                let numArray = [1, 2, 3, 4, 5];<br>
                             </p>
                         </div>
+                        <p>
+                            Each of these variables are considered arrays. The declarations for arrays are pretty similar to a normal
+                            variable declaration. The difference is that arrays can hold multiple pieces of data. This allows us to create
+                            lists of data.
+                        </p>
+                        <p style="margin-top: 50px;"><b>Objects:</b></p>
+                        <div class="sample-code">
+                            <p>
+                                let person = &#123;<br>
+                                &nbsp;&nbsp;&nbsp;name: "Johnny",<br>
+                                &nbsp;&nbsp;&nbsp;age: 21<br>
+                                &nbsp;&nbsp;&nbsp;class: "WEB 114"<br>
+                                &#125;;
+                            </p>
+                        </div>
+                        <p>
+                            This is an object declaration. Objects are similar to arrays in the sense that they can hold multiple 
+                            pieces of data. Where objects differ from both arrays and primitive data types is that they hold attributes 
+                            and values for the object declared. You can also access these different attributes like this:
+                        </p>
+                        <div class="sample-code">
+                            <p>
+                                console.log(person.name);<br>
+                            </p>
+                        </div>
+                        <p>
+                            This would output "Johnny" to the console.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="question">
+            <h1>
+                5.  Explain the phrase "Fractions divided by powers of 2 are exactly represented in the binary system" and what 
+                universal problem this is referring to in all programming languages. <br><br>
+                Another way to think about this is to ask yourself these questions -- can all decimal integers (the numbering system we 
+                use that uses values of 0-9) be accurately represented by the binary (the numbering system the computer uses with values 
+                of 0 and 1)? Can all decimal fractions be accurately represented by the binary numbering system? Which ones can? Which 
+                ones cannot?
+            </h1>
+            <div class="question-within-question">
+                <h1>Answer</h1>
+                <p>
+                    The phrase "Fractions divided by powers of 2 are exactly represented in the binary system" is referring to the fact
+                    that fractions that are divided by powers of 2 are exactly represented in the binary system. You may run into an
+                    issue when you are trying to divide a fraction by 3 or 5. This is because computers can only store data in 0's and 1's.
+                    <br><br>
+
+                    This is a universal problem in all programming languages because of the way computers store data. The computer can only
+                    store up to 16 digits of data. (At least in JavaScript. Other languages may vary I think) When you divide a fraction by
+                    3 or 5, the computer will try to store the data but it will run out of space.
+                    <br><br>
+
+                    One way to get around this issue is to multiply the fraction into an integer, then multiply it back to a fraction/decimal.
+                </p>
+            </div>
+        </div>
         <script>
+
+            // Step 1
+            /*
+            let leftOperand = Number(prompt("Enter the left operand: "));
+            let operator = prompt("Enter the operator: ");
+            let rightOperand = Number(prompt("Enter the right operand: "));
+
+            switch(operator) {
+                case "+":
+                    console.log(leftOperand + rightOperand);
+                    break;
+                case "-":
+                    console.log(leftOperand - rightOperand);
+                    break;
+                case "*":
+                    console.log(leftOperand * rightOperand);
+                    break;
+                case "/":
+                    console.log(leftOperand / rightOperand);
+                    break;
+                default:
+                    console.log("Invalid operator");
+            }
+            */
+
+            // Step 2
+            var cheery = [
+                "Today is going to be a good day!",
+                "Hope you are doing well!",
+                "You are awesome!",
+                "You are loved!",
+                "Good luck on your exam!",
+            ]
+
+            var randomIndex = Math.floor(Math.random() * cheery.length);
+            console.log(cheery[randomIndex]);
+
+            // Step 3
+            function ucFirst(str) { // function declaration with parameter str
+                if (!str) return str;   // if the inputted data is not a string or if it is empty, it will return the inputted data
+                
+                return str[0].toUpperCase() + str.slice(1); // returns the first letter "uppercased" and appends the rest of the string
+            }
+              
+            //alert( ucFirst("john") ); // alerts "John"
+
+            // Step 4
+            function checkSpam(str) {
+                let lowerStr = str.toLowerCase();   // converts the string to lowercase
+                
+                return lowerStr.includes('viagra') || lowerStr.includes('xxx'); // checks if the string contains "viagra" or "xxx" (Boolean)
+            }
+            /* -- For the sake of my sanity, I had to comment these out
+
+            alert( checkSpam('buy ViAgRA now') ); // alerts true
+            alert( checkSpam('free xxxxx') ); // alerts true
+            alert( checkSpam("innocent rabbit") );    // alerts false
+            */
+
+            // Step 5
+            function truncate(str, maxlength) {
+                return (str.length > maxlength) ? str.slice(0, maxlength - 1) + '…' : str;  // If the string is longer than maxlength
+                                                                                            // It will slice the string and append "..."
+            }
+
+            // Step 6
+            /*
+            function averageInput() {
+
+                let numbers = [];
+                
+                while (true) {
+                    let value = prompt("Enter a number between 0 and 100:", 0);
+                
+                    // should we cancel?
+                    if (value === "" || value === null || !isFinite(value) || value < 0 || value > 100) break;
+                
+                    numbers.push(+value);
+                }
+                
+                let sum = 0;
+                let valCount = 0;
+
+                for (let number of numbers) {
+                    sum += number;
+                    valCount++;
+                }
+
+                return sum / valCount;
+            }
+              
+            alert( averageInput() );
+            */
+
+            // Step 7
+
 
         </script>
     </body>
