@@ -1,6 +1,6 @@
 
-// Variables set for sorting and cabins display
-var isSortedByPrice = false;
+// Variables set for sorting and cabins display  
+var sortByPrice = "default"; // Do lowest for low-to-high, highest for high-to-low, string instead of boolean for default
 var originalProperties = [];
 var amenitySearchInput; // global declaration for displayProperties()
 
@@ -68,12 +68,17 @@ function extractGoogleDriveId(url) {
 }
 
 // Sorting the properties by price (Lowest to Highest)
-function sortPropertiesByPrice() {
+function sortPropertiesByPrice(ascending = true) {
     properties.sort(function(a, b) {
-        return a.price - b.price;
+        if (ascending) {
+            return a.price - b.price;
+        } else {
+            return b.price - a.price;
+        }
     });
     displayProperties();
 }
+
 
 // Updating the user's name when they sign out
 function updateSignOut() {
@@ -84,18 +89,24 @@ function updateSignOut() {
 // Toggle price sorting functionality
 function toggleSortByPrice() {
     var sortButton = document.getElementById('sort-button');
-    if (!isSortedByPrice) {
-        sortPropertiesByPrice();
-        isSortedByPrice = true;
+    if (sortByPrice === "default") {
+        sortPropertiesByPrice(true); // Pass true for ascending order
+        sortByPrice = "lowest-to-highest";
         sortButton.textContent = "Sort (Lowest to Highest)";
+    }
+    else if (sortByPrice === "lowest-to-highest") {
+        sortPropertiesByPrice(false); // Pass false for descending order
+        sortByPrice = "highest-to-lowest";
+        sortButton.textContent = "Sort (Highest to Lowest)";
     }
     else {
         properties = [...originalProperties];
         displayProperties();
-        isSortedByPrice = false;
+        sortByPrice = "default";
         sortButton.textContent = "Sort";
     }
 }
+
 
 // Amenities search functionality
 function filterPropertiesByAmenity() {

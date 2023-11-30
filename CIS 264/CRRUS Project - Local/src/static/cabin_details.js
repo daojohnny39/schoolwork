@@ -89,6 +89,9 @@ function displayPropertyDetails(cabinId) {
             var dateInput =  document.createElement('input');
             dateInput.id = "dateInput";
             dateInput.style.maxWidth = "150px";
+            dateInput.style.borderRadius = "5px";
+            dateInput.style.border = "none";
+            dateInput.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
             dateInput.placeholder = "Click to choose date";
             datePickerContainer.appendChild(dateInput);
 
@@ -325,11 +328,20 @@ function cabinDateReservation() {
           dayElement.classList.add("greyoout");
         }
         else {
-          dayElement.addEventListener("click", () => {
-            selectedStartDate = new Date(year, month, i);
-            selectedEndDate = new Date(year, month, i + 6);
-            highlightSelectedDates();
-          });
+          let j = 0;
+          for (j = 1; j < 6; j++) {
+            next_day = new Date(year, month, i+j);
+            if (ReservedDays.includes(next_day.toLocaleDateString())) {
+              break;
+            }
+          }
+          if (j == 6) {
+            dayElement.addEventListener("click", () => {
+              selectedStartDate = new Date(year, month, i);
+              selectedEndDate = new Date(year, month, i + 6);
+              highlightSelectedDates();
+            });
+          }
         }
 
         calendar.appendChild(dayElement);

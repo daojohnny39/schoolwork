@@ -2,7 +2,7 @@ from sqlalchemy import Boolean, Column, Integer, String
 from database import Base
 from pydantic import BaseModel
 
-
+#new comment
 class Users(Base):
     __tablename__ = "users"
 

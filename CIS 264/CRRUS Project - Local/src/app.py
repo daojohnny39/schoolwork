@@ -7,6 +7,8 @@
 #pip install jinja2
 #pip install python-multipart
 
+#No real changes, just updated branch and need to commit, so adding comment ------------------------ DELETE THIS LATER!!!
+
 from fastapi import FastAPI, Path, HTTPException, status, Depends, Request, Form, Body #Added Form and Body
 import uvicorn
 from datetime import date
@@ -153,7 +155,10 @@ async def login(request: Request, email: str = Form(...), password: str = Form(.
 
 # Registration Function -----------------------------------------------------------------
 @app.post("/registration")
-async def registration(request: Request, email: str = Form(...), password: str = Form(...), first_name: str = Form(...), last_name: str = Form(...), phone_number: str = Form(...), db: Session = Depends(get_db)):
+async def registration(request: Request, email: str = Form(...), password: str = Form(...), confPassword: str = Form(...), first_name: str = Form(...), last_name: str = Form(...), phone_number: str = Form(...), db: Session = Depends(get_db)):
+    if password != confPassword:
+        return {"message": "Passwords do not match!"}
+    
     renter = RenterCreate(email=email, password=password, first_name=first_name, last_name=last_name, phone_number=phone_number)
     created_renter = controller.create_renter(renter, db)
     
@@ -175,6 +180,16 @@ async def create_reservation(request: Request, CheckInDate: str = Form(...), Che
     
     return {"message": "reservation complete"}
 # Create Reservation Function END -----------------------------------------------------------------
+
+# Last 2 webpages, about and contact -----------------------------------------------------------------
+@app.get("/aboutus")
+def aboutus(request: Request):
+    return templates.TemplateResponse("aboutus.html", {"request": request})
+
+@app.get("/contactus")
+def contactus(request: Request):
+    return templates.TemplateResponse("contactus.html", {"request": request})
+
 
 if __name__ == "__main__":
     uvicorn.run("app:app", host="127.0.0.1", reload=True)
