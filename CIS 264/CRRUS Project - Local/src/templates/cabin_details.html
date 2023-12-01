@@ -23,5 +23,27 @@
             var cabinId = urlSegments[2];
             displayPropertyDetails(cabinId);
         })
+
+        // Mobile Nav-bar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu Toggle
+            const toggleButton = document.querySelector('.container .header .menu-toggle');
+
+            // CRRUS Logo
+            logoElement = document.querySelector('.container .header .site-logo');
+
+            toggleButton.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const menu = this.nextElementSibling.querySelector('.menu ul');
+                if (menu.style.display === "flex") {
+                    logoElement.style.display = "flex";
+                    menu.style.display = "none";
+                }
+                else {
+                    logoElement.style.display = "none";
+                    menu.style.display = "flex";
+                }
+            });
+        });
     </script>
 {% endblock %}
