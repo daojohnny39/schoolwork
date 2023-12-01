@@ -1,6 +1,5 @@
 h1 {
     font-size: 2em;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 /* Navigation Bar */
@@ -9,6 +8,7 @@ h1 {
     align-items: center;
     justify-content: space-between;
     background-color: rgb(61, 61, 61);
+    border-radius: 10px;
     color: white;
     padding: 20px;
     text-align: left;
@@ -25,11 +25,9 @@ h1 {
     padding: 0;
     margin: 0;
     display: flex;
-    /* display: inline-block; */
 }
 
 .nav-bar li {
-    /* display: inline; */
     display: flex;
     margin-right: 20px;
     font-size: 1.2em;
@@ -37,5 +35,10 @@ h1 {
 
 .nav-bar li:hover {
     cursor: pointer;
+}
+
+.banner img {
+    width: 80%;
+    margin: 20px;
 }
 

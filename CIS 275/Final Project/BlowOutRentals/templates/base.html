@@ -12,18 +12,19 @@
         <div class="nav-bar">
             <h1>Blowout Instrument Rentals</h1>
             <ul>
-                <li><a href="{% url 'customers' %}">Instruments</a></li>
+                <li>Instruments</li>
                 <li>About</li>
             </ul>
+        </div>
+        <div class="banner">
+            <img src="{% static 'img/instrumentbanner.jpg' %}">
         </div>
         {% block content %}
         {% endblock %}
         <!-- Footer-->
-        <footer class="footer py-4">
+        <footer class="footer">
             <div class="container">
-                <div class="row align-items-center">
-                    <div>Copyright ©TripMe Travel 2020</div>
-                </div>
+                <div>Copyright ©TripMe Travel 2020</div>
             </div>
         </footer>
     </body>
