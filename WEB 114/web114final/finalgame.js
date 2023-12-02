@@ -260,10 +260,25 @@ document.body.addEventListener('click', function(event) {
                 break;
         }
 
+        thirdGameImg.classList.add('third-game-image');
+        console.log("thirdGameImg: " + thirdGameImg.className);
         thirdGameDiv.appendChild(thirdGameImg);
+
+        // NOTE: Make sure image isn't interactable. (Hovering Animation)
+
+        // Third Game Question
+        let pElement = document.createElement('p');
+        pElement.textContent = "What about this interior did you like?";
+        thirdGameDiv.appendChild(pElement);
+
+        // Select Options:
+        let selectDiv = document.createElement('select');
+
+        let option1Element = document.createElement('option');
+        option1Element.textContent = "The Chairs";
+
+        selectDiv.appendChild(optionElement);
+        thirdGameDiv.appendChild(selectDiv);
     }
 });
-
-// NEXT: Make sure image isn't interactable. (Hovering Animation)
-
 /* ---------------------- THIRD GAME END ---------------------- */

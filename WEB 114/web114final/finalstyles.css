@@ -137,3 +137,9 @@ button:hover {
     margin: 5px auto;
     padding: 20px;
 }
+
+.container .game .game-third img:hover {
+    box-shadow: 0 0 0;
+    cursor: pointer;
+    filter: brightness(100%);
+}
