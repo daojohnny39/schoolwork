@@ -12,7 +12,7 @@ private:
 	std::shared_ptr<Book> rootPtr;
 	int bookCount;
 
-	void inOrderTraversal(std::shared_ptr<Book> rootPtr);	// Helper
+	void inOrderTraversal(std::shared_ptr<Book> rootPtr, int& count);	// Helper
 
 public:
 	BookPile();
