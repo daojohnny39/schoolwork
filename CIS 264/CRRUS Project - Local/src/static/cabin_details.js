@@ -436,7 +436,7 @@ function calculateTotalAmount(startDate, endDate, dailyRentRate) {
     discountRate = 0.2; // 20% discount for April to May
   } else if (bookingMonth >= 5 && bookingMonth <= 8) {
     discountRate = 0;   // No discount for June to September (full price)
-  } else if (bookingMonth >= 9 && bookingMonth <= 10) {
+  } else if (bookingMonth >= 9 && bookingMonth <= 12) {
     discountRate = 0.2; // 20% discount for October to November
   }
 
