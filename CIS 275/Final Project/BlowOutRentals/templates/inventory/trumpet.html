@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container-trumpet">
+        <p>You have selected the</p>
+        <h2>{{ instrument_name }}</h2>
+        <img src="{% static 'img/trumpet.jpg' %}">
+        <p><b>$ {{ price }} per month</b></p>
+    </div>
+{% endblock %}

@@ -74,88 +74,87 @@ bool BookPile::addBook(std::string newEntry) {
 }
 
 bool BookPile::removeBook(std::string bookToRemove) {
-	// CHECK: if there are any books
 	if (rootPtr == nullptr) {
-		return false;
+		return false; // Tree is empty
 	}
 
-	// Traversal pointers:
-	std::shared_ptr<Book> curPtr = rootPtr;
-	std::shared_ptr<Book> parPtr = nullptr;
-	bool isLeftChild = true;
+	std::shared_ptr<Book> parentPtr = nullptr;
+	std::shared_ptr<Book> currentPtr = rootPtr;
+	bool isLeftChild = false;
 
-	// Finding position
-	while ( (curPtr != nullptr) && (curPtr->getTitle() != bookToRemove) ) {
-		parPtr = curPtr;
-
-		if (bookToRemove < curPtr->getTitle()) {
+	// Find the book to remove and its parent
+	while (currentPtr != nullptr && currentPtr->getTitle() != bookToRemove) {
+		parentPtr = currentPtr;
+		if (bookToRemove < currentPtr->getTitle()) {
+			currentPtr = currentPtr->getLeftChildPtr();
 			isLeftChild = true;
-			curPtr = curPtr->getLeftChildPtr();
 		}
 		else {
+			currentPtr = currentPtr->getRightChildPtr();
 			isLeftChild = false;
-			curPtr = curPtr->getRightChildPtr();
 		}
 	}
 
-	// CHECK: If book was never found
-	if (curPtr == nullptr) {
-		return false;
+	if (currentPtr == nullptr) {
+		return false; // Book not found
 	}
 
-	// CHECK: If curPtr is a leaf
-	if ((curPtr->getLeftChildPtr() == nullptr) && (curPtr->getRightChildPtr() == nullptr)) {
-		// If rootPtr is getting removed
-		if (curPtr == rootPtr) {
-			rootPtr = nullptr;
+	// Case 1: Removing a leaf node
+	if (currentPtr->getLeftChildPtr() == nullptr && currentPtr->getRightChildPtr() == nullptr) {
+		if (currentPtr == rootPtr) {
+			rootPtr = nullptr; // Tree becomes empty
 		}
 		else if (isLeftChild) {
-			parPtr->setLeftChildPtr(nullptr);
+			parentPtr->setLeftChildPtr(nullptr);
 		}
 		else {
-			parPtr->setRightChildPtr(nullptr);
+			parentPtr->setRightChildPtr(nullptr);
 		}
-	}	// CHECK: If curPtr only has a left child:
-	else if (curPtr->getRightChildPtr() == nullptr) {
-		if (curPtr == rootPtr) {
-			rootPtr = curPtr->getLeftChildPtr();
+	}
+	// Case 2: Removing a node with one child
+	else if (currentPtr->getLeftChildPtr() == nullptr) { // Only right child
+		if (currentPtr == rootPtr) {
+			rootPtr = currentPtr->getRightChildPtr();
 		}
 		else if (isLeftChild) {
-			parPtr->setLeftChildPtr(curPtr->getLeftChildPtr());
+			parentPtr->setLeftChildPtr(currentPtr->getRightChildPtr());
 		}
 		else {
-			parPtr->setRightChildPtr(curPtr->getLeftChildPtr());
+			parentPtr->setRightChildPtr(currentPtr->getRightChildPtr());
 		}
-	}	// CHECK: If curPtr only has a right child:
-	else if (curPtr->getLeftChildPtr() == nullptr) {
-		if (curPtr == rootPtr) {
-			rootPtr = curPtr->getRightChildPtr();
+	}
+	else if (currentPtr->getRightChildPtr() == nullptr) { // Only left child
+		if (currentPtr == rootPtr) {
+			rootPtr = currentPtr->getLeftChildPtr();
 		}
 		else if (isLeftChild) {
-			parPtr->setLeftChildPtr(curPtr->getRightChildPtr());
+			parentPtr->setLeftChildPtr(currentPtr->getLeftChildPtr());
 		}
 		else {
-			parPtr->setRightChildPtr(curPtr->getRightChildPtr());
+			parentPtr->setRightChildPtr(currentPtr->getLeftChildPtr());
 		}
-	}	// By this point, curPtr has two children:
+	}
+	// Case 3: Removing a node with two children
 	else {
-		// #################
-		std::shared_ptr<Book> successor = curPtr->getRightChildPtr();
-		std::shared_ptr<Book> successorPar = curPtr;
-
-		// #################
+		// Find the in-order successor (smallest in the right subtree)
+		std::shared_ptr<Book> successorParent = currentPtr;
+		std::shared_ptr<Book> successor = currentPtr->getRightChildPtr();
 		while (successor->getLeftChildPtr() != nullptr) {
-			successorPar = successor;
+			successorParent = successor;
 			successor = successor->getLeftChildPtr();
 		}
 
-		curPtr->setTitle(successor->getTitle());
+		// Swap titles
+		std::string tempTitle = currentPtr->getTitle();
+		currentPtr->setTitle(successor->getTitle());
+		successor->setTitle(tempTitle);
 
-		if (successorPar != curPtr) {
-			successorPar->setLeftChildPtr(successor->getRightChildPtr());
+		// Recursively remove the successor node
+		if (successor == successorParent->getRightChildPtr()) {
+			successorParent->setRightChildPtr(removeBookRecursive(successor->getTitle(), successorParent->getRightChildPtr()));
 		}
 		else {
-			curPtr->setRightChildPtr(successor->getRightChildPtr());
+			successorParent->setLeftChildPtr(removeBookRecursive(successor->getTitle(), successorParent->getLeftChildPtr()));
 		}
 	}
 
@@ -167,10 +166,15 @@ bool BookPile::contains(std::string book) {
 	std::shared_ptr<Book> curPtr = rootPtr;
 
 	while (curPtr != nullptr) {
+		// CHECK: If book is rootPtr
 		if (curPtr->getTitle() == book) {
 			return true;
 		}
-		else if (book < curPtr->getTitle()) {
+		
+		// Traversal
+		if ( (book.length() < curPtr->getTitle().length()) ||
+			(book.length() == curPtr->getTitle().length() && book > curPtr->getTitle()) ) {
+
 			curPtr = curPtr->getLeftChildPtr();
 		}
 		else {
@@ -198,11 +202,53 @@ bool BookPile::operator==(const BookPile& secondPile) {
 }
 
 /* --------- HELPER FUNCTION --------- */
+// USED IN: displayPile()
 void BookPile::inOrderTraversal(std::shared_ptr<Book> rootPtr, int& count) {
 	if (rootPtr != nullptr) {
 		inOrderTraversal(rootPtr->getRightChildPtr(), count);
 		std::cout << ++count << ". " << rootPtr->getTitle() << " (" << rootPtr->getTitle().length() << ")" << std::endl;
 		inOrderTraversal(rootPtr->getLeftChildPtr(), count);
 	}
+}
+
+std::shared_ptr<Book> BookPile::removeBookRecursive(const std::string& bookToRemove, std::shared_ptr<Book> subTreePtr) {
+	if (subTreePtr == nullptr) {
+		return subTreePtr; // Book not found in this subtree
+	}
+
+	if (bookToRemove == subTreePtr->getTitle()) {
+		// Node with only one child or no child
+		if (subTreePtr->getLeftChildPtr() == nullptr) {
+			return subTreePtr->getRightChildPtr();
+		}
+		else if (subTreePtr->getRightChildPtr() == nullptr) {
+			return subTreePtr->getLeftChildPtr();
+		}
+
+		// Node with two children: Get the in-order successor (smallest in the right subtree)
+		std::shared_ptr<Book> successorParent = subTreePtr;
+		std::shared_ptr<Book> successor = subTreePtr->getRightChildPtr();
+		while (successor->getLeftChildPtr() != nullptr) {
+			successorParent = successor;
+			successor = successor->getLeftChildPtr();
+		}
+
+		// Copy the successor's title to this node and delete the successor
+		subTreePtr->setTitle(successor->getTitle());
+		if (successor == successorParent->getRightChildPtr()) {
+			successorParent->setRightChildPtr(removeBookRecursive(successor->getTitle(), successorParent->getRightChildPtr()));
+		}
+		else {
+			successorParent->setLeftChildPtr(removeBookRecursive(successor->getTitle(), successorParent->getLeftChildPtr()));
+		}
+	}
+	else if (bookToRemove < subTreePtr->getTitle()) {
+		subTreePtr->setLeftChildPtr(removeBookRecursive(bookToRemove, subTreePtr->getLeftChildPtr()));
+	}
+	else {
+		subTreePtr->setRightChildPtr(removeBookRecursive(bookToRemove, subTreePtr->getRightChildPtr()));
+	}
+
+	return subTreePtr;
 }
 /* --------- HELPER FUNCTIONS END --------- */

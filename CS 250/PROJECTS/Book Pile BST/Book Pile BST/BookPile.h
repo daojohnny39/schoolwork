@@ -12,7 +12,9 @@ private:
 	std::shared_ptr<Book> rootPtr;
 	int bookCount;
 
-	void inOrderTraversal(std::shared_ptr<Book> rootPtr, int& count);	// Helper
+	// Helper
+	void inOrderTraversal(std::shared_ptr<Book> rootPtr, int& count);
+	std::shared_ptr<Book> removeBookRecursive(const std::string& bookToRemove, std::shared_ptr<Book> subTreePtr);
 
 public:
 	BookPile();

@@ -5,5 +5,5 @@ from django.http import HttpResponse
 def indexPageView(request):
     return render(request, 'homepages/index.html')
 
-def aboutUsPageView(request):
+def aboutPageView(request):
     return render(request, 'homepages/aboutus.html')

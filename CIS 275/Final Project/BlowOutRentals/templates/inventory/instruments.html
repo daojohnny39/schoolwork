@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <h1>Blowout Instrument Rentals</h1>
+        <a href="{% url 'trumpet' instrument_name='TRUMPET' price=37 %}">
+            <img src="{% static 'img/showtrumpet.jpg' %}">
+        </a>
+    </div>
+{% endblock %}
