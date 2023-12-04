@@ -14,7 +14,7 @@ private:
 
 	// Helper
 	void inOrderTraversal(std::shared_ptr<Book> rootPtr, int& count);
-	std::shared_ptr<Book> removeBookRecursive(const std::string& bookToRemove, std::shared_ptr<Book> subTreePtr);
+	std::shared_ptr<Book> findMinimumNode(std::shared_ptr<Book> node);
 
 public:
 	BookPile();
