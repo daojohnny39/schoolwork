@@ -777,21 +777,31 @@ img #site-logo {
 
 
     /* ----------------------- About Us / Contact Us Page ----------------------- */
+    .SpecialDiv-container-contactus,
     .SpecialDiv-container-aboutus {
-        width: 100%;
+        display: flex;
+        flex-direction: column;
+        width: 100%; 
+        padding: 0; 
+        margin: 0; 
     }
 
-    .SpecialDiv-container-aboutus .SpecialDiv {
-        width: 90%;
-        padding: 5px;
-    }
-    
-    .SpecialDiv-container-contactus {
-        width: 100%;
+    .SpecialDiv {
+        width: 100%; 
+        padding: 0px; 
     }
 
-    .SpecialDiv-container-contactus .SpecialDiv {
-        width: 99%;
-        padding: 0;
+    .SpecialDiv h1, .SpecialDiv p, .SpecialDiv ul {
+        margin-left: 20px; 
+        margin-right: 20px;
+    }
+
+    /* ----------------------- Calendar Date Picker ----------------------- */
+    .date-picker-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+        margin-right: 400px;
     }
 }
