@@ -210,32 +210,33 @@ bool HashedDictionary<KeyType, ItemType>::add(const KeyType& searchKey, const It
 template <class KeyType, class ItemType>
 bool HashedDictionary<KeyType, ItemType>::remove(const KeyType& searchKey)
 {
-
     int i = getHashIndex(searchKey);
 
     if (hashTable[i] != nullptr) {
         if (hashTable[i]->getKey() == searchKey) {
             hashTable[i] = hashTable[i]->getNext();
+            itemCount--;
             return true;
         }
         else {
-            auto curPtr = hashTable[i];
-            std::shared_ptr<HashedEntry<KeyType, ItemType>> prevPtr = nullptr;
+            auto curPtr = hashTable[i]->getNext();
+            std::shared_ptr<HashedEntry<KeyType, ItemType>> prevPtr = hashTable[i];
 
             while (curPtr == nullptr && curPtr->getKey() != searchKey) {
                 prevPtr = curPtr;
                 curPtr = curPtr->getNext();
             }
 
-            if (curPtr == nullptr) {
-                return false;
+            if (curPtr != nullptr) {
+                prevPtr->setNext(curPtr->getNext());
+                itemCount--;
+                return true;
             }
 
         }
     }
-    else {
-        return false;
-    }
+    
+    return false;
 
 } // end remove
 
@@ -244,9 +245,18 @@ ItemType HashedDictionary<KeyType, ItemType>::getItem(const KeyType& searchKey) 
 {
 
     // STEP 5
+    int i = getHashIndex(searchKey);
+    auto curPtr = hashTable[i];
 
-    ItemType temp;
-    return temp;
+    while (curPtr != nullptr) {
+        if (curPtr->getKey() == searchKey) {
+            return curPtr->getItem();
+        }
+        curPtr = curPtr->getNext();
+    }
+    
+    throw std::logic_error("Item is not in the dictionary!");
+
 
 } // end getItem
 
@@ -255,9 +265,17 @@ bool HashedDictionary<KeyType, ItemType>::contains(const KeyType& searchKey) con
 {
 
     // STEP 6
+    int i = getHashIndex(searchKey);
+    auto curPtr = hashTable[i];
+    
+    while (curPtr != nullptr) {
+        if (curPtr->getKey() == searchKey) {
+            return true;
+        }
+        curPtr = curPtr->getNext();
+    }
 
     return false;
-
 } // end contains
 
 template <class KeyType, class ItemType>
@@ -265,6 +283,16 @@ void HashedDictionary<KeyType, ItemType>::traverse(void visit(ItemType&)) const
 {
 
     // STEP 7
+    for (int i = 0; i < hashTableSize; i++) {
+        auto curPtr = hashTable[i];
+        
+        while (curPtr != nullptr) {
+            ItemType curItem = curPtr->getItem();
+            visit(curItem);
+            curPtr = curPtr->getNext();
+        }
+    }
+
 
 }  //end traverse
 
