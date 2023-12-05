@@ -74,7 +74,7 @@ function displayPropertyDetails(cabinId) {
             var priceElement = document.createElement('h3');
             priceElement.style.marginTop = "-120px";
             priceElement.style.color = "#0070cc";
-            priceElement.style.fontSize = "1.3rem";
+            priceElement.style.fontSize = "1.8rem";
             priceElement.style.textAlign = "right";
             priceElement.style.fontFamily = "Arial, Helvetica, sans-serif";
             priceElement.textContent = "$" + cabin.BasePricePerNight + " / night";

@@ -486,7 +486,9 @@ img #site-logo {
 
 /* book button */
 .cabin .bookButton {
-    margin-left: 650px;
+    margin-left: 20px;
+    margin-top:10px;
+    width: 165px;
     margin-right: 20px;
     margin-bottom: 0px;
     padding: 10px 20px;
@@ -510,6 +512,13 @@ img #site-logo {
 /* Calendar picker */
 .date-picker-container {
     position: relative;
+    margin-top:50px;
+  }
+
+  #dateInput {
+      margin-left:20px;
+      margin-top:10px;
+      height:25px;
   }
 
   .date-picker {
