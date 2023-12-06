@@ -1,0 +1,6 @@
+__pycache__
+.idea
+.pyc
+.pyo
+.DS_Store
+src/__pycache__/app.cpython-311.pyc

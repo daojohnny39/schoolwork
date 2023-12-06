@@ -1,0 +1,70 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="icon" href="{{ url_for('static', path='/mainFiles/transparentWhiteCRRU.png') }}">
+        {% block scripts %}
+
+        {% endblock %}
+        {% block head_extra %}{% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <button class="menu-toggle">Menu</button>
+                <div class="logo-and-menu">
+                    <img class="site-logo" src={{ url_for('static', path="/mainFiles/CRRU.png")}} onclick="location.href='{{ url_for('homepage') }}'" alt="logo">
+                    <div class="menu">
+                        <ul>
+                            <hr class="menu-divider">
+                            <li><a href="{{ url_for('homepage') }}">Home</a></li>
+                            <hr class="menu-divider">
+                            <li><a href="{{ url_for('aboutus') }}">About Us</a></li>
+                            <hr class="menu-divider">
+                            <li><a href="{{ url_for('contactus') }}">Contact Us</a></li>
+                            <hr class="menu-divider">
+                        </ul>
+                    </div>
+                </div>
+                <div class="sign-in">
+                    {% if renter %}
+                        <span>Welcome, {{ getattr(renter, 'first_name', 'Guest') }}</span>
+                    {% else %}
+                        <button onclick="location.href='{{ url_for('loginpage') }}'">Login</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+        <!-- TESTING FOR MOBILE STYLES -->
+        {% block footer_scripts %}
+        <script>
+            // Mobile Nav-bar
+            document.addEventListener('DOMContentLoaded', function() {
+                // Menu Toggle
+                const toggleButton = document.querySelector('.container .header .menu-toggle');
+
+                // CRRUS Logo
+                logoElement = document.querySelector('.container .header .site-logo');
+
+                toggleButton.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const menu = this.nextElementSibling.querySelector('.menu ul');
+                    if (menu.style.display === "flex") {
+                        logoElement.style.display = "flex";
+                        menu.style.display = "none";
+                    }
+                    else {
+                        logoElement.style.display = "none";
+                        menu.style.display = "flex";
+                    }
+                });
+            });
+        </script>
+        {% endblock %}
+        <link rel="stylesheet" href="{{ url_for('static', path='/mainFiles/globalpageconf.css') }}">
+    </body>
+</html>

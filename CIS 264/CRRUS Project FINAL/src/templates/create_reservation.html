@@ -1,0 +1,21 @@
+<!-- create_reservation.html -->
+
+{% extends "base.html" %}
+
+{% block title %}CRRUS{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', path='cabin_details.js') }}"></script>{% endblock %}
+
+{% block content %}
+    <div id="cabinDetails" data-cabin-id="{{ cabin.cabin_id }}"></div>
+{% endblock %}
+
+{% block footer_scripts %}
+    <script>
+        // grabbing the cabin id from the url
+        window.addEventListener('load', function() {
+            var urlSegments = window.location.pathname.split('/');
+            var cabinId = urlSegments[2];
+            displayPropertyDetails(cabinId);
+        })
+    </script>
+{% endblock %}

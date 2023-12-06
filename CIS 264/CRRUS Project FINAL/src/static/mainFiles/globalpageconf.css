@@ -1,0 +1,816 @@
+/* Base styles */
+.container {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Header styles */
+.container .header {
+    background-color: #F1EFE7;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+/* Logo and menu styles */
+.container .header .logo-and-menu {
+    display: flex;
+    align-items: center;
+}
+
+.container .header .logo-and-menu .menu .menu-divider {
+    display: none;
+}
+
+.container .header .logo-and-menu img {
+    cursor: pointer;
+}
+
+.container .header img {
+    width: 80px;
+    margin-right: 30px;
+}
+
+/* Menu styles */
+.container .header .menu ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Mobile menu toggle button */
+.container .header .menu-toggle {
+    display: none; 
+    background-color: #0070cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.container .header .menu ul li {
+    font-size: 16px; 
+    margin-right: 30px; 
+}
+
+.container .header .menu ul li a {
+    text-decoration: none;
+    color: black; 
+    transition: color 0.3s ease;
+}
+
+.container .header .menu ul li a:hover {
+    color: #ffd700; 
+}
+
+/* Sign-in button styles */
+.container .sign-in button {
+    padding: 10px 15px;
+    background-color: #0070cc; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.container .sign-in button:hover {
+    background-color: #004080; 
+}
+
+
+/* -------- SIGN OUT BUTTON AND TEXT -------- */
+.container .sign-in #welcomeText {
+    color: black;
+    padding: 0px;
+    margin-left: 220px;
+    margin-right: 5px;
+    margin-top: 100px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.container .sign-in #signOutButton {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+}
+
+/* -------- TEMP BYPASS -------- */
+.container .card {
+    padding: 20px;
+    margin: auto;
+    border-style: solid;
+}
+
+
+/* -------- FILLED IN TEMPORARY -------- */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.logo-and-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-and-menu img {
+    max-width: 100px;
+    height: auto;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* ADJUSTING NAV BAR */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 9px;
+    position: relative;
+}
+
+.header {
+    border-radius: 9px;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.content {
+    display: flex;
+    margin: 20px 0;
+    /* max-width: 1240px; */
+    margin: 0 auto; 
+}
+
+.left {
+    flex: 1;
+    padding: 50px;
+    padding-top: 160px;
+    margin-top: -150px;
+    background-color: #F1EFE7;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 9px;
+}
+
+.left h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    padding-left: 30px;
+    text-align: left;
+}
+
+/* ----------------- */
+
+.right {
+    flex: 2;
+    padding: 20px;
+}
+
+.footer {
+    background-color: #004080;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* -------- Cabin Listings -------- */
+.left {
+    flex: 1;
+    background-color: #f9f9f9;
+}
+
+/* search box */
+.left input {
+    padding: 10px;
+    margin-left: 30px;
+    margin-right: 25%;
+    border-radius: 300px;
+    font-size: 1.2rem;
+}
+
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    padding: 10px;
+}
+
+.property {
+    flex: 1;
+    margin: 15px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);;
+    background-color: #fff;
+    text-align: left;
+    border-radius: 10px;
+    transition: filter 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+img #site-logo {
+    cursor: pointer;
+}
+
+.property:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: rgba(230, 230, 230, 0.1);
+    padding: 10px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.5);
+    border-width: 1px;
+    filter: brightness(90%);
+}
+
+.property img {
+    width: 100%;
+    max-height: 300px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.property h3 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    text-align: left;
+}
+
+.property h4 {
+    margin-top: 1px;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.property p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0070cc;
+    margin-top: 7px;
+}
+
+/* -------- FILTER BUTTON -------- */
+
+.sort-button {
+    text-align: left;
+    position: relative;
+    margin-bottom: 10px; 
+    margin-top: 15px;
+    margin-left: 30px;
+}
+
+#sort-button {
+    border-radius: 300px;
+    background-color: #0070cc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    width: 150px;
+}
+
+#sort-button:hover {
+    background-color: #004080;
+}
+
+.sort-menu {
+    display: none;
+    position: absolute;
+    right: 0; 
+    background-color: #fff;
+    border: 1px solid #ddd;
+    width: 150px;
+    z-index: 1;
+}
+
+.sort-menu.open + .content {
+    margin-top: 150px; 
+}
+
+.sort-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sort-menu ul li {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.sort-menu ul li:last-child {
+    border-bottom: none;
+}
+
+.sort-menu a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+.sort-menu li:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the menu when the button is clicked */
+#filters-button:focus + .filters-menu {
+    display: block;
+}
+
+/* -------- LOGIN PAGE -------- */
+.container .card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    margin-right: 100px;
+    margin-left: 100px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
+
+.container .card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    text-align: center;
+}
+
+.container .card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.container .card-footer {
+    padding: 0.75rem 1.25rem;
+}
+
+.container .form-group {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.container .card button {
+    margin-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    padding: 10px 20px;
+    background-color: #0070cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* -------- VIEW DETAILS PAGE -------- */
+.cabin {
+    max-width: 800px; /* Restrict the maximum width to make it more readable */
+    margin: 40px auto; /* Center it with a margin and add some space from top and bottom */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #fff; /* Background color for the details box */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensures nothing spills out of the border-radius */
+    text-align: left; /* Align text to the left */
+    display: flex; /* Flex layout for side-by-side image and details */
+    flex-direction: column; /* Stack image and details vertically */
+}
+
+/* cabin image */
+.cabin img {
+    max-height: 400px; /* Set a max-height for the image */
+    width: 100%; /* Make it responsive */
+    object-fit: cover; /* Ensure the image covers the area nicely */
+    object-position: 20% 90%;
+    border-bottom: 1px solid #eaeaea; /* Separator between image and text */
+    transition: filter 0.1s ease-in-out;
+}
+.cabin img:hover {
+    filter: brightness(75%);
+}
+
+/* cabin address */
+.cabin h3 {
+    font-size: 2rem; /* Make the title larger */
+    margin: 20px; /* Add some margin around the title */
+    margin-bottom: 5px;
+    color: #333; /* Slightly darker color for better readability */
+}
+
+.cabin h4 {
+    font-size: 1.2rem; /* Make the subtitle slightly larger */
+    font-weight: normal;
+    margin: 20px;
+    margin-top: 5px;
+}
+
+.cabin h5 {
+    font-size: 1.2rem; /* Make the subtitle slightly larger */
+    font-weight: normal;
+    margin-left: 20px;
+    margin-top: -20px;
+}
+
+.cabin h6 {
+    font-size: 1.2rem; /* Make the subtitle slightly larger */
+    font-weight: normal;
+    margin-left: 20px;
+    margin-top: -30px;
+}
+
+.cabin input {
+    margin-left: 620px;
+    padding: 6px 10px;
+    margin-bottom: 8px;
+
+}
+
+/* cabin description */
+.cabin h7 {
+    border-radius: 8px;
+    font-size: 1.2rem; /* Make the subtitle slightly larger */
+    font-weight: bold;
+    margin: 20px;
+}
+
+.cabin .description {
+    padding: 20px;
+}
+
+.cabin .description {
+    padding: 20px;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+/* book button */
+.cabin .bookButton {
+    margin-left: 20px;
+    margin-top:10px;
+    width: 165px;
+    margin-right: 20px;
+    margin-bottom: 0px;
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 2px solid #0074d9;
+    color: #0074d9;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.cabin button:hover {
+    background-color: #004080;
+}
+
+/* Calendar picker */
+.date-picker-container {
+    position: relative;
+    margin-top:50px;
+  }
+
+  #dateInput {
+      margin-left:20px;
+      margin-top:10px;
+      height:25px;
+  }
+
+  .date-picker {
+    display: none;
+    position: relative;
+    top: 50%;
+    left: 10px;
+    margin-left: 140px;
+    max-width: 500px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(63, 91, 151, 0.1);
+    border-radius: 5px;
+    z-index: 1;
+  }
+
+  .date-picker-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #9acbf7;
+    color: #fff;
+  }
+
+  .date-picker-header select {
+    padding: 5px;
+    border-radius: 5px;
+    border:  #0074d9;
+  }
+
+  .calendar {
+    display: grid;
+    
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    padding: 10px;
+  }
+
+  .day {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .day.selected {
+    background-color: #0074d9;
+    color: #fff;
+  }
+
+  .day.greyoout {
+      color:rgb(201, 201, 201);
+  }
+
+  .choose-button {
+    position:relative;
+    margin-left : 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 2px solid #0074d9;
+    color: #0074d9;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .choose-button.selected {
+    background-color: #0074d9;
+    border-radius: 5px;
+    color: #fff;
+  }
+  /* Style for the pop-up window */
+  #popup {
+    display: none;
+    position: fixed;
+    border-radius: 25px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+#successMessage {
+    color: #0074d9;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+/* Style for the overlay background */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Style for the close button */
+#closeBtn {
+    cursor: pointer;
+    background: rgba(255, 0, 0, 0.692);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    float: right;
+    top: -10px;
+    right: 10px;
+}
+
+
+/* Contact and about page styles */
+#HoursText {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+
+.SpecialDiv-container-aboutus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.SpecialDiv-container-contactus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    width: 50%;
+    margin: 20px auto;
+}
+
+.SpecialDiv {
+    margin: 5rem;
+}
+
+.SpecialDiv h1 {
+    font-size: 3rem;
+    margin: 20px;
+    text-align: center;
+}
+
+.SpecialDiv hr {
+    background: black;
+    height: 0.3rem;
+    margin: 1em;
+}
+
+.SpecialDiv p {
+    font-size: 1.2rem;
+    margin: 1.2rem;
+    line-height: 2rem;
+}
+
+.SpecialDiv ul {
+    list-style-type: square;
+}
+
+.SpecialDiv li {
+    font-size: 1.2rem;
+    margin: 1.2rem;
+    line-height: 2rem;
+}
+
+#HoursPoints ul {
+    list-style-type: none;
+}
+
+#HoursPoints ul li {
+    margin: 1rem;
+    line-height: 1rem;
+}
+
+/* Mobile Styles ------------------- STILL TESTING */
+@media (max-width: 768px) {
+    .container .header .menu-toggle {
+        display: block;
+    }
+
+    .container .header .logo-and-menu .menu .menu-divider {
+        display: flex;
+        width: 200px;
+    }
+
+    /* Hide the menu initially */
+    .container .header .menu ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Show the menu when the toggle button is clicked */
+    .container .header .menu-toggle.active + .logo-and-menu .menu ul {
+        display: flex;
+    }
+
+    .container .header .menu ul li {
+        margin-right: 0;
+        margin-bottom: 0px;
+    }
+
+    /* ----------------------- Browse Page ----------------------- */
+
+    .filters-menu {
+        width: 100%;
+        top: 40px; 
+        right: 0;
+    }
+
+    .left {
+        padding: 10px;
+    }
+
+    .property {
+        max-width: 100%;
+    }
+
+    .property-grid {
+        max-width: 800px;
+        margin: 40px auto;
+        gap: 10px;
+        padding: 10px;
+        /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+        background-color: rgba(0, 0, 0, 0);
+        /* border-radius: 8px; */
+        overflow: hidden;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Sort Button */
+    .sort-button {
+        margin-top: 20px;
+    }
+
+    /* search box */
+    .left input {
+        margin-top: 140px;
+        width: 80%;
+    }
+    
+    .container .header .menu ul li {
+        text-align: center;
+        padding: 10px;
+    }
+
+
+    /* ----------------------- About Us / Contact Us Page ----------------------- */
+    .SpecialDiv-container-contactus,
+    .SpecialDiv-container-aboutus {
+        display: flex;
+        flex-direction: column;
+        width: 100%; 
+        padding: 0; 
+        margin: 0; 
+    }
+
+    .SpecialDiv {
+        width: 100%; 
+        padding: 0px; 
+    }
+
+    .SpecialDiv h1, .SpecialDiv p, .SpecialDiv ul {
+        margin-left: 20px; 
+        margin-right: 20px;
+    }
+
+    /* ----------------------- Calendar Date Picker ----------------------- */
+    .date-picker-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+        margin-right: 400px;
+    }
+}

@@ -1,0 +1,49 @@
+<!-- cabin_details.html -->
+
+{% extends "base.html" %}
+
+{% block title %}CRRUS{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', path='cabin_details.js') }}"></script>{% endblock %}
+
+{% block content %}
+    <div id="cabinDetails" data-cabin-id="{{ cabin.cabin_id }}"></div>
+    <div id="overlay" onclick="closePopup()"></div>
+    <div id="popup">
+        <span id="closeBtn" onclick="closePopup()">X</span>
+        <p><span id="successMessage">Your reservation was successfully created!</span></p>
+        <p id="discount"> </p>
+        <p id="totalAmount"> </p>
+    </div>
+{% endblock %}
+{% block footer_scripts %}
+    <script>
+        // grabbing the cabin id from the url
+        window.addEventListener('load', function() {
+            var urlSegments = window.location.pathname.split('/');
+            var cabinId = urlSegments[2];
+            displayPropertyDetails(cabinId);
+        })
+
+        // Mobile Nav-bar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu Toggle
+            const toggleButton = document.querySelector('.container .header .menu-toggle');
+
+            // CRRUS Logo
+            logoElement = document.querySelector('.container .header .site-logo');
+
+            toggleButton.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const menu = this.nextElementSibling.querySelector('.menu ul');
+                if (menu.style.display === "flex") {
+                    logoElement.style.display = "flex";
+                    menu.style.display = "none";
+                }
+                else {
+                    logoElement.style.display = "none";
+                    menu.style.display = "flex";
+                }
+            });
+        });
+    </script>
+{% endblock %}

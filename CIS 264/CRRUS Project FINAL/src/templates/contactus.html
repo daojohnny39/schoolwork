@@ -1,0 +1,39 @@
+<!-- contactus -->
+
+{% extends "base.html" %}
+{% block title %}Contact CRRU{% endblock %}
+
+{% block content %}
+<div class="SpecialDiv-container-contactus">
+    <div class="SpecialDiv">
+        <h1>Contact Us</h1>
+        <hr>
+        <p>For any inquiries or feedback, please feel free to reach out to us:</p>
+        <element id = "HoursPoints">
+            <ul>
+                <li><b><img src="/static/mainfiles/EmailSymbol.svg" alt="Email Icon">:</b> <a href="mailto:info@cabinrentalsrus.com">info@cabinrentalsrus.com</a></li>
+                <li><b><img src="/static/mainfiles/PhoneSymbol.svg" alt="Phone Icon">:</b> 123-456-7890</li>
+                <li><b><img src="/static/mainfiles/PinSymbol.svg" alt="Pin Icon">:</b> 888 Mountain View Road, Colorado Hills, CO</li>
+            </ul>
+        </element>
+        <p id="HoursText"> BUSINESS HOURS</p>
+        <element id = "HoursPoints">
+            <ul>
+                <li>Mon - Fri ....... 8 am - 6 pm</li>
+                <li>Sat ....... 9 am - 5 pm</li>
+                <li>Sun ....... Closed</li>
+            </ul>
+        </element>
+        <hr>
+        <p>Please note that our phones and address will be closed on the following US holidays:</p>
+        <ul>
+            <li><b>New Year's Day</b> -- January 1st</li>
+            <li><b>Independence Day</b> -- July 4th</li>
+            <li><b>Thanksgiving Day</b> -- 4th Thursday in November</li>
+            <li><b>Christmas Eve</b> -- December 24th</li>
+            <li><b>Christmas Day</b> -- December 25th</li>
+            <li><b>New Year's Eve</b> -- December 31st</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

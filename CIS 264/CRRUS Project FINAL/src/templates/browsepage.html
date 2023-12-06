@@ -1,0 +1,32 @@
+<!-- homepage -->
+
+{% extends "base.html" %}
+{% block title %}Welcome to CRRUS!{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', path='browsepage.js') }}"></script>{% endblock %}
+
+{% block content %}
+        <div class="content">
+            <!-- FILTERS BUTTON -->
+            <!--
+            <div class="filters-button">
+                <button id="filters-button">Filters</button>
+                <div class="filters-menu" id="filters-menu">
+                    <ul>
+                        <li><a href="#">Price Range</a></li>
+                        <li><a href="#">Amenities</a></li>
+                    </ul>
+                </div>
+            </div>
+            -->
+            <!-- CABIN FORMAT: -->
+            <div class="left">
+                <h2>Available Cabin Properties</h2>
+                <input type="text" id="amenity-search" name="amenity-search" placeholder="Search Amenity">
+                <!-- FILTERS BUTTON -->
+                <div class="sort-button">
+                    <button id="sort-button">Sort</button>
+                </div>
+                <div class="property-grid" id="property-grid"></div>
+            </div>
+        </div>
+{% endblock %}
