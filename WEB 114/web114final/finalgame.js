@@ -17,6 +17,7 @@
 // Introduction
 const gameElement = document.querySelector('.game');
 const gameIntroElement = document.querySelector('.game-introduction');
+var username;
 
 // First Game
 const gameFirstElement = document.querySelector('.game-first');
@@ -32,6 +33,12 @@ var thirdGameUserChoice;
 
 // Fourth Game
 const gameFourthElement = document.querySelector('.game-fourth');
+const fourthGameAnswerStatus = document.querySelector('.fourth-game-answer-status');
+var fourthGameUserInput = null;
+var fourthGameUserTries = 0;
+
+// Fifth Game
+const gameFifthElement = document.querySelector('.game-fifth');
 
 
 // Bug Fixes (1)
@@ -85,9 +92,11 @@ document.getElementById('username-form').addEventListener('submit', function(eve
     // Prevents page from reloading when user hits submit button
     event.preventDefault();
 
-    var username = document.getElementById('username-input').value;
+    username = document.getElementById('username-input').value;
     var userGreetElement = document.getElementById('user-greeting');
     userGreetElement.textContent = 'Welcome, ' + username + '!';
+
+    console.log("Username: " + username);
 
     //var introGame = document.querySelector('.game').style.display = 'block';
     gameElement.style.display = 'block';
@@ -422,7 +431,109 @@ document.body.addEventListener('click', function(event) {
             });
         });
         /* --------------------------------------------------------- THE CALCULATOR END --------------------------------------------------------- */
+
+        // Answer status
+        let pElement = document.createElement('p');
+        fourthGameAnswerStatus.appendChild(pElement);
+
+        document.getElementById('answer-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            fourthGameUserInput = parseInt(document.getElementById('answer-input').value);
+            console.log("fourthGameUserInput = " + fourthGameUserInput);
+
+            let fourthGameAnswer = 31;
+            console.log("Answer = " + fourthGameAnswer);
+
+            if (!isNaN(fourthGameUserInput)) {
+                if (fourthGameUserInput < fourthGameAnswer - 5) {
+                    fourthGameAnswerStatus.style.backgroundColor = 'red';
+                    fourthGameAnswerStatus.style.display = 'block';
+                    fourthGameUserTries++;
+
+                    pElement.textContent = "Not quite, think HIGHER!!";
+                } 
+                else if (fourthGameUserInput < fourthGameAnswer) {
+                    fourthGameAnswerStatus.style.backgroundColor = 'blue';
+                    fourthGameAnswerStatus.style.display = 'block';
+                    fourthGameUserTries++;
+
+                    pElement.textContent = "Almost there! Just a little higher!";
+                }
+                else if (fourthGameUserInput > fourthGameAnswer + 5) {
+                    fourthGameAnswerStatus.style.backgroundColor = 'red';
+                    fourthGameAnswerStatus.style.display = 'block';
+                    fourthGameUserTries++;
+
+                    pElement.textContent = "Not quite, think LOWER!!";
+                }
+                else if (fourthGameUserInput > fourthGameAnswer) {
+                    fourthGameAnswerStatus.style.backgroundColor = 'blue';
+                    fourthGameAnswerStatus.style.display = 'block';
+                    fourthGameUserTries++;
+                    
+                    pElement.textContent = "Almost there! Just a little lower!"
+                }
+                else {
+                    fourthGameAnswerStatus.style.backgroundColor = 'green';
+                    fourthGameAnswerStatus.style.display = 'block';
+                    fourthGameUserTries++;
+                    
+                    if (fourthGameUserTries >= 3) {
+                        pElement.textContent = "CONGRATS! You got it!! It only took you " + fourthGameUserTries + " tries...";
+                    }
+                    else if (fourthGameUserTries >= 2) {
+                        pElement.textContent = "CONGRATS! You got it!! Wow, it only took you " + fourthGameUserTries + " tries, good job!";
+                    }
+                    else if (fourthGameUserTries == 1) {
+                        pElement.textContent = "CONGRATS! You got it!! Wow, it only took you " + fourthGameUserTries + " try, good job! " + username + " is a math genius!";
+                    }
+
+                    let fourthGameNextButton = document.createElement('button');
+                    fourthGameNextButton.classList.add('fourth-game-finish');
+                    fourthGameNextButton.textContent = "Let's move on!";
+                    fourthGameAnswerStatus.appendChild(fourthGameNextButton);
+                }
+            } 
+            else {
+                fourthGameAnswerStatus.style.backgroundColor = 'red';
+                fourthGameAnswerStatus.style.display = 'block';
+
+                pElement.textContent = "Answer must be a number!";
+            }
+        });
+}})
+/* ---------------------- FOURTH GAME END ---------------------- */
+
+/* ---------------------- FIFTH GAME ---------------------- */
+document.body.addEventListener('click', function(event) {
+    if (event.target && event.target.classList.contains('fourth-game-finish')) {
+        console.log('');
+        console.log('-------- Fifth Game Logs --------');
+
+        // Div swap
+        gameFourthElement.style.display = 'none';
+        gameFifthElement.style.display = 'block';
+
+        console.log("Third game div replaced!");
+
+        // First question
+        document.getElementById('fourth-game-q1-answer').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var currentVal = parseFloat(document.querySelector('.fourth-game-q1').textContent);
+            var firstQuestionInput = parseFloat(document.getElementById('fourth-game-q1-answer-input').value);
+
+            currentVal += firstQuestionInput;
+
+            document.querySelector('.fourth-game-q1').textContent = currentVal;
+        })
+
+        // Second question
+        document.getElementById('fourth-game-q2-answer').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // LEFT OFF HERE
+        })
     }
 })
-
-/* ---------------------- FOURTH GAME END ---------------------- */
+/* ---------------------- FIFTH GAME END ---------------------- */

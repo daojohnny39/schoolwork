@@ -165,6 +165,23 @@ button:hover {
     display: none;
 }
 
+.container .game .game-fourth .fourth-game-answer-status {
+    display: none;
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.container .game .game-fourth .fourth-game-answer-status p {
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.container .game .game-fifth {
+    display: none;
+}
 /* ----------------------- THE CALCULATOR ----------------------- */
 /* The Actual Calculator */
 .calc {
@@ -174,6 +191,7 @@ button:hover {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
     width: 50%;
+    margin: 20px auto;
     margin-top: 20px;
     background-color: rgb(80, 80, 80);
 }
