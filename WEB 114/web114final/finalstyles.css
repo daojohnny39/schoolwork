@@ -1,4 +1,8 @@
-
+/*
+    Johnny (Nhat) Dao
+    12/9/2023
+    WEB 114 Final Project
+*/
 
 body {
     margin: 0;
@@ -182,6 +186,27 @@ button:hover {
 .container .game .game-fifth {
     display: none;
 }
+
+.container .game .game-fifth .fifth-game-answer-status-q2 {
+    display: none;
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.container .game .game-fifth .fifth-game-answer-status-q3 {
+    display: none;
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.container .game .game-finished {
+    display: none;
+}
+
 /* ----------------------- THE CALCULATOR ----------------------- */
 /* The Actual Calculator */
 .calc {

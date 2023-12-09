@@ -2,8 +2,11 @@
 
 /*
 
-    PERSONAL NOTES: (These are just ideas)
-        MAKE EVERYTHING A CERTAIN TEXT ONCE THE WHOLE GAME IS COMPLETED
+    Johnny (Nhat) Dao
+    12/9/2023
+    WEB 114 Final Project
+
+    NOTE: Sorry, I kinda got sluggish with the notes about 3/4ths of the way through
 
     BUG FIXES:
         (1): User was able to spam click the pElement and buttonElement generation
@@ -39,6 +42,19 @@ var fourthGameUserTries = 0;
 
 // Fifth Game
 const gameFifthElement = document.querySelector('.game-fifth');
+const fifthGameAnswerStatusQ2 = document.querySelector('.fifth-game-answer-status-q2');
+const fifthGameAnswerStatusQ3 = document.querySelector('.fifth-game-answer-status-q3');
+var fifthGameUserInputQ2 = 0;
+var fifthGameUserInputQ3 = 0;
+
+var firstQuestionStatus = false;
+var secondQuestionStatus = false;
+var thirdQuestionStatus = false;
+
+// Game Finished
+const gameFinishedElement = document.querySelector('.game-finished');
+const gameFinishedAnswers = document.querySelector('.game-finished-answers');
+var reviewList = [];
 
 
 // Bug Fixes (1)
@@ -47,6 +63,7 @@ var firstGameUserChoice = null;
 /* ---------------------- GAME ELEMENTS END ---------------------- */
 
 /* ---------------------- GAME FUNCTIONS ---------------------- */
+// First game ----------
 function updateGameFirstExt(choice) {
     var gameFirstExtElement = document.querySelector('.game-first-ext');
     let pElement = document.createElement('p');
@@ -85,6 +102,18 @@ function updateGameFirstExt(choice) {
     gameFirstElement.appendChild(pElement);
     gameFirstElement.appendChild(buttonElement);
 }
+// First game END ----------
+
+// Fifth Game ----------
+function checkGameStatus() {
+    if (firstQuestionStatus && secondQuestionStatus && thirdQuestionStatus) {
+        let buttonElement = document.createElement('button');
+        buttonElement.classList.add('fifth-game-finish');
+        buttonElement.textContent = "LET'S GOOO WE'RE DONE!!!";
+        gameFifthElement.appendChild(buttonElement);
+    }
+}
+// Fifth Game END ----------
 /* ---------------------- GAME FUNCTIONS END ---------------------- */
 
 /* ---------------------- GETTING USERNAME ---------------------- */
@@ -252,7 +281,7 @@ document.body.addEventListener('click', function(event) {
         // Third question generation
         const thirdGameDiv = document.querySelector('.from-second-choice');
         let thirdGameQuestion = document.createElement('p');
-        thirdGameQuestion.textContent = "So you picked image " + secondGameUserChoice + " from the last question."
+        thirdGameQuestion.textContent = "You picked image " + secondGameUserChoice + " from the last question."
         thirdGameDiv.appendChild(thirdGameQuestion);
 
         // Creating image element for third question
@@ -505,6 +534,14 @@ document.body.addEventListener('click', function(event) {
 /* ---------------------- FOURTH GAME END ---------------------- */
 
 /* ---------------------- FIFTH GAME ---------------------- */
+// Answer status
+let pElementQ2 = document.createElement('p');
+fifthGameAnswerStatusQ2.appendChild(pElementQ2);
+
+// Answer status
+let pElementQ3 = document.createElement('p');
+fifthGameAnswerStatusQ3.appendChild(pElementQ3);
+
 document.body.addEventListener('click', function(event) {
     if (event.target && event.target.classList.contains('fourth-game-finish')) {
         console.log('');
@@ -514,7 +551,7 @@ document.body.addEventListener('click', function(event) {
         gameFourthElement.style.display = 'none';
         gameFifthElement.style.display = 'block';
 
-        console.log("Third game div replaced!");
+        console.log("Fourth game div replaced!");
 
         // First question
         document.getElementById('fourth-game-q1-answer').addEventListener('submit', function(event) {
@@ -526,14 +563,179 @@ document.body.addEventListener('click', function(event) {
             currentVal += firstQuestionInput;
 
             document.querySelector('.fourth-game-q1').textContent = currentVal;
+
+            firstQuestionStatus = true;
+            console.log("First question status: " + firstQuestionStatus);
+
+            checkGameStatus();
         })
 
         // Second question
         document.getElementById('fourth-game-q2-answer').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // LEFT OFF HERE
+            var secondQuestionInput = document.getElementById('fourth-game-q2-answer-input').value;
+
+            if (secondQuestionInput != '5') {
+                fifthGameAnswerStatusQ2.style.backgroundColor = 'green';
+                fifthGameAnswerStatusQ2.style.display = 'block';
+                pElementQ2.textContent = "CONGRATS! You got it!!";
+            } else {
+                fifthGameAnswerStatusQ2.style.backgroundColor = 'red';
+                fifthGameAnswerStatusQ2.style.display = 'block';
+                pElementQ2.textContent = "Really?...";
+            }
+
+            secondQuestionStatus = true;
+            console.log("Second question status: " + secondQuestionStatus);
+
+            checkGameStatus();
+        })
+
+        // Third question
+        document.getElementById('fourth-game-q3-answer').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var thirdQuestionInput = document.getElementById('fourth-game-q3-answer-input').value;
+
+            if (thirdQuestionInput <= '5') {
+                fifthGameAnswerStatusQ3.style.backgroundColor = 'green';
+                fifthGameAnswerStatusQ3.style.display = 'block';
+                pElementQ3.textContent = "CONGRATS! You got it!!";
+            } else {
+                fifthGameAnswerStatusQ3.style.backgroundColor = 'red';
+                fifthGameAnswerStatusQ3.style.display = 'block';
+                pElementQ3.textContent = "Dude... no way...";
+            }
+
+            thirdQuestionStatus = true;
+            console.log("Third question status: " + thirdQuestionStatus);
+
+            checkGameStatus();
         })
     }
 })
 /* ---------------------- FIFTH GAME END ---------------------- */
+
+document.body.addEventListener('click', function(event) {
+    if (event.target && event.target.classList.contains('fifth-game-finish')) {
+        console.log('');
+        console.log('-------- FINISHED --------');
+
+        // Div swap
+        gameFifthElement.style.display = 'none';
+        gameFinishedElement.style.display = 'block';
+
+        console.log("Fifth game div replaced!");
+
+        alert("You are now finished with the game!");
+        
+        while (true) {
+            var userLikes = prompt("Please list a couple things you liked about the game! (Enter nothing('') once done)");
+            if (userLikes === null || userLikes === '') {
+                break;
+            }
+            reviewList.push(userLikes);
+        }
+
+        console.log("Users liked:");
+
+        for (var i = reviewList.length; i >= 0; i--) { // for loop backwards
+            let pElement = document.createElement('p');
+            pElement.textContent = reviewList[i];
+            pElement.style.fontWeight = 'bold';
+            gameFinishedAnswers.appendChild(pElement);
+            console.log(reviewList[i]);
+        }
+
+        // RECAP
+        let pElement = document.createElement('p');
+        pElement.textContent = "For the first question, you answered:";
+        gameFinishedElement.appendChild(pElement);
+
+        if (firstGameUserChoice === 'first') {
+            let pElement = document.createElement('p');
+            pElement.textContent = "The first button! Very confident!";
+            pElement.style.fontWeight = 'bold';
+            gameFinishedElement.appendChild(pElement);
+        }
+        else {
+            let pElement = document.createElement('p');
+            pElement.textContent = "The second button! Not so confident...";
+            pElement.style.fontWeight = 'bold';
+            gameFinishedElement.appendChild(pElement);
+        }
+
+        // Divider
+        let hrElement = document.createElement('hr');
+        gameFinishedElement.appendChild(hrElement);
+
+        let pElement2 = document.createElement('p');
+        pElement2.textContent = "For the second question, you picked this image:";
+        gameFinishedElement.appendChild(pElement2);
+
+        // Creating image element for third question
+        let finishedGameImg = document.createElement('img');
+
+        // Pulling secondGameUserChoice to generate image
+        switch(secondGameUserChoice) {
+            case (1):
+                finishedGameImg.src = "https://i.pinimg.com/originals/24/be/1d/24be1d174c4fd7b8d47f9ca59ecea08f.jpg";
+                break;
+
+            case (2):
+                finishedGameImg.src = "https://i.pinimg.com/736x/37/68/be/3768beb6730402ea0201cabef9f78808.jpg";
+                break;
+            
+            case (3):
+                finishedGameImg.src = "https://strattondesigngroup.com/wp-content/uploads/2018/09/stratton-design-group-portfolio-modern-dream-home-02.jpg";
+                break;
+        }
+
+        finishedGameImg.classList.add('third-game-image');
+        gameFinishedElement.appendChild(finishedGameImg);
+
+        // Divider
+        let hrElement2 = document.createElement('hr');
+        gameFinishedElement.appendChild(hrElement2);
+
+        let pElement3 = document.createElement('p');
+        pElement3.textContent = "For the third question, you answered:";
+        gameFinishedElement.appendChild(pElement3);
+
+        switch(thirdGameUserChoice) {
+            case (1):
+                let pElement1 = document.createElement('p');
+                pElement1.textContent = "You liked the chair!";
+                pElement1.style.fontWeight = 'bold';
+                gameFinishedElement.appendChild(pElement1);
+                break;
+            case (2):
+                let pElement2 = document.createElement('p');
+                pElement2.textContent = "You liked the lights!";
+                pElement2.style.fontWeight = 'bold';
+                gameFinishedElement.appendChild(pElement2);
+                break;
+        }
+
+        // Divider
+        let hrElement3 = document.createElement('hr');
+        gameFinishedElement.appendChild(hrElement3);
+
+        let pElement4 = document.createElement('p');
+        pElement4.textContent = "For the fourth question, it took you ";
+        pElement4.textContent += fourthGameUserTries;
+        pElement4.textContent += " tries!";
+        gameFinishedElement.appendChild(pElement4);
+
+        // Divider
+        let hrElement4 = document.createElement('hr');
+        gameFinishedElement.appendChild(hrElement4);
+
+        let pElement5 = document.createElement('p');
+        pElement5.textContent = "Thanks for playing, ";
+        pElement5.textContent += username;
+        pElement5.textContent += "!";
+        gameFinishedElement.appendChild(pElement5);
+    }
+})

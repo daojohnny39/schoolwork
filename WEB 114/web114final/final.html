@@ -1,8 +1,14 @@
+<!-- 
+    Johnny (Nhat) Dao
+    12/9/2023
+    WEB 114 Final Project
+-->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Web 114 Final Project</title>
         <link rel="stylesheet" href="finalstyles.css">
     </head>
@@ -10,6 +16,7 @@
         <div class="header">
             <h1 class="endgame1">Web 114: Final Project!</h1>
             <h2 class="endgame2"><i>A Literal Confidence Game</i></h2>
+            <h2 style="color: red;">If you had loaded the game before, while it was in progress, hit CTRl + F5 to reset your css styles!!!</h2>
         </div>
         <div class="container">
             <h1 class="endgame">Before we get started, enter your username!</h1>
@@ -38,9 +45,9 @@
                     <p>
                         Choose your favorite interior style!
                     </p>
-                    <img class="second-game-image" id="first-interior-image" src="https://i.pinimg.com/originals/24/be/1d/24be1d174c4fd7b8d47f9ca59ecea08f.jpg">
-                    <img class="second-game-image" id="second-interior-image" src="https://i.pinimg.com/736x/37/68/be/3768beb6730402ea0201cabef9f78808.jpg">
-                    <img class="second-game-image" id="third-interior-image" src="https://strattondesigngroup.com/wp-content/uploads/2018/09/stratton-design-group-portfolio-modern-dream-home-02.jpg">
+                    <img class="second-game-image" id="first-interior-image" src="https://i.pinimg.com/originals/24/be/1d/24be1d174c4fd7b8d47f9ca59ecea08f.jpg" alt="First Interior Image">
+                    <img class="second-game-image" id="second-interior-image" src="https://i.pinimg.com/736x/37/68/be/3768beb6730402ea0201cabef9f78808.jpg" alt="Second Interior Image">
+                    <img class="second-game-image" id="third-interior-image" src="https://strattondesigngroup.com/wp-content/uploads/2018/09/stratton-design-group-portfolio-modern-dream-home-02.jpg" alt="Third Interior Image">
                 </div>
                 <div class="game-third">
                     <p>Third Question!</p>
@@ -48,6 +55,9 @@
                         You starting to feel judged yet??
                     </p>
                     <hr>
+                    <p>
+                        What did you like about the interior style you chose?
+                    </p>
                     <div class = "from-second-choice"></div>
                 </div>
                 <div class="game-fourth">
@@ -61,10 +71,10 @@
                     </p>
                     <p>
                         You may use the calculator below to answer the question
+                    </p>
                         <pre>
                         (͡° ͜ʖ ͡°)
                         </pre>
-                    </p>
                     <div class="fourth-game-answer-status"></div>
                     <form id="answer-form">
                         <input type="text" id="answer-input" name="answer" placeholder="Type your answer">
@@ -100,6 +110,7 @@
                 <div class="game-fifth">
                     <p>Fifth Question!</p>
                     <p style="font-size: 1em;">This is mainly here to pad out some leftover requirements</p>
+                    <p style="margin-top: 20px">All questions must be interacted with to continue!</p>
                     <hr>
                     <p>1. Add as many numbers as you like!</p>
                     <p class="fourth-game-q1">0</p>
@@ -108,12 +119,30 @@
                         <button type="submit">Add</button>
                     </form>
                     <hr>
-                    <p>2. Enter anything that is not equal to:</p>
+                    <p>2. Enter anything that is <b>NOT</b> equal to:</p>
                     <p class="fourth-game-q2">5</p>
+                    <div class="fifth-game-answer-status-q2"></div>
                     <form id="fourth-game-q2-answer">
                         <input type="text" id="fourth-game-q2-answer-input" name="fourth-game-answer" placeholder="Type a number">
                         <button type="submit">Submit</button>
                     </form>
+                    <hr>
+                    <p>3. Enter a anything that is <b>LESS THAN OR EQUAL TO:</b></p>
+                    <p class="fourth-game-q3">5</p>
+                    <div class="fifth-game-answer-status-q3"></div>
+                    <form id="fourth-game-q3-answer">
+                        <input type="text" id="fourth-game-q3-answer-input" name="fourth-game-answer" placeholder="Type a number">
+                        <button type="submit">Submit</button>
+                    </form>
+                    <hr>
+                </div>
+                <div class="game-finished">
+                    <p>YAY! You are now finished with the game!</p>
+                    <p>Here are some of the things that you liked about this game!</p>
+                    <div class="game-finished-answers"></div>
+                    <hr>
+                    <p><b>Let's do a little recap!</b></p>
+                    <hr>
                 </div>
             </div>
         </div>
