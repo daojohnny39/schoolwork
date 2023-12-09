@@ -28,6 +28,10 @@ var spamClickPrevent = 0;
 
 // Third Game
 const gameThirdElement = document.querySelector('.game-third');
+var thirdGameUserChoice;
+
+// Fourth Game
+const gameFourthElement = document.querySelector('.game-fourth');
 
 
 // Bug Fixes (1)
@@ -261,24 +265,164 @@ document.body.addEventListener('click', function(event) {
         }
 
         thirdGameImg.classList.add('third-game-image');
-        console.log("thirdGameImg: " + thirdGameImg.className);
+        console.log("thirdGameImg: " + thirdGameImg.className); // not exactly document.getElementById("something4").className, but uses .className
         thirdGameDiv.appendChild(thirdGameImg);
-
-        // NOTE: Make sure image isn't interactable. (Hovering Animation)
 
         // Third Game Question
         let pElement = document.createElement('p');
         pElement.textContent = "What about this interior did you like?";
-        thirdGameDiv.appendChild(pElement);
 
         // Select Options:
         let selectDiv = document.createElement('select');
+        selectDiv.style.display = "flex";
+        selectDiv.style.margin = "20px auto";
+
+        let defaultOptionElement = document.createElement('option');
+        defaultOptionElement.textContent = "Select an option";
+        defaultOptionElement.id = "third-game-default";
+        selectDiv.appendChild(defaultOptionElement);
 
         let option1Element = document.createElement('option');
         option1Element.textContent = "The Chairs";
+        option1Element.id = "third-game-option1";
+        selectDiv.appendChild(option1Element);
 
-        selectDiv.appendChild(optionElement);
+        let option2Element = document.createElement('option');
+        option2Element.textContent = "The Lights";
+        option2Element.id = "third-game-option2";
+        selectDiv.appendChild(option2Element);
+
         thirdGameDiv.appendChild(selectDiv);
+
+        // Preventing spam generation
+        var thirdGameMessageGeneratedElement = false;
+
+        selectDiv.addEventListener('change', function() {
+            // Takes the option elements' id as input
+            let selectedOption = this.options[this.selectedIndex].id;
+
+            if (thirdGameMessageGeneratedElement) {
+                let catchPElement = document.getElementById('third-game-message');
+                catchPElement.textContent = "Come on now...";
+                //gameThirdElement.appendChild(catchPElement);
+                return;
+            }
+
+            let message;
+
+            switch(selectedOption) {
+                case 'third-game-option1':
+                    message = "You know that chair probably costs more than what you can afford...";
+                    thirdGameUserChoice = 1;
+                    break;
+                case 'third-game-option2':
+                    message = "Are the lights really that good??";
+                    thirdGameUserChoice = 2;
+                    break;
+            }
+
+            console.log("thirdGameUserChoice = " + thirdGameUserChoice);
+
+            let pElement = document.createElement('p');
+            pElement.id = 'third-game-message';
+            pElement.textContent = message;
+            gameThirdElement.appendChild(pElement);
+
+            let buttonElement = document.createElement('button');
+            buttonElement.textContent = "I don't like this game, take me to the next one!";
+            buttonElement.classList.add('third-game-finish');
+            gameThirdElement.appendChild(buttonElement);
+
+            thirdGameMessageGeneratedElement = true;
+        })
     }
 });
 /* ---------------------- THIRD GAME END ---------------------- */
+
+/* ---------------------- FOURTH GAME ---------------------- */
+document.body.addEventListener('click', function(event) {
+    if (event.target && event.target.classList.contains('third-game-finish')) {
+        console.log('');
+        console.log('-------- Fourth Game Logs --------');
+
+        // Div swap
+        gameThirdElement.style.display = 'none';
+        gameFourthElement.style.display = 'block';
+
+        console.log("Third game div replaced!");
+
+        /* --------------------------------------------------------- THE CALCULATOR --------------------------------------------------------- */
+        // Used querySelectorAll to select all of the buttons (The value of each button is later determined by HTML textContent)
+        const buttons = document.querySelectorAll('.calc-buttons button');  
+
+        // Defining the p element within the screen (Used later to replace textContent)
+        const screen = document.querySelector('.calc-screen p');
+
+        // Operation variables
+        let currentOperation = null;
+        let firstOperand = '';
+        let secondOperand = '';
+
+        // This allows the screen to actually display the "." 
+        function appendToOperand(operand, char) {
+            if (char === '.' && operand.includes('.')) {   
+                return operand;
+            }
+            return operand + char;
+        }
+
+        // Actually getting the values from each button
+        buttons.forEach(button => { 
+            button.addEventListener('click', function() {
+                const value = this.textContent; 
+                if (!isNaN(value) || value === '.') { 
+                    if (currentOperation === null) { 
+                        firstOperand = appendToOperand(firstOperand, value);
+                        screen.textContent = firstOperand;
+                    } 
+                    else {
+                        secondOperand = appendToOperand(secondOperand, value);
+                        screen.textContent = secondOperand;
+                    }
+                } 
+                else if (['+', '-', '*', '/', '^'].includes(value)) {
+                    currentOperation = value;
+                } 
+                else if (value === '=') {   
+                    let result;
+                    switch (currentOperation) { 
+                        case '+':
+                            result = parseFloat(firstOperand) + parseFloat(secondOperand);  
+                            break;                                                          
+                        case '-':
+                            result = parseFloat(firstOperand) - parseFloat(secondOperand);
+                            break;
+                        case '*':
+                            result = parseFloat(firstOperand) * parseFloat(secondOperand);
+                            break;
+                        case '/':
+                            result = parseFloat(firstOperand) / parseFloat(secondOperand);
+                            break;
+                        case '^':
+                            result = parseFloat(firstOperand) ** parseFloat(secondOperand);
+                            break;
+                    }
+                    screen.textContent = result;    
+                    firstOperand = result;
+                    secondOperand = '';
+                    currentOperation = null;
+                }
+                // Clear button functionality
+                else if (value === 'C') {
+                    firstOperand = '';
+                    secondOperand = '';
+                    currentOperation = null;
+                    screen.textContent = '0';
+                } 
+            });
+        });
+        /* --------------------------------------------------------- THE CALCULATOR END --------------------------------------------------------- */
+    }
+})
+
+/* ---------------------- FOURTH GAME END ---------------------- */
